@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrediPuan", "KrediPuan\KrediPuan.csproj", "{A11B2B67-4416-4A4E-B2F6-9DDD7D6F77A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrediPuan_UI", "KrediPuan_UI\KrediPuan_UI.csproj", "{250EB7DF-1B99-4163-B947-434993CDB9BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A11B2B67-4416-4A4E-B2F6-9DDD7D6F77A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11B2B67-4416-4A4E-B2F6-9DDD7D6F77A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11B2B67-4416-4A4E-B2F6-9DDD7D6F77A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11B2B67-4416-4A4E-B2F6-9DDD7D6F77A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250EB7DF-1B99-4163-B947-434993CDB9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250EB7DF-1B99-4163-B947-434993CDB9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250EB7DF-1B99-4163-B947-434993CDB9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250EB7DF-1B99-4163-B947-434993CDB9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C4550EB-E146-4860-888B-A24997C61A1D}
+	EndGlobalSection
+EndGlobal

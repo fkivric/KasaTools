@@ -1,0 +1,1 @@
+Server=senetsepet.garantiserver.net;Database=VDB_SENETSEPET01;User Id=sa;Password=Snt1980Mmt+74-/741.Hsn99;
