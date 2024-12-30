@@ -114,6 +114,7 @@ namespace VolantMusteriDuzel
                 tileBarItem4.Enabled = false;
                 tileBarItem7.Enabled = false;
                 tileBarItem8.Enabled = false;
+                tileBarItem11.Visible = false;
             }
             else if (frmLogin.userID == "00KS003")
             {
@@ -126,6 +127,7 @@ namespace VolantMusteriDuzel
                 tileBarItem4.Enabled = false;
                 tileBarItem7.Enabled = false;
                 tileBarItem8.Enabled = false;
+                tileBarItem11.Visible = false;
             }
             else if (frmLogin.userID == "00KS004")
             {
@@ -139,6 +141,7 @@ namespace VolantMusteriDuzel
                 tileBarItem4.Enabled = false;
                 tileBarItem7.Enabled = false;
                 tileBarItem8.Enabled = false;
+                tileBarItem11.Visible = false;
             }
             else
             {
