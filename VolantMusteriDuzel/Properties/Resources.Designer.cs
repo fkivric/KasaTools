@@ -19,7 +19,7 @@ namespace VolantMusteriDuzel.Properties {
     // sınıfı tarafından otomatik olarak oluşturuldu.
     // Üye eklemek veya kaldırmak için .ResX dosyanızı düzenleyin ve sonra da ResGen
     // komutunu /str seçeneğiyle yeniden çalıştırın veya VS projenizi yeniden oluşturun.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -83,9 +83,29 @@ namespace VolantMusteriDuzel.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap Kamalar_logo {
+            get {
+                object obj = ResourceManager.GetObject("Kamalar_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap resetmodeldifferences_32x32 {
             get {
                 object obj = ResourceManager.GetObject("resetmodeldifferences_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap YON_AVM_400 {
+            get {
+                object obj = ResourceManager.GetObject("YON_AVM_400", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -54,27 +54,29 @@ namespace VolantMusteriDuzel
             try
             {
                 SplashScreen();
+                Thread.Sleep(3000);
                 //Properties.Settings.Default.connectionstring = "Server=192.168.4.24;Database=VDB_YON01;User Id=sa;Password=MagicUser2023!;";
                 Properties.Settings.Default.connectionstring2 = "Server=192.168.4.24;Database=MDE_GENEL;User Id=sa;Password=MagicUser2023!;";
                 Properties.Settings.Default.Save();
-                var s1 = new Kasaci()
-                {
-                    sira = "1",
-                    kasaci = "Emine BİLGİÇ"
-                };
-                sorgu.Add(s1);
-                var s2 = new Kasaci()
-                {
-                    sira = "2",
-                    kasaci = "İris KISACIK"
-                };
-                sorgu.Add(s2);
-                var s3 = new Kasaci()
-                {
-                    sira = "3",
-                    kasaci = "Volkan Üstündağ"
-                };
-                sorgu.Add(s3);
+                //var s1 = new Kasaci()
+                //{
+                //    sira = "1",
+                //    kasaci = "Emine BİLGİÇ"
+                //};
+                //sorgu.Add(s1);
+                //var s2 = new Kasaci()
+                //{
+                //    sira = "2",
+                //    kasaci = "İris KISACIK"
+                //};
+                //sorgu.Add(s2);
+                //var s3 = new Kasaci()
+                //{
+                //    sira = "3",
+                //    kasaci = "Volkan Üstündağ"
+                //};
+                //sorgu.Add(s3);
+                kasaci();
                 InitializeComponent();
 
             }
@@ -87,6 +89,10 @@ namespace VolantMusteriDuzel
                 DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false, 300, this);
             }
 
+        }
+        void kasaci()
+        {
+            sorgu = conn.GetData("select SOCODE as sira,SONAME + space(1) + SOSURNAME as kasaci from SOCIAL where SOSTS = 1 and SOCODE like '00KS%'", sql).DataTableToList<Kasaci>();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -170,7 +176,7 @@ namespace VolantMusteriDuzel
         void SplashScreen()
         {
             FluentSplashScreenOptions splashScreen = new FluentSplashScreenOptions();
-            splashScreen.Title = "YÖN AVM";
+            splashScreen.Title = "ENTEGREF";
             splashScreen.Subtitle = "YÖN avm® Volant İşlem Düzeltme";
             splashScreen.RightFooter = "Başlıyor...";
             splashScreen.LeftFooter = $"CopyRight ® 2023 {Environment.NewLine} Tüm Hahkları Saklıdır.";
@@ -291,6 +297,7 @@ namespace VolantMusteriDuzel
                 cmbMagaza2.Properties.DataSource = sorgu;
                 cmbMagaza2.Properties.ValueMember = "sira";
                 cmbMagaza2.Properties.DisplayMember = "kasaci";
+                cmbMagaza2.EditValue = frmLogin.userID;
 
                 dteKrediTarihStart.MaxDate = DateTime.Now.AddDays(-1);
                 dteKrediTarihStart.MinDate = new DateTime(2024, 1, 1);
@@ -970,45 +977,56 @@ namespace VolantMusteriDuzel
             string magazalar = "";
             if (cmbMagaza.EditValue != null)
             {
-                if (cmbMagaza.EditValue.ToString() == "1")
-                {
-                    string q = String.Format(@"
+
+                string q = String.Format(@"
 					declare @WH varchar(2000)
 					 if isnull(@WH,'') = ''
 					 begin 
 					  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
 					  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
 					 end 
-					 select 'in (''' + @WH +')'as Magazalar", "00KS002");
-                    magazalar = conn.GetValue(q).Replace(")", "')");
+					 select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
+                magazalar = conn.GetValue(q).Replace(")", "')");
 
-                }
-                else if (cmbMagaza.EditValue.ToString() == "2")
-                {
-                    string q = String.Format(@"
-					declare @WH varchar(2000)
-					 if isnull(@WH,'') = ''
-					 begin 
-					  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-					  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-					 end 
-					 select 'in (''' + @WH +')'as Magazalar", "00KS003");
-                    magazalar = conn.GetValue(q).Replace(")", "')");
+     //           if (cmbMagaza.EditValue.ToString() == "1")
+     //           {
+     //               string q = String.Format(@"
+					//declare @WH varchar(2000)
+					// if isnull(@WH,'') = ''
+					// begin 
+					//  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+					//  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+					// end 
+					// select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
+     //               magazalar = conn.GetValue(q).Replace(")", "')");
 
-                }
-                else if (cmbMagaza.EditValue.ToString() == "3")
-                {
+     //           }
+     //           else if (cmbMagaza.EditValue.ToString() == "2")
+     //           {
+     //               string q = String.Format(@"
+					//declare @WH varchar(2000)
+					// if isnull(@WH,'') = ''
+					// begin 
+					//  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+					//  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+					// end 
+					// select 'in (''' + @WH +')'as Magazalar", "00KS003");
+     //               magazalar = conn.GetValue(q).Replace(")", "')");
 
-                    string q = String.Format(@"
-					declare @WH varchar(2000)
-					 if isnull(@WH,'') = ''
-					 begin 
-					  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-					  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-					 end 
-					 select 'in (''' + @WH +')'as Magazalar", "00KS004");
-                    magazalar = conn.GetValue(q).Replace(")", "')");
-                }
+     //           }
+     //           else if (cmbMagaza.EditValue.ToString() == "3")
+     //           {
+
+     //               string q = String.Format(@"
+					//declare @WH varchar(2000)
+					// if isnull(@WH,'') = ''
+					// begin 
+					//  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+					//  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+					// end 
+					// select 'in (''' + @WH +')'as Magazalar", "00KS004");
+     //               magazalar = conn.GetValue(q).Replace(")", "')");
+     //           }
             }
             else
             {
@@ -1030,6 +1048,7 @@ namespace VolantMusteriDuzel
 			isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
 			isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
 			isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
+			isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
 			convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
 			isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
 			isnull(FİBA,0) [FİBA],
@@ -1074,84 +1093,85 @@ namespace VolantMusteriDuzel
 			) pvt
 										pivot
 										(
-											sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],
+											sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
 											[KREDİ TOPLAMI])
 										)pivotsonuc
 			where DIVVAL not in ('I0','WB','00','00')
 			and DIVVAL {1}
 			) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"), magazalar);
-            if (cmbMagaza.EditValue != null)
-            {
-                if (cmbMagaza.EditValue.ToString() == "1")
-                {
-                    kasasorgu = kasasorgu + String.Format(@" union select DIVVAL,'KAMALAR ' + DIVNAME,NAKİT,
-				isnull([Nakit Dekont],0) [Banka Dekont],
-				convert(varchar(20),FARK) as FARK,
-				isnull(GARANTİ,0) [GARANTİ],
-				isnull(VAKIF,0) [VAKIF],
-				isnull(AKBANK,0) [AKBANK],
-				isnull(HALKBANK,0) [HALKBANK],
-				isnull(FİNANSBANK,0) [FİNANSBANK],
-				isnull(TEB,0) [TEB],
-				isnull(YAPIKREDİ,0) [YAPIKREDİ],
-				isnull(İŞBANKASI,0) [İŞBANKASI],
-				isnull(İNG,0) [İNG],
-				isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
-				isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
-				isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
-				isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
-				convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
-				isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
-				isnull(FİBA,0) [FİBA],
-				isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
-				isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
-				from (
-				select * from (
-				select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
-				FROM VDB_KAMALAR01.dbo.DIVISON 
-				outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
-					FROM VDB_KAMALAR01.dbo.PROCEEDS
-							LEFT OUTER JOIN VDB_KAMALAR01.dbo.SALES ON SALID=PCDSSALID
-							LEFT OUTER JOIN VDB_KAMALAR01.dbo.PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
-							LEFT OUTER JOIN VDB_KAMALAR01.dbo.DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
-							WHERE PCDSDIVISON = DIVVAL
-							AND PCDSCOMPANY = '01'  
-							AND PCDSDATE  = '2024-06-02'
-							AND DPYMKIND = 'N'
-							) sonuc
-				outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM VDB_KAMALAR01.dbo.SAFEBEHAVE iade
-											WHERE SABHCOMPANY = '01'  
-											AND iade.SABHDATE  = '{0}'
-											AND iade.SABHDIVISON = DIVVAL
-											AND SABHSOURCE = 'ML'
-				) msf
-				where DIVSTS  = 1 and DIVSALESTS = 1
-				union
+        //    if (cmbMagaza.EditValue != null)
+        //    {
+        //        if (cmbMagaza.EditValue.ToString() == "1")
+        //        {
+        //            kasasorgu = kasasorgu + String.Format(@" union select DIVVAL,'KAMALAR ' + DIVNAME,NAKİT,
+				    //isnull([Nakit Dekont],0) [Banka Dekont],
+				    //convert(varchar(20),FARK) as FARK,
+				    //isnull(GARANTİ,0) [GARANTİ],
+				    //isnull(VAKIF,0) [VAKIF],
+				    //isnull(AKBANK,0) [AKBANK],
+				    //isnull(HALKBANK,0) [HALKBANK],
+				    //isnull(FİNANSBANK,0) [FİNANSBANK],
+				    //isnull(TEB,0) [TEB],
+				    //isnull(YAPIKREDİ,0) [YAPIKREDİ],
+				    //isnull(İŞBANKASI,0) [İŞBANKASI],
+				    //isnull(İNG,0) [İNG],
+				    //isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
+				    //isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
+				    //isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
+				    //isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
+			     //   isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
+				    //convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
+				    //isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
+				    //isnull(FİBA,0) [FİBA],
+				    //isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
+				    //isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
+				    //from (
+				    //select * from (
+				    //select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
+				    //FROM VDB_KAMALAR01.dbo.DIVISON 
+				    //outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
+					   // FROM VDB_KAMALAR01.dbo.PROCEEDS
+							 //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.SALES ON SALID=PCDSSALID
+							 //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
+							 //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
+							 //   WHERE PCDSDIVISON = DIVVAL
+							 //   AND PCDSCOMPANY = '01'  
+							 //   AND PCDSDATE  = '{0}'
+							 //   AND DPYMKIND = 'N'
+							 //   ) sonuc
+				    //outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM VDB_KAMALAR01.dbo.SAFEBEHAVE iade
+								//			    WHERE SABHCOMPANY = '01'  
+								//			    AND iade.SABHDATE  = '{0}'
+								//			    AND iade.SABHDIVISON = DIVVAL
+								//			    AND SABHSOURCE = 'ML'
+				    //) msf
+				    //where DIVSTS  = 1 and DIVSALESTS = 1
+				    //union
 
-				select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from VDB_KAMALAR01.dbo.DIVISON
-				outer apply (select 
-							replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
-							SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
-							from VDB_KAMALAR01.dbo.PROCEEDS			
-							left outer join VDB_KAMALAR01.dbo.PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
-							left outer join VDB_KAMALAR01.dbo.DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-							where PCDSCOMPANY = '01'  
-							AND not exists (select * FROM VDB_KAMALAR01.dbo.SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
-							AND PCDSDATE  = '{0}'
-							AND DIVVAL = PCDSDIVISON
-							group by DPYMNAME,DPYMKIND) kartlar
-				where DIVSTS  = 1 and DIVSALESTS = 1
+				    //select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from VDB_KAMALAR01.dbo.DIVISON
+				    //outer apply (select 
+							 //   replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
+							 //   SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
+							 //   from VDB_KAMALAR01.dbo.PROCEEDS			
+							 //   left outer join VDB_KAMALAR01.dbo.PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
+							 //   left outer join VDB_KAMALAR01.dbo.DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+							 //   where PCDSCOMPANY = '01'  
+							 //   AND not exists (select * FROM VDB_KAMALAR01.dbo.SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
+							 //   AND PCDSDATE  = '{0}'
+							 //   AND DIVVAL = PCDSDIVISON
+							 //   group by DPYMNAME,DPYMKIND) kartlar
+				    //where DIVSTS  = 1 and DIVSALESTS = 1
 
-				) pvt
-											pivot
-											(
-												sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],
-												[KREDİ TOPLAMI])
-											)pivotsonuc
-				where DIVVAL not in ('I0','WB','00','00')
-				) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"));
-                }
-            }
+				    //) pvt
+								//			    pivot
+								//			    (
+								//				    sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
+								//				    [KREDİ TOPLAMI])
+								//			    )pivotsonuc
+				    //where DIVVAL not in ('I0','WB','00','00')
+				    //) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"));
+        //        }
+        //    }
             var dt = DataDonen(kasasorgu);
             gridKasa.DataSource = dt;
             viewKasa.Columns["FARK"].ColumnType.ToString();
@@ -1367,7 +1387,16 @@ namespace VolantMusteriDuzel
             }
             else
             {
-                magazalar = MGZLIST;
+                string w = String.Format(@"
+					declare @WH varchar(2000)
+					 if isnull(@WH,'') = ''
+					 begin 
+					  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+					  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+					 end 
+					 select 'in (''' + @WH +')'as Magazalar", cmbMagaza2.EditValue.ToString());
+                magazalar = conn.GetValue(w).Replace(")", "')");
+                //magazalar = MGZLIST;
 
             }
 
@@ -3855,6 +3884,11 @@ namespace VolantMusteriDuzel
                 XtraMessageBox.Show("", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnYeni_Click(null, null);
             });
+        }
+
+        private void btnKrediYeni_Click(object sender, EventArgs e)
+        {
+            gridKredi.DataSource = null;
         }
     }
 }

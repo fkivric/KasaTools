@@ -244,6 +244,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entegref %281%29.ico" />
+    <None Include="Resources\YON_AVM_400.png" />
+    <None Include="Resources\Kamalar_logo.png" />
     <None Include="Resources\resetmodeldifferences_32x32.png" />
     <None Include="Resources\bodetails_32x32.png" />
   </ItemGroup>
