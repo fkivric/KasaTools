@@ -175,6 +175,21 @@ namespace VolantMusteriDuzel
             Settings.Default.Company = cmbVolantSirket.EditValue.ToString();
             Settings.Default.Save();
             FirmaBilgileri();
+            string company = cmbVolantSirket.EditValue.ToString();
+            if (company.Contains("YON"))
+            {
+                pictureEdit4.Visible = true;
+                pictureEdit4.Image = Properties.Resources.YON_AVM_400;
+            }
+            else if (company.Contains("KAMALAR"))
+            {
+                pictureEdit4.Visible = true;
+                pictureEdit4.Image = Properties.Resources.Kamalar_logo;
+            }
+            else
+            {
+                pictureEdit4.Visible = false;
+            }
         }       
         public DataTable Sorgu(string sorgu, string connection)
         {
