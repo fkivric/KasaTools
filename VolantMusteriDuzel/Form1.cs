@@ -285,7 +285,18 @@ namespace VolantMusteriDuzel
                 cmbMagaza.Properties.DataSource = sorgu;
                 cmbMagaza.Properties.ValueMember = "sira";
                 cmbMagaza.Properties.DisplayMember = "kasaci";
-
+                bool var = false;
+                for (int i = 0; i < sorgu.Count; i++)
+                {
+                    if (sorgu[i].sira == frmLogin.userID.ToString())
+                    {
+                        var = true;
+                    }
+                }
+                if (var)
+                {
+                    cmbMagaza.EditValue = frmLogin.userID;
+                }
                 //cmbMagaza.Properties.DataSource = DataDonen("select DIVVAL,DIVNAME from DIVISON where DIVSALESTS = 1");
                 //cmbMagaza.Properties.ValueMember = "DIVVAL";
                 //cmbMagaza.Properties.DisplayMember = "DIVNAME";
@@ -297,7 +308,6 @@ namespace VolantMusteriDuzel
                 cmbMagaza2.Properties.DataSource = sorgu;
                 cmbMagaza2.Properties.ValueMember = "sira";
                 cmbMagaza2.Properties.DisplayMember = "kasaci";
-                cmbMagaza2.EditValue = frmLogin.userID;
 
                 dteKrediTarihStart.MaxDate = DateTime.Now.AddDays(-1);
                 dteKrediTarihStart.MinDate = new DateTime(2024, 1, 1);
