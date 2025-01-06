@@ -100,13 +100,13 @@ namespace VolantMusteriDuzel
             Properties.Settings.Default.SmsToken = token;
             Properties.Settings.Default.Save();
             string q = String.Format(@"
-			declare @WH varchar(2000)
-			 if isnull(@WH,'') = ''
-			 begin 
-			  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-			  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-			 end 
-			 select 'in (''' + @WH +')'as Magazalar", frmLogin.userID);
+            declare @WH varchar(2000)
+             if isnull(@WH,'') = ''
+             begin 
+              select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+              from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+             end 
+             select 'in (''' + @WH +')'as Magazalar", frmLogin.userID);
             MGZLIST = conn.GetValue(q).Replace(")", "')");
 
             if (frmLogin.userID == "00KS002")
@@ -426,31 +426,31 @@ namespace VolantMusteriDuzel
             ViewIadeTaksitSorunlular.OptionsView.ShowIndicator = true;
             ViewIadeTaksitSorunlular.IndicatorWidth = 40;
             string q = @"select top 100 iade.INSCINSID
-			,CURVAL as [Musteri_Kodu]
-			,CURNAME as [Muster_Adi]
-			,hata.SALDATE as [Iade_Tarihi]
-			,hata.SALID as Iade_ID
-			,s.SALDATE as Hatali_Satis_Tarihi
-			,hata.SALCANSALID as Hatali_Satis_ID
-			,s.SALID as Dogru_Satis_ID
-			,INSAMOUNT as Taksit_Tutari
-			,SALCAMOUNT as Iade_Tutarı, '' as Sonuç from (
-			select INSCINSID from (
-			select COUNT(INSCINSID) as adet,INSCINSID from INSTALMENTCANCEL with (nolock)
-			group by INSCINSID
-			) net
-			where adet = 12) iade
-			left outer join INSTALMENT on INSID = INSCINSID
-			left outer join CURRENTS on CURID = INSCURID
-			left outer join SALES s on s.SALID = INSSALID
-			outer apply (select SALID,SALCANSALID,SALDATE,sum(INSCAMOUNT) SALCAMOUNT from INSTALMENTCANCEL 
-						left outer join SALES on SALID = INSCSALID
-						where INSCINSID = iade.INSCINSID 
-						group by SALCANSALID,SALDATE,SALID) hata
+            ,CURVAL as [Musteri_Kodu]
+            ,CURNAME as [Muster_Adi]
+            ,hata.SALDATE as [Iade_Tarihi]
+            ,hata.SALID as Iade_ID
+            ,s.SALDATE as Hatali_Satis_Tarihi
+            ,hata.SALCANSALID as Hatali_Satis_ID
+            ,s.SALID as Dogru_Satis_ID
+            ,INSAMOUNT as Taksit_Tutari
+            ,SALCAMOUNT as Iade_Tutarı, '' as Sonuç from (
+            select INSCINSID from (
+            select COUNT(INSCINSID) as adet,INSCINSID from INSTALMENTCANCEL with (nolock)
+            group by INSCINSID
+            ) net
+            where adet = 12) iade
+            left outer join INSTALMENT on INSID = INSCINSID
+            left outer join CURRENTS on CURID = INSCURID
+            left outer join SALES s on s.SALID = INSSALID
+            outer apply (select SALID,SALCANSALID,SALDATE,sum(INSCAMOUNT) SALCAMOUNT from INSTALMENTCANCEL 
+                        left outer join SALES on SALID = INSCSALID
+                        where INSCINSID = iade.INSCINSID 
+                        group by SALCANSALID,SALDATE,SALID) hata
 
-			--where iade.INSCINSID = 60142897
+            --where iade.INSCINSID = 60142897
 
-			option (fast 100)";
+            option (fast 100)";
             SqlDataAdapter da = new SqlDataAdapter(q, sql);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -840,26 +840,26 @@ namespace VolantMusteriDuzel
             ViewRapor.IndicatorWidth = 40;
             gridRapor.DataSource = null;
             string x = @"SELECT [INSCINSID]
-				  ,d.[Musteri_Kodu]
-				  ,[Muster_Adi]
-				  ,[Iade_Tarihi]
-				  ,[Iade_ID]
-				  ,[Hatali_Satis_Tarihi]
-				  ,[Hatali_Satis_ID]
-				  ,[Dogru_Satis_ID]
-				  ,[Taksit_Tutari]
-				  ,[Iade_Tutarı]
-				  ,[Bakiye]
-				  ,[SATISTOPLAM]
-				  ,[PESINATTAHSILAT]
-				  ,[TAKSITTAHSILAT]
-				  ,[TAKSITBAKIYE]
-				  ,[TAKSITSAYISI]
-				  ,[MINVADETARIHI]
-				  ,[SONODEMEMTARIHI]
-				  ,[SONALISVERISTARIHI]
-			  FROM [MDE_GENEL].[dbo].[IadeBakiyeDuzeltilenler] d
-			  inner join IadeBakiyeDuzeltilenlerBakiye t on d.Musteri_Kodu = t.Musteri_Kodu";
+                  ,d.[Musteri_Kodu]
+                  ,[Muster_Adi]
+                  ,[Iade_Tarihi]
+                  ,[Iade_ID]
+                  ,[Hatali_Satis_Tarihi]
+                  ,[Hatali_Satis_ID]
+                  ,[Dogru_Satis_ID]
+                  ,[Taksit_Tutari]
+                  ,[Iade_Tutarı]
+                  ,[Bakiye]
+                  ,[SATISTOPLAM]
+                  ,[PESINATTAHSILAT]
+                  ,[TAKSITTAHSILAT]
+                  ,[TAKSITBAKIYE]
+                  ,[TAKSITSAYISI]
+                  ,[MINVADETARIHI]
+                  ,[SONODEMEMTARIHI]
+                  ,[SONALISVERISTARIHI]
+              FROM [MDE_GENEL].[dbo].[IadeBakiyeDuzeltilenler] d
+              inner join IadeBakiyeDuzeltilenlerBakiye t on d.Musteri_Kodu = t.Musteri_Kodu";
             var Sorgu = DataDonen2(x);
             gridRapor.DataSource = Sorgu;
             ViewRapor.OptionsView.BestFitMaxRowCount = -1;
@@ -918,20 +918,20 @@ namespace VolantMusteriDuzel
                 kota = txtKota.Text;
             }
             string q = string.Format(@"select DIVVAL from PROCEEDS 
-			left outer join PROCEEDSCHILD on PCDSCHPCDSID = PCDSID
-			left outer join SALES satis on SALID = PCDSSALID
-			left outer join CASHIER on PCDSCASHIER = CHVAL
-			left outer join SOCIAL on SOCODE = CHSOCODE
-			left outer join DIVISON on DIVVAL = PCDSDIVISON
-			left outer join CURRENTS on CURID = PCDSCURID
-			left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-			where PCDSKIND = 2
-			and PCDSDATE between '{0}' and '{1}'
-			and SALSALEKIND = 'T'
-			and PCDSCHDPYMID  = 2
-			and not exists (select * from SALES iade where iade.SALCANSALID = satis.SALID )
-			group by DIVVAL,DIVNAME,DPYMNAME
-			having SUM(PCDSCHAMOUNT) > '{2}'", bastarih, bittarih, kota);
+            left outer join PROCEEDSCHILD on PCDSCHPCDSID = PCDSID
+            left outer join SALES satis on SALID = PCDSSALID
+            left outer join CASHIER on PCDSCASHIER = CHVAL
+            left outer join SOCIAL on SOCODE = CHSOCODE
+            left outer join DIVISON on DIVVAL = PCDSDIVISON
+            left outer join CURRENTS on CURID = PCDSCURID
+            left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+            where PCDSKIND = 2
+            and PCDSDATE between '{0}' and '{1}'
+            and SALSALEKIND = 'T'
+            and PCDSCHDPYMID  = 2
+            and not exists (select * from SALES iade where iade.SALCANSALID = satis.SALID )
+            group by DIVVAL,DIVNAME,DPYMNAME
+            having SUM(PCDSCHAMOUNT) > '{2}'", bastarih, bittarih, kota);
 
             var gecenmagazalar = DataDonen(q);
 
@@ -950,29 +950,29 @@ namespace VolantMusteriDuzel
                     }
                 }
                 string w = string.Format(@"select DIVVAL,DIVNAME,
-				convert(char(10),PCDSDATE,103) as odeme_tarih,
-				SOCODE,SONAME + SPACE(1) + SOSURNAME as kasiyer, 
-				CURVAL,CURNAME ,PCDSCHAMOUNT,  SALAMOUNT,DPYMNAME,
-				PCDSCHAMOUNT *0.01 as prim
-				from PROCEEDS 
-				left outer join PROCEEDSCHILD on PCDSCHPCDSID = PCDSID
-				left outer join SALES satis on SALID = PCDSSALID
-				left outer join CASHIER on PCDSCASHIER = CHVAL
-				left outer join SOCIAL on SOCODE = CHSOCODE
-				left outer join DIVISON on DIVVAL = PCDSDIVISON
-				left outer join CURRENTS on CURID = PCDSCURID
-				left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-				--outer apply (select PCDSAMOUNT as iadettuar from SALES iade 
-				--			left outer join PROCEEDS on PCDSSALID = iade.SALID
-				--			where iade.SALID < 0  and iade.SALDATE = satis.SALDATE and iade.SALCURID = satis.SALCURID) iade
-				where PCDSKIND = 2
-				and PCDSCHDPYMID = 2
-				and PCDSDATE between '{0}' and '{1}'
-				and SALSALEKIND = 'T'
-				AND DIVVAL in ({2})
-				--and CURVAL = 'M005052'
-				and not exists (select * from SALES iade where iade.SALCANSALID = satis.SALID )
-				order by DIVVAL,SOCODE ", bastarih, bittarih, magazalar);
+                convert(char(10),PCDSDATE,103) as odeme_tarih,
+                SOCODE,SONAME + SPACE(1) + SOSURNAME as kasiyer, 
+                CURVAL,CURNAME ,PCDSCHAMOUNT,  SALAMOUNT,DPYMNAME,
+                PCDSCHAMOUNT *0.01 as prim
+                from PROCEEDS 
+                left outer join PROCEEDSCHILD on PCDSCHPCDSID = PCDSID
+                left outer join SALES satis on SALID = PCDSSALID
+                left outer join CASHIER on PCDSCASHIER = CHVAL
+                left outer join SOCIAL on SOCODE = CHSOCODE
+                left outer join DIVISON on DIVVAL = PCDSDIVISON
+                left outer join CURRENTS on CURID = PCDSCURID
+                left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+                --outer apply (select PCDSAMOUNT as iadettuar from SALES iade 
+                --			left outer join PROCEEDS on PCDSSALID = iade.SALID
+                --			where iade.SALID < 0  and iade.SALDATE = satis.SALDATE and iade.SALCURID = satis.SALCURID) iade
+                where PCDSKIND = 2
+                and PCDSCHDPYMID = 2
+                and PCDSDATE between '{0}' and '{1}'
+                and SALSALEKIND = 'T'
+                AND DIVVAL in ({2})
+                --and CURVAL = 'M005052'
+                and not exists (select * from SALES iade where iade.SALCANSALID = satis.SALID )
+                order by DIVVAL,SOCODE ", bastarih, bittarih, magazalar);
                 gridPesinatPrim.DataSource = DataDonen(w);
             }
             else
@@ -989,38 +989,38 @@ namespace VolantMusteriDuzel
             {
 
                 string q = String.Format(@"
-					declare @WH varchar(2000)
-					 if isnull(@WH,'') = ''
-					 begin 
-					  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-					  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-					 end 
-					 select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
+                    declare @WH varchar(2000)
+                     if isnull(@WH,'') = ''
+                     begin 
+                      select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                      from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                     end 
+                     select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
                 magazalar = conn.GetValue(q).Replace(")", "')");
 
      //           if (cmbMagaza.EditValue.ToString() == "1")
      //           {
      //               string q = String.Format(@"
-					//declare @WH varchar(2000)
-					// if isnull(@WH,'') = ''
-					// begin 
-					//  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-					//  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-					// end 
-					// select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
+                    //declare @WH varchar(2000)
+                    // if isnull(@WH,'') = ''
+                    // begin 
+                    //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                    //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                    // end 
+                    // select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
      //               magazalar = conn.GetValue(q).Replace(")", "')");
 
      //           }
      //           else if (cmbMagaza.EditValue.ToString() == "2")
      //           {
      //               string q = String.Format(@"
-					//declare @WH varchar(2000)
-					// if isnull(@WH,'') = ''
-					// begin 
-					//  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-					//  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-					// end 
-					// select 'in (''' + @WH +')'as Magazalar", "00KS003");
+                    //declare @WH varchar(2000)
+                    // if isnull(@WH,'') = ''
+                    // begin 
+                    //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                    //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                    // end 
+                    // select 'in (''' + @WH +')'as Magazalar", "00KS003");
      //               magazalar = conn.GetValue(q).Replace(")", "')");
 
      //           }
@@ -1028,13 +1028,13 @@ namespace VolantMusteriDuzel
      //           {
 
      //               string q = String.Format(@"
-					//declare @WH varchar(2000)
-					// if isnull(@WH,'') = ''
-					// begin 
-					//  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-					//  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-					// end 
-					// select 'in (''' + @WH +')'as Magazalar", "00KS004");
+                    //declare @WH varchar(2000)
+                    // if isnull(@WH,'') = ''
+                    // begin 
+                    //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                    //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                    // end 
+                    // select 'in (''' + @WH +')'as Magazalar", "00KS004");
      //               magazalar = conn.GetValue(q).Replace(")", "')");
      //           }
             }
@@ -1043,143 +1043,143 @@ namespace VolantMusteriDuzel
                 magazalar = "not in ('00')";
             }
             string kasasorgu = string.Format(@"select DIVVAL,DIVNAME,NAKİT,
-			isnull([Nakit Dekont],0) [Banka Dekont],
-			convert(varchar(20),FARK) as FARK,
-			isnull(GARANTİ,0) [GARANTİ],
-			isnull(VAKIF,0) [VAKIF],
-			isnull(AKBANK,0) [AKBANK],
-			isnull(HALKBANK,0) [HALKBANK],
-			isnull(FİNANSBANK,0) [FİNANSBANK],
-			isnull(TEB,0) [TEB],
-			isnull(YAPIKREDİ,0) [YAPIKREDİ],
-			isnull(İŞBANKASI,0) [İŞBANKASI],
-			isnull(İNG,0) [İNG],
-			isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
-			isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
-			isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
-			isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
-			isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
-			convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
-			isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
-			isnull(FİBA,0) [FİBA],
-			isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
-			isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
-			from (
-			select * from (
-			select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
-			FROM DIVISON 
-			outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
-				FROM PROCEEDS
-						LEFT OUTER JOIN SALES ON SALID=PCDSSALID
-						LEFT OUTER JOIN PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
-						LEFT OUTER JOIN DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
-						WHERE PCDSDIVISON = DIVVAL
-						AND PCDSCOMPANY = '01'  
-						AND PCDSDATE  = '{0}'
-						AND DPYMKIND = 'N'
-						) sonuc
-			outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM SAFEBEHAVE iade
-										WHERE SABHCOMPANY = '01'  
-										AND iade.SABHDATE  = '{0}'
-										AND iade.SABHDIVISON = DIVVAL
-										AND SABHSOURCE = 'ML'
-			) msf
-			where DIVSTS  = 1 and DIVSALESTS = 1
-			union
+            isnull([Nakit Dekont],0) [Banka Dekont],
+            convert(varchar(20),FARK) as FARK,
+            isnull(GARANTİ,0) [GARANTİ],
+            isnull(VAKIF,0) [VAKIF],
+            isnull(AKBANK,0) [AKBANK],
+            isnull(HALKBANK,0) [HALKBANK],
+            isnull(FİNANSBANK,0) [FİNANSBANK],
+            isnull(TEB,0) [TEB],
+            isnull(YAPIKREDİ,0) [YAPIKREDİ],
+            isnull(İŞBANKASI,0) [İŞBANKASI],
+            isnull(İNG,0) [İNG],
+            isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
+            isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
+            isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
+            isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
+            isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
+            convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
+            isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
+            isnull(FİBA,0) [FİBA],
+            isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
+            isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
+            from (
+            select * from (
+            select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
+            FROM DIVISON 
+            outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
+                FROM PROCEEDS
+                        LEFT OUTER JOIN SALES ON SALID=PCDSSALID
+                        LEFT OUTER JOIN PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
+                        LEFT OUTER JOIN DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
+                        WHERE PCDSDIVISON = DIVVAL
+                        AND PCDSCOMPANY = '01'  
+                        AND PCDSDATE  = '{0}'
+                        AND DPYMKIND = 'N'
+                        ) sonuc
+            outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM SAFEBEHAVE iade
+                                        WHERE SABHCOMPANY = '01'  
+                                        AND iade.SABHDATE  = '{0}'
+                                        AND iade.SABHDIVISON = DIVVAL
+                                        AND SABHSOURCE = 'ML'
+            ) msf
+            where DIVSTS  = 1 and DIVSALESTS = 1
+            union
 
-			select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from DIVISON
-			outer apply (select 
-						replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
-						SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
-						from PROCEEDS			
-						left outer join PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
-						left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-						where PCDSCOMPANY = '01'  
-						AND not exists (select * FROM SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
-						AND PCDSDATE  = '{0}'
-						AND DIVVAL = PCDSDIVISON
-						group by DPYMNAME,DPYMKIND) kartlar
-			where DIVSTS  = 1 and DIVSALESTS = 1
-			) pvt
-										pivot
-										(
-											sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
-											[KREDİ TOPLAMI])
-										)pivotsonuc
-			where DIVVAL not in ('I0','WB','00','00')
-			and DIVVAL {1}
-			) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"), magazalar);
+            select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from DIVISON
+            outer apply (select 
+                        replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
+                        SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
+                        from PROCEEDS			
+                        left outer join PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
+                        left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+                        where PCDSCOMPANY = '01'  
+                        AND not exists (select * FROM SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
+                        AND PCDSDATE  = '{0}'
+                        AND DIVVAL = PCDSDIVISON
+                        group by DPYMNAME,DPYMKIND) kartlar
+            where DIVSTS  = 1 and DIVSALESTS = 1
+            ) pvt
+                                        pivot
+                                        (
+                                            sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
+                                            [KREDİ TOPLAMI])
+                                        )pivotsonuc
+            where DIVVAL not in ('I0','WB','00','00')
+            and DIVVAL {1}
+            ) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"), magazalar);
         //    if (cmbMagaza.EditValue != null)
         //    {
         //        if (cmbMagaza.EditValue.ToString() == "1")
         //        {
         //            kasasorgu = kasasorgu + String.Format(@" union select DIVVAL,'KAMALAR ' + DIVNAME,NAKİT,
-				    //isnull([Nakit Dekont],0) [Banka Dekont],
-				    //convert(varchar(20),FARK) as FARK,
-				    //isnull(GARANTİ,0) [GARANTİ],
-				    //isnull(VAKIF,0) [VAKIF],
-				    //isnull(AKBANK,0) [AKBANK],
-				    //isnull(HALKBANK,0) [HALKBANK],
-				    //isnull(FİNANSBANK,0) [FİNANSBANK],
-				    //isnull(TEB,0) [TEB],
-				    //isnull(YAPIKREDİ,0) [YAPIKREDİ],
-				    //isnull(İŞBANKASI,0) [İŞBANKASI],
-				    //isnull(İNG,0) [İNG],
-				    //isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
-				    //isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
-				    //isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
-				    //isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
-			     //   isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
-				    //convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
-				    //isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
-				    //isnull(FİBA,0) [FİBA],
-				    //isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
-				    //isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
-				    //from (
-				    //select * from (
-				    //select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
-				    //FROM VDB_KAMALAR01.dbo.DIVISON 
-				    //outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
-					   // FROM VDB_KAMALAR01.dbo.PROCEEDS
-							 //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.SALES ON SALID=PCDSSALID
-							 //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
-							 //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
-							 //   WHERE PCDSDIVISON = DIVVAL
-							 //   AND PCDSCOMPANY = '01'  
-							 //   AND PCDSDATE  = '{0}'
-							 //   AND DPYMKIND = 'N'
-							 //   ) sonuc
-				    //outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM VDB_KAMALAR01.dbo.SAFEBEHAVE iade
-								//			    WHERE SABHCOMPANY = '01'  
-								//			    AND iade.SABHDATE  = '{0}'
-								//			    AND iade.SABHDIVISON = DIVVAL
-								//			    AND SABHSOURCE = 'ML'
-				    //) msf
-				    //where DIVSTS  = 1 and DIVSALESTS = 1
-				    //union
+                    //isnull([Nakit Dekont],0) [Banka Dekont],
+                    //convert(varchar(20),FARK) as FARK,
+                    //isnull(GARANTİ,0) [GARANTİ],
+                    //isnull(VAKIF,0) [VAKIF],
+                    //isnull(AKBANK,0) [AKBANK],
+                    //isnull(HALKBANK,0) [HALKBANK],
+                    //isnull(FİNANSBANK,0) [FİNANSBANK],
+                    //isnull(TEB,0) [TEB],
+                    //isnull(YAPIKREDİ,0) [YAPIKREDİ],
+                    //isnull(İŞBANKASI,0) [İŞBANKASI],
+                    //isnull(İNG,0) [İNG],
+                    //isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
+                    //isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
+                    //isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
+                    //isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
+                 //   isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
+                    //convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
+                    //isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
+                    //isnull(FİBA,0) [FİBA],
+                    //isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
+                    //isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
+                    //from (
+                    //select * from (
+                    //select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
+                    //FROM VDB_KAMALAR01.dbo.DIVISON 
+                    //outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
+                       // FROM VDB_KAMALAR01.dbo.PROCEEDS
+                             //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.SALES ON SALID=PCDSSALID
+                             //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
+                             //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
+                             //   WHERE PCDSDIVISON = DIVVAL
+                             //   AND PCDSCOMPANY = '01'  
+                             //   AND PCDSDATE  = '{0}'
+                             //   AND DPYMKIND = 'N'
+                             //   ) sonuc
+                    //outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM VDB_KAMALAR01.dbo.SAFEBEHAVE iade
+                                //			    WHERE SABHCOMPANY = '01'  
+                                //			    AND iade.SABHDATE  = '{0}'
+                                //			    AND iade.SABHDIVISON = DIVVAL
+                                //			    AND SABHSOURCE = 'ML'
+                    //) msf
+                    //where DIVSTS  = 1 and DIVSALESTS = 1
+                    //union
 
-				    //select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from VDB_KAMALAR01.dbo.DIVISON
-				    //outer apply (select 
-							 //   replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
-							 //   SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
-							 //   from VDB_KAMALAR01.dbo.PROCEEDS			
-							 //   left outer join VDB_KAMALAR01.dbo.PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
-							 //   left outer join VDB_KAMALAR01.dbo.DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-							 //   where PCDSCOMPANY = '01'  
-							 //   AND not exists (select * FROM VDB_KAMALAR01.dbo.SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
-							 //   AND PCDSDATE  = '{0}'
-							 //   AND DIVVAL = PCDSDIVISON
-							 //   group by DPYMNAME,DPYMKIND) kartlar
-				    //where DIVSTS  = 1 and DIVSALESTS = 1
+                    //select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from VDB_KAMALAR01.dbo.DIVISON
+                    //outer apply (select 
+                             //   replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
+                             //   SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
+                             //   from VDB_KAMALAR01.dbo.PROCEEDS			
+                             //   left outer join VDB_KAMALAR01.dbo.PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
+                             //   left outer join VDB_KAMALAR01.dbo.DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+                             //   where PCDSCOMPANY = '01'  
+                             //   AND not exists (select * FROM VDB_KAMALAR01.dbo.SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
+                             //   AND PCDSDATE  = '{0}'
+                             //   AND DIVVAL = PCDSDIVISON
+                             //   group by DPYMNAME,DPYMKIND) kartlar
+                    //where DIVSTS  = 1 and DIVSALESTS = 1
 
-				    //) pvt
-								//			    pivot
-								//			    (
-								//				    sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
-								//				    [KREDİ TOPLAMI])
-								//			    )pivotsonuc
-				    //where DIVVAL not in ('I0','WB','00','00')
-				    //) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"));
+                    //) pvt
+                                //			    pivot
+                                //			    (
+                                //				    sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
+                                //				    [KREDİ TOPLAMI])
+                                //			    )pivotsonuc
+                    //where DIVVAL not in ('I0','WB','00','00')
+                    //) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"));
         //        }
         //    }
             var dt = DataDonen(kasasorgu);
@@ -1398,108 +1398,108 @@ namespace VolantMusteriDuzel
             else
             {
                 string w = String.Format(@"
-					declare @WH varchar(2000)
-					 if isnull(@WH,'') = ''
-					 begin 
-					  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-					  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-					 end 
-					 select 'in (''' + @WH +')'as Magazalar", cmbMagaza2.EditValue.ToString());
+                    declare @WH varchar(2000)
+                     if isnull(@WH,'') = ''
+                     begin 
+                      select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                      from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                     end 
+                     select 'in (''' + @WH +')'as Magazalar", cmbMagaza2.EditValue.ToString());
                 magazalar = conn.GetValue(w).Replace(")", "')");
                 //magazalar = MGZLIST;
 
             }
 
             string q = string.Format(@"select DIVVAL,SALDATE,DIVNAME,CURVAL,CURNAME,
-			case when SALSHIPKIND='S' then 'SONRA TESLİM' else 'HEMEN TESLİM' end as [SATIŞ ŞEKLİ],
-			DPRNAME as [SATIŞ TİPİ],
-			CONVERT(VARCHAR(15), CAST(sum(SATISTUTAR)+sum(IADETUTAR) AS MONEY), 1) as [NET TUTAR],
-			DPYMNAME as [ÖDEME ŞEKLİ],
-			CONVERT(VARCHAR(15), CAST(sum(isnull(ODEME,0)) AS MONEY), 1) as [ÖDEME TUTARI],
-			CONVERT(VARCHAR(15), CAST(convert(numeric(18,0),sum(isnull(ODEME,0))*0.02) AS MONEY), 1) as [Verilmesi Gereken],
-			CONVERT(VARCHAR(15), CAST([Masraf] AS MONEY), 1) as Ödenen
-			from CURRENTS
-			inner join
-			(
-			select SALCURID, SALID,SALDATE,SALCANSALID,SALDIVISON, SALSHIPKIND,DPRNAME,
-			  SUM(CASE WHEN SALES.SALID >= 0 THEN INVCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE INVCHVAT END ELSE 0 END) SATISTUTAR, 
-			  SUM(CASE WHEN SALES.SALID < 0 THEN INVCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE INVCHVAT END ELSE 0 END)*-1 IADETUTAR,
-			  CASE WHEN SALES.SALID > 0 THEN isnull(odm,pesinattuar) ELSE isnull(odm*-1,pesinattuar*-1) END as ODEME,
-			  isnull(DPYMNAME,pesinattipi) as DPYMNAME
-			from SALES
-			  LEFT OUTER JOIN INVOICE WITH (NOLOCK) ON INVSALID = SALES.SALID 
-			  LEFT OUTER JOIN INVOICECHILD WITH (NOLOCK) ON INVCHINVID = INVID 
-			  LEFT OUTER JOIN INVOICECHILDPROBH WITH (NOLOCK) ON INVOICECHILDPROBH.INVCHPBHID = INVOICECHILD.INVCHID 
-			  LEFT OUTER JOIN DEFCANCEL ON DCANID = SALES.SALCANID   
-			  LEFT OUTER JOIN SALESPAYMENTKINDBH WITH (NOLOCK) ON SALPKBHSALID = SALES.SALID 
-			  LEFT OUTER JOIN DEFPAYMENTKINDFORPROCEED WITH (NOLOCK) ON DPFPID = SALPKBHDPFPID 
-			  LEFT OUTER JOIN DEFPRICE WITH (NOLOCK) ON DEFPRICE.DPRID = INVOICECHILD.INVCHDPRID 
-			  LEFT OUTER JOIN DEFPAYMENTPLAN WITH (NOLOCK) ON DPAYPID = INVOICECHILD.INVCHPAYPID 
-			  outer apply (select sum(PCDSAMOUNT) as pesinattuar, DPYMNAME as pesinattipi from PROCEEDS 			   
-						   inner join PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
-						   inner join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-						   where PCDSSALID = SALID 
-						   group by DPYMNAME) as PROCEEDS
-			  outer apply (select INSSALID,DPYMNAME,sum(INSPCDAMOUNT) as odm from INSTALMENT
-							   left outer join INSTALMENTPROCEEDS on INSPCDINSID = INSID
-							   left outer join DEFPAYMENTKIND on DPYMID = INSPCDDPYMID
-							   where INSSALID = SALID --and substring(DPYMVAL,1,2)=substring(DPRVAL,1,2)
-							   group by INSSALID,DPYMNAME) odeme 
-			WHERE 
-			  SALES.SALCOMPANY = '01' 
-			  AND SALES.SALSHIPKIND = 'H' 
-			  AND SALES.SALDATE between '{1}' and '{2}'
-			  AND (DPRVAL like 'TF%' or DPRVAL like 'FB%')
-			  --AND SALCURID = 1788343
-			  group by SALCURID,SALID,SALDATE,SALSHIPKIND,DPRNAME,odm,pesinattuar,pesinattipi,DPYMNAME,SALCANSALID,SALDIVISON
+            case when SALSHIPKIND='S' then 'SONRA TESLİM' else 'HEMEN TESLİM' end as [SATIŞ ŞEKLİ],
+            DPRNAME as [SATIŞ TİPİ],
+            CONVERT(VARCHAR(15), CAST(sum(SATISTUTAR)+sum(IADETUTAR) AS MONEY), 1) as [NET TUTAR],
+            DPYMNAME as [ÖDEME ŞEKLİ],
+            CONVERT(VARCHAR(15), CAST(sum(isnull(ODEME,0)) AS MONEY), 1) as [ÖDEME TUTARI],
+            CONVERT(VARCHAR(15), CAST(convert(numeric(18,0),sum(isnull(ODEME,0))*0.02) AS MONEY), 1) as [Verilmesi Gereken],
+            CONVERT(VARCHAR(15), CAST([Masraf] AS MONEY), 1) as Ödenen
+            from CURRENTS
+            inner join
+            (
+            select SALCURID, SALID,SALDATE,SALCANSALID,SALDIVISON, SALSHIPKIND,DPRNAME,
+              SUM(CASE WHEN SALES.SALID >= 0 THEN INVCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE INVCHVAT END ELSE 0 END) SATISTUTAR, 
+              SUM(CASE WHEN SALES.SALID < 0 THEN INVCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE INVCHVAT END ELSE 0 END)*-1 IADETUTAR,
+              CASE WHEN SALES.SALID > 0 THEN isnull(odm,pesinattuar) ELSE isnull(odm*-1,pesinattuar*-1) END as ODEME,
+              isnull(DPYMNAME,pesinattipi) as DPYMNAME
+            from SALES
+              LEFT OUTER JOIN INVOICE WITH (NOLOCK) ON INVSALID = SALES.SALID 
+              LEFT OUTER JOIN INVOICECHILD WITH (NOLOCK) ON INVCHINVID = INVID 
+              LEFT OUTER JOIN INVOICECHILDPROBH WITH (NOLOCK) ON INVOICECHILDPROBH.INVCHPBHID = INVOICECHILD.INVCHID 
+              LEFT OUTER JOIN DEFCANCEL ON DCANID = SALES.SALCANID   
+              LEFT OUTER JOIN SALESPAYMENTKINDBH WITH (NOLOCK) ON SALPKBHSALID = SALES.SALID 
+              LEFT OUTER JOIN DEFPAYMENTKINDFORPROCEED WITH (NOLOCK) ON DPFPID = SALPKBHDPFPID 
+              LEFT OUTER JOIN DEFPRICE WITH (NOLOCK) ON DEFPRICE.DPRID = INVOICECHILD.INVCHDPRID 
+              LEFT OUTER JOIN DEFPAYMENTPLAN WITH (NOLOCK) ON DPAYPID = INVOICECHILD.INVCHPAYPID 
+              outer apply (select sum(PCDSAMOUNT) as pesinattuar, DPYMNAME as pesinattipi from PROCEEDS 			   
+                           inner join PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
+                           inner join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+                           where PCDSSALID = SALID 
+                           group by DPYMNAME) as PROCEEDS
+              outer apply (select INSSALID,DPYMNAME,sum(INSPCDAMOUNT) as odm from INSTALMENT
+                               left outer join INSTALMENTPROCEEDS on INSPCDINSID = INSID
+                               left outer join DEFPAYMENTKIND on DPYMID = INSPCDDPYMID
+                               where INSSALID = SALID --and substring(DPYMVAL,1,2)=substring(DPRVAL,1,2)
+                               group by INSSALID,DPYMNAME) odeme 
+            WHERE 
+              SALES.SALCOMPANY = '01' 
+              AND SALES.SALSHIPKIND = 'H' 
+              AND SALES.SALDATE between '{1}' and '{2}'
+              AND (DPRVAL like 'TF%' or DPRVAL like 'FB%')
+              --AND SALCURID = 1788343
+              group by SALCURID,SALID,SALDATE,SALSHIPKIND,DPRNAME,odm,pesinattuar,pesinattipi,DPYMNAME,SALCANSALID,SALDIVISON
 
-			  union
+              union
 
-			select SALCURID,SALID,SALDATE,SALCANSALID, SALDIVISON,SALSHIPKIND,DPRNAME,
-			  SUM(CASE WHEN ORDERS.ORDID >= 0 THEN ORDCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE ORDCHVAT END ELSE 0 END) SATISTUTAR, 
-			  SUM(CASE WHEN ORDERS.ORDID < 0 THEN ORDCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE ORDCHVAT END ELSE 0 END)*-1 IADETUTAR,
-			  isnull(CASE WHEN SALES.SALID > 0 THEN isnull(odeme.odm,pesinattuar) ELSE isnull(odeme.odm*-1,pesinattuar*-1) END,
-			  CASE WHEN SALES.SALID > 0 THEN isnull(nakit.odm,pesinattuar) ELSE isnull(nakit.odm*-1,pesinattuar*-1)end) as ODEME,
-			  isnull(isnull(odeme.DPYMNAME,pesinattipi),nakit.DPYMNAME) as DPYMNAME
-			  from SALES
-			  LEFT OUTER JOIN ORDERS WITH (NOLOCK) ON ORDERS.ORDSALID = SALES.SALID 
-			  LEFT OUTER JOIN ORDERSCHILD WITH (NOLOCK) ON ORDCHORDID = ORDERS.ORDID 
-			  LEFT OUTER JOIN DEFCANCEL ON DCANID = SALES.SALCANID   
-			  LEFT OUTER JOIN SALESPAYMENTKINDBH WITH (NOLOCK) ON SALPKBHSALID = SALES.SALID 
-			  LEFT OUTER JOIN DEFPAYMENTKINDFORPROCEED WITH (NOLOCK) ON DPFPID = SALPKBHDPFPID 
-			  LEFT OUTER JOIN DEFPRICE WITH (NOLOCK) ON DEFPRICE.DPRID = ORDERSCHILD.ORDCHDPRID 
-			  LEFT OUTER JOIN DEFPAYMENTPLAN WITH (NOLOCK) ON DPAYPID = ORDERSCHILD.ORDCHPAYPID  
-			  outer apply (select sum(PCDSAMOUNT) as pesinattuar, DPYMNAME as pesinattipi from PROCEEDS 			   
-						   inner join PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
-						   inner join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-						   where PCDSSALID = SALID 
-						   group by DPYMNAME) as PROCEEDS
-			  outer apply (select INSSALID,DPYMNAME,sum(INSPCDAMOUNT) as odm from INSTALMENT
-							   left outer join INSTALMENTPROCEEDS on INSPCDINSID = INSID
-							   left outer join DEFPAYMENTKIND on DPYMID = INSPCDDPYMID
-							   where INSSALID = isnull(SALCANSALID,SALID) and substring(DPYMVAL,1,2)=substring(DPRVAL,1,2)
-							   group by INSSALID,DPYMNAME) odeme 
-			  outer apply (select INSSALID,DPYMNAME,sum(INSPCDAMOUNT) as odm from INSTALMENT
-							   left outer join INSTALMENTPROCEEDS on INSPCDINSID = INSID
-							   left outer join DEFPAYMENTKIND on DPYMID = INSPCDDPYMID
-							   where INSSALID = isnull(SALCANSALID,SALID) and substring(DPYMVAL,1,2)!=substring(DPRVAL,1,2)
-							   group by INSSALID,DPYMNAME) nakit 
-			WHERE 
-			  SALES.SALCOMPANY = '01' 
-			  AND SALES.SALSHIPKIND = 'S' 
-			  AND SALES.SALDATE between '{1}' and '{2}'
-			  AND (DPRVAL like 'TF%' or DPRVAL like 'FB%')
-			  --and SALCURID = 1788343
-			  group by SALCURID,SALID,SALDATE,SALSHIPKIND,DPRNAME,odeme.odm,odeme.DPYMNAME,pesinattuar,pesinattipi,SALCANSALID,nakit.DPYMNAME,nakit.odm,SALDIVISON
-			) son on SALCURID = CURID
-			left outer join DIVISON on DIVVAL = son.SALDIVISON
-			outer apply(select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] from SAFEBEHAVE where SABHCOMPANY = '01' AND SABHDATE  between '{1}' and '{2}' AND SABHDIVISON = DIVVAL AND SABHSOURCE = 'ML' AND SABHVERSENAME like '%'+CURVAL+'%') masraf
-			where DIVVAL {0}
-			group by DIVVAL,SALDATE,DIVNAME,CURVAL,CURNAME,SALSHIPKIND,DPRNAME,DPYMNAME,[Masraf]
-			having sum(SATISTUTAR)+sum(IADETUTAR) != 0
-			  ORDER BY 
-			  DIVVAL,DPRNAME,DPYMNAME desc,CURVAL
-			OPTION(RECOMPILE)", magazalar, Convert.ToDateTime(dteKrediTarihStart.Value).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKrediTarihEnd.Value).ToString("yyyy-MM-dd"));
+            select SALCURID,SALID,SALDATE,SALCANSALID, SALDIVISON,SALSHIPKIND,DPRNAME,
+              SUM(CASE WHEN ORDERS.ORDID >= 0 THEN ORDCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE ORDCHVAT END ELSE 0 END) SATISTUTAR, 
+              SUM(CASE WHEN ORDERS.ORDID < 0 THEN ORDCHBALANCE - CASE WHEN 1 = 1 THEN 0 ELSE ORDCHVAT END ELSE 0 END)*-1 IADETUTAR,
+              isnull(CASE WHEN SALES.SALID > 0 THEN isnull(odeme.odm,pesinattuar) ELSE isnull(odeme.odm*-1,pesinattuar*-1) END,
+              CASE WHEN SALES.SALID > 0 THEN isnull(nakit.odm,pesinattuar) ELSE isnull(nakit.odm*-1,pesinattuar*-1)end) as ODEME,
+              isnull(isnull(odeme.DPYMNAME,pesinattipi),nakit.DPYMNAME) as DPYMNAME
+              from SALES
+              LEFT OUTER JOIN ORDERS WITH (NOLOCK) ON ORDERS.ORDSALID = SALES.SALID 
+              LEFT OUTER JOIN ORDERSCHILD WITH (NOLOCK) ON ORDCHORDID = ORDERS.ORDID 
+              LEFT OUTER JOIN DEFCANCEL ON DCANID = SALES.SALCANID   
+              LEFT OUTER JOIN SALESPAYMENTKINDBH WITH (NOLOCK) ON SALPKBHSALID = SALES.SALID 
+              LEFT OUTER JOIN DEFPAYMENTKINDFORPROCEED WITH (NOLOCK) ON DPFPID = SALPKBHDPFPID 
+              LEFT OUTER JOIN DEFPRICE WITH (NOLOCK) ON DEFPRICE.DPRID = ORDERSCHILD.ORDCHDPRID 
+              LEFT OUTER JOIN DEFPAYMENTPLAN WITH (NOLOCK) ON DPAYPID = ORDERSCHILD.ORDCHPAYPID  
+              outer apply (select sum(PCDSAMOUNT) as pesinattuar, DPYMNAME as pesinattipi from PROCEEDS 			   
+                           inner join PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
+                           inner join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+                           where PCDSSALID = SALID 
+                           group by DPYMNAME) as PROCEEDS
+              outer apply (select INSSALID,DPYMNAME,sum(INSPCDAMOUNT) as odm from INSTALMENT
+                               left outer join INSTALMENTPROCEEDS on INSPCDINSID = INSID
+                               left outer join DEFPAYMENTKIND on DPYMID = INSPCDDPYMID
+                               where INSSALID = isnull(SALCANSALID,SALID) and substring(DPYMVAL,1,2)=substring(DPRVAL,1,2)
+                               group by INSSALID,DPYMNAME) odeme 
+              outer apply (select INSSALID,DPYMNAME,sum(INSPCDAMOUNT) as odm from INSTALMENT
+                               left outer join INSTALMENTPROCEEDS on INSPCDINSID = INSID
+                               left outer join DEFPAYMENTKIND on DPYMID = INSPCDDPYMID
+                               where INSSALID = isnull(SALCANSALID,SALID) and substring(DPYMVAL,1,2)!=substring(DPRVAL,1,2)
+                               group by INSSALID,DPYMNAME) nakit 
+            WHERE 
+              SALES.SALCOMPANY = '01' 
+              AND SALES.SALSHIPKIND = 'S' 
+              AND SALES.SALDATE between '{1}' and '{2}'
+              AND (DPRVAL like 'TF%' or DPRVAL like 'FB%')
+              --and SALCURID = 1788343
+              group by SALCURID,SALID,SALDATE,SALSHIPKIND,DPRNAME,odeme.odm,odeme.DPYMNAME,pesinattuar,pesinattipi,SALCANSALID,nakit.DPYMNAME,nakit.odm,SALDIVISON
+            ) son on SALCURID = CURID
+            left outer join DIVISON on DIVVAL = son.SALDIVISON
+            outer apply(select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] from SAFEBEHAVE where SABHCOMPANY = '01' AND SABHDATE  between '{1}' and '{2}' AND SABHDIVISON = DIVVAL AND SABHSOURCE = 'ML' AND SABHVERSENAME like '%'+CURVAL+'%') masraf
+            where DIVVAL {0}
+            group by DIVVAL,SALDATE,DIVNAME,CURVAL,CURNAME,SALSHIPKIND,DPRNAME,DPYMNAME,[Masraf]
+            having sum(SATISTUTAR)+sum(IADETUTAR) != 0
+              ORDER BY 
+              DIVVAL,DPRNAME,DPYMNAME desc,CURVAL
+            OPTION(RECOMPILE)", magazalar, Convert.ToDateTime(dteKrediTarihStart.Value).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKrediTarihEnd.Value).ToString("yyyy-MM-dd"));
             var dt = DataDonen(q);
             gridKredi.DataSource = dt;
         }
@@ -1569,19 +1569,19 @@ namespace VolantMusteriDuzel
         private void btnTeslimatKaldir_Click(object sender, EventArgs e)
         {
             string q = string.Format(@"select 
-			CDRID,
-			ORDCHID,
-			PROVAL,
-			PRONAME,
-			ORDCHBALANCE, 
-			ORDCHBALANCEQUAN , 
-			ORDCHIRSQUAN
-			FROM  CUSDELIVER
-			LEFT OUTER JOIN ORDERSCHILD WITH (NOLOCK) ON ORDCHID = CDRORDCHID
-			LEFT OUTER JOIN PRODUCTS WITH (NOLOCK) ON ORDCHPROID = PROID
-			LEFT OUTER JOIN DEEDS WITH (NOLOCK) ON DEEDID=CDRDEEDID
-			LEFT OUTER JOIN PRODUCTSBEHAVE B WITH (NOLOCK) ON B.PROBHDEEDID= DEEDID AND B.PROBHORDCHID=CDRORDCHID
-			WHERE CUSDELIVER.CDRSALID = {0}", txtTeslimatKaldir.Text);
+            CDRID,
+            ORDCHID,
+            PROVAL,
+            PRONAME,
+            ORDCHBALANCE, 
+            ORDCHBALANCEQUAN , 
+            ORDCHIRSQUAN
+            FROM  CUSDELIVER
+            LEFT OUTER JOIN ORDERSCHILD WITH (NOLOCK) ON ORDCHID = CDRORDCHID
+            LEFT OUTER JOIN PRODUCTS WITH (NOLOCK) ON ORDCHPROID = PROID
+            LEFT OUTER JOIN DEEDS WITH (NOLOCK) ON DEEDID=CDRDEEDID
+            LEFT OUTER JOIN PRODUCTSBEHAVE B WITH (NOLOCK) ON B.PROBHDEEDID= DEEDID AND B.PROBHORDCHID=CDRORDCHID
+            WHERE CUSDELIVER.CDRSALID = {0}", txtTeslimatKaldir.Text);
             var dt = DataDonen(q);
             gridTeslimatKaldir.DataSource = dt;
         }
@@ -1620,13 +1620,13 @@ namespace VolantMusteriDuzel
                 gridKasaTarih.DataSource = null;
                 ViewKasaTarih.Columns.Clear();
                 string q = string.Format(@"select SABHID,SABHDATE as [İşlenen Kasa Tarihi],SABHAMOUNT as [Kasa Toplam Tutarı],SFCOCEDSDATE as [Girilmesi Gereken Tarih], '' Sonuc
-				from SAFEBEHAVE
-				inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
-				where SABHDIVISON = '{0}'
-				and SFCOCEDSDATE between '{1}' and '{2}' and SABHSOURCE = 'BN1'
-				and SFCOCEDSSABHCREATED = 1
-				and SABHDATE != SFCOCEDSDATE
-				order by 4", cmbKasaTarihMagaza.EditValue, Convert.ToDateTime(dteKasaTarihStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaTarihEnd.EditValue).ToString("yyyy-MM-dd"));
+                from SAFEBEHAVE
+                inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
+                where SABHDIVISON = '{0}'
+                and SFCOCEDSDATE between '{1}' and '{2}' and SABHSOURCE = 'BN1'
+                and SFCOCEDSSABHCREATED = 1
+                and SABHDATE != SFCOCEDSDATE
+                order by 4", cmbKasaTarihMagaza.EditValue, Convert.ToDateTime(dteKasaTarihStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaTarihEnd.EditValue).ToString("yyyy-MM-dd"));
                 gridKasaTarih.DataSource = DataDonen(q);
             }
             else
@@ -1634,13 +1634,13 @@ namespace VolantMusteriDuzel
                 gridKasaTarih.DataSource = null;
                 ViewKasaTarih.Columns.Clear();
                 string q = string.Format(@"select SABHID,DIVVAL as [Mağaza kodu],DIVNAME as [Mağaza Adı],SABHDATE as [İşlenen Kasa Tarihi],SABHAMOUNT as [Kasa Toplam Tutarı],SFCOCEDSDATE as [Girilmesi Gereken Tarih], '' Sonuc
-				from SAFEBEHAVE
-				inner join DIVISON on DIVVAL = SABHDIVISON
-				inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
-				where SFCOCEDSDATE between '{1}' and '{2}' and SABHSOURCE = 'BN1'
-				and SFCOCEDSSABHCREATED = 1
-				and SABHDATE != SFCOCEDSDATE
-				order by 2,6", cmbKasaTarihMagaza.EditValue, Convert.ToDateTime(dteKasaTarihStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaTarihEnd.EditValue).ToString("yyyy-MM-dd"));
+                from SAFEBEHAVE
+                inner join DIVISON on DIVVAL = SABHDIVISON
+                inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
+                where SFCOCEDSDATE between '{1}' and '{2}' and SABHSOURCE = 'BN1'
+                and SFCOCEDSSABHCREATED = 1
+                and SABHDATE != SFCOCEDSDATE
+                order by 2,6", cmbKasaTarihMagaza.EditValue, Convert.ToDateTime(dteKasaTarihStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaTarihEnd.EditValue).ToString("yyyy-MM-dd"));
                 gridKasaTarih.DataSource = DataDonen(q);
             }
         }
@@ -1664,10 +1664,10 @@ namespace VolantMusteriDuzel
             {
                 var id = ViewKasaTarih.GetRowCellValue(selectedRows[i], "SABHID");
                 string updateq = string.Format(@"update SAFEBEHAVE set SABHDATE = SFCOCEDSDATE 
-				from SAFEBEHAVE
-				inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
-				where SABHID = '{0}'
-				and SFCOCEDSSABHCREATED = 1", id);
+                from SAFEBEHAVE
+                inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
+                where SABHID = '{0}'
+                and SFCOCEDSSABHCREATED = 1", id);
                 SqlCommand cmd = new SqlCommand(updateq, sql);
                 if (sql.State == ConnectionState.Closed)
                 {
@@ -1747,13 +1747,13 @@ namespace VolantMusteriDuzel
             }
 
             string q = string.Format(@"select isnull(SABHID,0),SFCOCEDSID,SFCOCEDSDATE,SFCOCEDSAMOUNT1,isnull(SABHDEEDNOTES,''),DIVNAME,
-			case when SFCOCEDSSABHCREATED = 1 then 'BANKAYA YATIRLI İŞLEMİ YAPILMIŞ'
-			when SFCOCEDSSENDCASH = 1 then 'MERKEZE GÖNDERİDİ İŞLEMİ YAPILMIŞ' 
-			else 'KONTROL EDİLECEK' end as Durum
-			from SAFECONTROLCENTERDAYSUM with (nolock)
-			left outer join DIVISON on DIVVAL = SFCOCEDSDIVISON
-			left outer join SAFEBEHAVE with (nolock) on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1 and SABHDATE = SFCOCEDSDATE
-			where SFCOCEDSDATE = '{0}'", Convert.ToDateTime(dteKasaTutar.EditValue).ToString("yyyy-MM-dd"));
+            case when SFCOCEDSSABHCREATED = 1 then 'BANKAYA YATIRLI İŞLEMİ YAPILMIŞ'
+            when SFCOCEDSSENDCASH = 1 then 'MERKEZE GÖNDERİDİ İŞLEMİ YAPILMIŞ' 
+            else 'KONTROL EDİLECEK' end as Durum
+            from SAFECONTROLCENTERDAYSUM with (nolock)
+            left outer join DIVISON on DIVVAL = SFCOCEDSDIVISON
+            left outer join SAFEBEHAVE with (nolock) on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1 and SABHDATE = SFCOCEDSDATE
+            where SFCOCEDSDATE = '{0}'", Convert.ToDateTime(dteKasaTutar.EditValue).ToString("yyyy-MM-dd"));
             if (cmbKasaTutar.EditValue != null)
             {
                 q = q + string.Format(" and SFCOCEDSDIVISON {0}", magazalar);// cmbKasaTutar.EditValue);
@@ -1826,15 +1826,15 @@ namespace VolantMusteriDuzel
         private void btnKasaSil_Click(object sender, EventArgs e)
         {
             string q = string.Format(@"select SABHID,SFCOCEDSID,DIVVAL as [Mağaza kodu],DIVNAME as [Mağaza Adı],SABHDATE as [İşlenen Kasa Tarihi],SABHAMOUNT as [Kasa Toplam Tutarı],SFCOCEDSDATE as [Girilmesi Gereken Tarih], '' Sonuc
-				from SAFEBEHAVE
-				inner join DIVISON on DIVVAL = SABHDIVISON
-				inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
-				where SFCOCEDSDATE between '{0}' and '{1}' 
-				and SABHSOURCE = 'BN1'
-				and SFCOCEDSSABHCREATED = 1
-				and SABHDATE = SFCOCEDSDATE
-				and SABHDIVISON = '{2}'
-				order by 2,6", Convert.ToDateTime(dteKasaSilStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaSilEnd.EditValue).ToString("yyyy-MM-dd"), cmbKasaSilMagaza.EditValue);
+                from SAFEBEHAVE
+                inner join DIVISON on DIVVAL = SABHDIVISON
+                inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
+                where SFCOCEDSDATE between '{0}' and '{1}' 
+                and SABHSOURCE = 'BN1'
+                and SFCOCEDSSABHCREATED = 1
+                and SABHDATE = SFCOCEDSDATE
+                and SABHDIVISON = '{2}'
+                order by 2,6", Convert.ToDateTime(dteKasaSilStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaSilEnd.EditValue).ToString("yyyy-MM-dd"), cmbKasaSilMagaza.EditValue);
             SqlDataAdapter da = new SqlDataAdapter(q, sql);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1896,14 +1896,14 @@ namespace VolantMusteriDuzel
         private void btnKasaSilID_Click(object sender, EventArgs e)
         {
             string q = string.Format(@"select SABHID,SFCOCEDSID,DIVVAL as [Mağaza kodu],DIVNAME as [Mağaza Adı],SABHDATE as [İşlenen Kasa Tarihi],SABHAMOUNT as [Kasa Toplam Tutarı],SFCOCEDSDATE as [Girilmesi Gereken Tarih], '' Sonuc
-				from SAFEBEHAVE
-				inner join DIVISON on DIVVAL = SABHDIVISON
-				inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
-				where SABHSOURCE = 'BN1'
-				and SFCOCEDSSABHCREATED = 1
-				and SABHDATE = SFCOCEDSDATE
-				and SFCOCEDSID = '{0}'
-				order by 2,6", txtKasaSilID.Text);
+                from SAFEBEHAVE
+                inner join DIVISON on DIVVAL = SABHDIVISON
+                inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
+                where SABHSOURCE = 'BN1'
+                and SFCOCEDSSABHCREATED = 1
+                and SABHDATE = SFCOCEDSDATE
+                and SFCOCEDSID = '{0}'
+                order by 2,6", txtKasaSilID.Text);
             SqlDataAdapter da = new SqlDataAdapter(q, sql);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1914,12 +1914,12 @@ namespace VolantMusteriDuzel
         private void btnKasaMerkezDuzeltListe_Click(object sender, EventArgs e)
         {
             string q = string.Format(@"select SFCOCEDSID,DIVVAL,DIVNAME,SFCOCEDSDATE, SFCOCEDSAMOUNT1,SONAME + space(1) + SOSURNAME as Kasiyer,'' as Durum,'' as Sonuc
-					from SAFECONTROLCENTERDAYSUM 
-					left outer join SOCIAL on SOCODE = SFCOCEDSSOCODE
-					left outer join DIVISON on DIVVAL = SFCOCEDSDIVISON
-					where SFCOCEDSSENDCASH = 1
-					and SFCOCEDSDATE >= '2024-01-01'
-					and SFCOCEDSDATE between '{0}' and '{1}'", Convert.ToDateTime(dteKasaMerkezDuzeltStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaMerkezDuzeltEnd.EditValue).ToString("yyyy-MM-dd"));
+                    from SAFECONTROLCENTERDAYSUM 
+                    left outer join SOCIAL on SOCODE = SFCOCEDSSOCODE
+                    left outer join DIVISON on DIVVAL = SFCOCEDSDIVISON
+                    where SFCOCEDSSENDCASH = 1
+                    and SFCOCEDSDATE >= '2024-01-01'
+                    and SFCOCEDSDATE between '{0}' and '{1}'", Convert.ToDateTime(dteKasaMerkezDuzeltStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaMerkezDuzeltEnd.EditValue).ToString("yyyy-MM-dd"));
             if (cmbKasaMerkezDuzeltMagaza.EditValue != null)
             {
                 q = q + string.Format(@" and SFCOCEDSDIVISON = '{0}'", cmbKasaMerkezDuzeltMagaza.EditValue);
@@ -2426,11 +2426,11 @@ namespace VolantMusteriDuzel
         private void btnBankFark_Click(object sender, EventArgs e)
         {
             string q = string.Format(@"select SABHID,SFCOCEDSID,DIVVAL as [Mağaza kodu],DIVNAME as [Mağaza Adı],SABHDATE as [İşlenen Kasa Tarihi],SABHAMOUNT as [Kasa Toplam Tutarı],SFCOCEDSDATE as [Girilmesi Gereken Tarih], '' Sonuc 
-			from SAFEBEHAVE 
-			inner join DIVISON on DIVVAL = SABHDIVISON
-			left outer join SAFECONTROLCENTERDAYSUM on SFCOCEDSAMOUNT1 = SABHAMOUNT and SFCOCEDSDATE = SABHDATE and SFCOCEDSSABHCREATED = 1
-			where SABHDATE between '{0}' and '{1}' and SABHSOURCE = 'BN1'
-			and SFCOCEDSID is NULL", Convert.ToDateTime(dteBankFarkEnd.EditValue).ToString("yyyy-MM-yy"), Convert.ToDateTime(dteBankFarkEnd.EditValue).ToString("yyyy-MM-dd"));
+            from SAFEBEHAVE 
+            inner join DIVISON on DIVVAL = SABHDIVISON
+            left outer join SAFECONTROLCENTERDAYSUM on SFCOCEDSAMOUNT1 = SABHAMOUNT and SFCOCEDSDATE = SABHDATE and SFCOCEDSSABHCREATED = 1
+            where SABHDATE between '{0}' and '{1}' and SABHSOURCE = 'BN1'
+            and SFCOCEDSID is NULL", Convert.ToDateTime(dteBankFarkEnd.EditValue).ToString("yyyy-MM-yy"), Convert.ToDateTime(dteBankFarkEnd.EditValue).ToString("yyyy-MM-dd"));
             if (cmbBankFark.EditValue != null)
             {
                 q = q + string.Format(" and SABHDIVISON = '{0}'", cmbBankFark.EditValue);
@@ -2493,11 +2493,11 @@ namespace VolantMusteriDuzel
         private void btnGunToplam_Click(object sender, EventArgs e)
         {
             string q = string.Format(@"select SFCOCEDSID,DIVVAL,DIVNAME,SFCOCEDSDATE,SFCOCEDSAMOUNT1,SFCOCEDSSABHCREATED,SFCOCEDSSENDCASH,SONAME + space(1) + SOSURNAME as Kasiyer,'' as Sonuc, '' as Durum
-			from SAFECONTROLCENTERDAYSUM with (nolock) 
-			left outer join DIVISON with (nolock) on DIVVAL= SFCOCEDSDIVISON 
-			left outer join SOCIAL with (nolock) on SOCODE = SFCOCEDSSOCODE
-			where SFCOCEDSDIVISON = '{0}' and SFCOCEDSDATE between '{1}' and '{2}' 
-			order by DIVVAL, SFCOCEDSDATE", cmbGunToplam.EditValue, Convert.ToDateTime(dteGunToplamStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteGunToplamEnd.EditValue).ToString("yyyy-MM-dd"));
+            from SAFECONTROLCENTERDAYSUM with (nolock) 
+            left outer join DIVISON with (nolock) on DIVVAL= SFCOCEDSDIVISON 
+            left outer join SOCIAL with (nolock) on SOCODE = SFCOCEDSSOCODE
+            where SFCOCEDSDIVISON = '{0}' and SFCOCEDSDATE between '{1}' and '{2}' 
+            order by DIVVAL, SFCOCEDSDATE", cmbGunToplam.EditValue, Convert.ToDateTime(dteGunToplamStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteGunToplamEnd.EditValue).ToString("yyyy-MM-dd"));
             SqlDataAdapter da = new SqlDataAdapter(q, sql);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -2510,16 +2510,16 @@ namespace VolantMusteriDuzel
             var divval = ViewGunToplam.GetRowCellValue(ViewGunToplam.FocusedRowHandle, "DIVVAL").ToString();
             var date = ViewGunToplam.GetRowCellValue(ViewGunToplam.FocusedRowHandle, "SFCOCEDSDATE").ToString();
             string qq = string.Format(@"select SABHID,SABHSOURCE,DIVVAL,DIVNAME,SABHDATE,SABHDEEDNOTES,SABHAMOUNT,SONAME + space(1) + SOSURNAME  as Kasiyer,'' as Sonuc, '' as Durum
-			from SAFEBEHAVE with (nolock) 
-			left outer join DIVISON with (nolock) on DIVVAL= SABHDIVISON 
-			left outer join SOCIAL with (nolock) on SOCODE = SABHSOCODE
-			where SABHDIVISON = '{0}' and SABHDATE = '{1}' and SABHSOURCE = 'BN1' 
-			union
-			select SABHID,SABHSOURCE,DIVVAL,DIVNAME,SABHDATE,SABHDEEDNOTES,SABHAMOUNT,SONAME + space(1) + SOSURNAME  as Kasiyer,'' as Sonuc, '' as Durum
-			from SAFEBEHAVE with (nolock) 
-			left outer join DIVISON with (nolock) on DIVVAL= SABHDIVISON 
-			left outer join SOCIAL with (nolock) on SOCODE = SABHSOCODE
-			where SABHDIVISON = '{0}' and SABHDATE = '{1}' and (SABHSOURCE like 'VI%' and SABHVERSEVAL = '00.Kasa.TL')", divval, Convert.ToDateTime(date).ToString("yyyy-MM-dd"));
+            from SAFEBEHAVE with (nolock) 
+            left outer join DIVISON with (nolock) on DIVVAL= SABHDIVISON 
+            left outer join SOCIAL with (nolock) on SOCODE = SABHSOCODE
+            where SABHDIVISON = '{0}' and SABHDATE = '{1}' and SABHSOURCE = 'BN1' 
+            union
+            select SABHID,SABHSOURCE,DIVVAL,DIVNAME,SABHDATE,SABHDEEDNOTES,SABHAMOUNT,SONAME + space(1) + SOSURNAME  as Kasiyer,'' as Sonuc, '' as Durum
+            from SAFEBEHAVE with (nolock) 
+            left outer join DIVISON with (nolock) on DIVVAL= SABHDIVISON 
+            left outer join SOCIAL with (nolock) on SOCODE = SABHSOCODE
+            where SABHDIVISON = '{0}' and SABHDATE = '{1}' and (SABHSOURCE like 'VI%' and SABHVERSEVAL = '00.Kasa.TL')", divval, Convert.ToDateTime(date).ToString("yyyy-MM-dd"));
             SqlDataAdapter da = new SqlDataAdapter(qq, sql);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -2823,13 +2823,13 @@ namespace VolantMusteriDuzel
         private void btnOdemeListele_Click(object sender, EventArgs e)
         {
             string q = String.Format(@"select PCDSID,PCDSCURID,DIVVAL,DIVNAME,PCDSDATE,'Taksit Ödemesi',PCDSAMOUNT,PCDSLATEINCOME,PCDSEARLYPAYDISC,PCDSDATETIME,isnull(SONAME + space(1) +SOSURNAME,CHVAL) as Kasiyer from PROCEEDS
-			left outer join CURRENTS on CURID = PCDSCURID
-			left outer join CASHIER on CHVAL = PCDSCASHIER
-			left outer join SOCIAL on SOCODE = PCDSSOCODE
-			left outer join DIVISON on DIVVAL = PCDSDIVISON
-			where CURVAL = '{0}'
-			and PCDSSALID is NULL
-			order by PCDSDATE", txtOdemeMusteri.Text);
+            left outer join CURRENTS on CURID = PCDSCURID
+            left outer join CASHIER on CHVAL = PCDSCASHIER
+            left outer join SOCIAL on SOCODE = PCDSSOCODE
+            left outer join DIVISON on DIVVAL = PCDSDIVISON
+            where CURVAL = '{0}'
+            and PCDSSALID is NULL
+            order by PCDSDATE", txtOdemeMusteri.Text);
             gridOdemeListesi.DataSource = conn.GetData(q, sql);
             txtOdemeMusteri.Enabled = false;
             btnOdemeListele.Enabled = false;
@@ -2862,8 +2862,8 @@ namespace VolantMusteriDuzel
                 srcWebOdemeOdemeTipi.Properties.ValueMember = "DPYMID";
 
                 string w = @"select CHVAL,SONAME+' '+SOSURNAME as CHNAME from CASHIER 
-				left outer join SOCIAL on SOCODE = CHSOCODE
-				where CHDIVISON = '00' and SOSTS = 1";
+                left outer join SOCIAL on SOCODE = CHSOCODE
+                where CHDIVISON = '00' and SOSTS = 1";
                 srcWebOdemeKasiyer.Properties.DataSource = conn.GetData(w, sql);
                 srcWebOdemeKasiyer.Properties.DisplayMember = "CHNAME";
                 srcWebOdemeKasiyer.Properties.ValueMember = "CHVAL";
@@ -2898,10 +2898,10 @@ namespace VolantMusteriDuzel
                    try
                     {
                         string q = String.Format(@"select CURID,PCDSUSEFIELDS1,CURVAL,CURNAME,PCDSDATE,count(*) as Adet,max(PCDSLATEINCOME) as vade,max(PCDSEARLYPAYDISC) as erken,max(PCDSAMOUNT) as OdemeTutari,sum(PCDSCHAMOUNT) as ToplamDsusum from PROCEEDS with (nolock)
-					   left outer join PROCEEDSCHILD with (nolock) on PCDSCHPCDSID = PCDSID
-					   left outer join CURRENTS with (nolock) on CURID = PCDSCURID
-					   where PCDSDATE between '{0}' and '{1}'					   
-					   ", Convert.ToDateTime(dteWebOdemeBasTarih.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteWebOdemeBitTarih.EditValue).ToString("yyyy-MM-dd"));
+                       left outer join PROCEEDSCHILD with (nolock) on PCDSCHPCDSID = PCDSID
+                       left outer join CURRENTS with (nolock) on CURID = PCDSCURID
+                       where PCDSDATE between '{0}' and '{1}'					   
+                       ", Convert.ToDateTime(dteWebOdemeBasTarih.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteWebOdemeBitTarih.EditValue).ToString("yyyy-MM-dd"));
                         if (txtWebOdemeMusteriNo.Text != "")
                         {
                             q = q + String.Format(@" and CURVAL = '{0}'", txtWebOdemeMusteriNo.Text);
@@ -2915,9 +2915,9 @@ namespace VolantMusteriDuzel
                             q = q + String.Format(@" and PCDSCASHIER = '{0}'", srcWebOdemeKasiyer.EditValue);
                         }
                         q = q + @"
-					   group by CURID,PCDSUSEFIELDS1,PCDSDATE,CURVAL,CURNAME
-					   having COUNT(*) > 1
-					   order by PCDSDATE ,adet desc,CURID";
+                       group by CURID,PCDSUSEFIELDS1,PCDSDATE,CURVAL,CURNAME
+                       having COUNT(*) > 1
+                       order by PCDSDATE ,adet desc,CURID";
                        dt = conn.GetData(q, sql);                       
                         success++;
                         progressForm.PerformStep(this);
@@ -2984,12 +2984,12 @@ namespace VolantMusteriDuzel
                    var vadecs = new Odeme();
                    var erkencs = new Odeme();
                    var idsorgu = String.Format(@"select PCDSID from PROCEEDS with (nolock)
-					left outer join PROCEEDSCHILD with (nolock) on PCDSCHPCDSID = PCDSID
-					left outer join CURRENTS with (nolock) on CURID = PCDSCURID
-					where PCDSCHDPYMID = '83' --and PCDSDATE >= @tarih
-					and CURID = {0}
-					and PCDSUSEFIELDS1 = '{1}'
-					order by PCDSID desc", ViewWebOdeme.GetRowCellValue(i, "CURID").ToString(), ViewWebOdeme.GetRowCellValue(i, "PCDSUSEFIELDS1").ToString());
+                    left outer join PROCEEDSCHILD with (nolock) on PCDSCHPCDSID = PCDSID
+                    left outer join CURRENTS with (nolock) on CURID = PCDSCURID
+                    where PCDSCHDPYMID = '83' --and PCDSDATE >= @tarih
+                    and CURID = {0}
+                    and PCDSUSEFIELDS1 = '{1}'
+                    order by PCDSID desc", ViewWebOdeme.GetRowCellValue(i, "CURID").ToString(), ViewWebOdeme.GetRowCellValue(i, "PCDSUSEFIELDS1").ToString());
                    var dt = conn.GetData(idsorgu, sql).DataTableToList<Odeme>();
 
                    string minid = conn.GetValue(String.Format(@"select min(PCDSID) from PROCEEDS with (nolock) where PCDSCURID = {0} and PCDSUSEFIELDS1 = '{1}'",
@@ -3417,7 +3417,7 @@ namespace VolantMusteriDuzel
             left outer join CURRENTS on CURID = CURCHID
             left outer join CUSTOMER on CUSCURID = CURCHID
             where (CURCHCHECKGSM is not NULL and CURCHCHECKGSM != '9999' and CURCHCHECKGSM != '') and (CURCHGSM1 like '5%'or CURCHGSM2 like '5%' or CURCHGSM3 like '5%') and (CURCHIYS = 0 or CURCHIYS is NULL)
-			and isnull(CURUSEFIELD2,'') = ''
+            and isnull(CURUSEFIELD2,'') = ''
             and CUSDATETIME >= '{0}'", DateTime.Parse(dteIys.EditValue.ToString()).ToString("yyyy-MM-dd"));
             if (srcIys.EditValue != null && !string.IsNullOrEmpty(srcIys.EditValue.ToString()))
             {
