@@ -193,7 +193,7 @@ namespace VolantMusteriDuzel.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6200080458")]
         public string VKN {
             get {
                 return ((string)(this["VKN"]));

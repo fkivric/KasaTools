@@ -113,17 +113,19 @@ namespace VolantMusteriDuzel
             string response2 = await client.UpdateLicensing("6200080458", ConnectionLisansingID.ToString(), Cpuid.ToString(), Motherboardid.ToString(), Application.ProductName);
             List<Sonuc> myDeserializedClass2 = JsonConvert.DeserializeObject<List<Sonuc>>(response2);
             RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\EntegrefTools");
-            //var LisansingID2 = myDeserializedClass2[0].message;
-            key.SetValue("ApplicationSetupComplate", "True");
-            key.SetValue("ApplicationGUID", id);
-            key.SetValue("ApplicationVersion", _s4);
-            key.SetValue("ApplicationVKN", "6200080458");
-            key.SetValue("ApplicationPhoneLisans", true);
-            key.SetValue("CPU", Cpuid);
-            key.SetValue("motherboardid", Motherboardid);
-            key.SetValue("ComputerName", pcİsmi.ToString());
-            key.SetValue("ComputerID", pcModeli);
-            key.Close();
+            if (key.GetValue("ApplicationSetupComplate") == null)
+            {
+                key.SetValue("ApplicationSetupComplate", "True");
+                key.SetValue("ApplicationGUID", id);
+                key.SetValue("ApplicationVersion", _s4);
+                key.SetValue("ApplicationVKN", "6200080458");
+                key.SetValue("ApplicationPhoneLisans", true);
+                key.SetValue("CPU", Cpuid);
+                key.SetValue("motherboardid", Motherboardid);
+                key.SetValue("ComputerName", pcİsmi.ToString());
+                key.SetValue("ComputerID", pcModeli);
+                key.Close();
+            }
         }
     }
 }

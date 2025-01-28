@@ -67,6 +67,8 @@ namespace VolantMusteriDuzel
         SqlConnectionObject conn = new SqlConnectionObject();
         private async void frmLogin_LoadAsync(object sender, EventArgs e)
         {
+            try
+            {
             ProductName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name.ToString(); // proje adı
             VolXml();
             DataCek();
@@ -189,6 +191,12 @@ namespace VolantMusteriDuzel
                     pnlLisans.Visible = false;
                     this.Size = new Size(718, 325);
                 }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.ShowMessage("Program Hatası", ex.Message, this, "Dikkat", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
