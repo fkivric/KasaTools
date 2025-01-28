@@ -54,7 +54,7 @@ namespace VolantMusteriDuzel
             try
             {
                 SplashScreen();
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 //Properties.Settings.Default.connectionstring = "Server=192.168.4.24;Database=VDB_YON01;User Id=sa;Password=MagicUser2023!;";
                 Properties.Settings.Default.connectionstring2 = "Server=192.168.4.24;Database=MDE_GENEL;User Id=sa;Password=MagicUser2023!;";
                 Properties.Settings.Default.Save();
@@ -249,8 +249,11 @@ namespace VolantMusteriDuzel
         {
             try
             {
-                _backgroundWorker.Dispose();
-                _backgroundWorker = null;
+                if (_backgroundWorker != null)
+                {
+                    _backgroundWorker.Dispose();
+                    _backgroundWorker = null;
+                }
                 if (!this.Enabled)
                 {
                     this.Enabled = true;
@@ -364,12 +367,21 @@ namespace VolantMusteriDuzel
                 cmbKasaMerkezDuzeltMagaza.Properties.ValueMember = "DIVVAL";
                 cmbKasaMerkezDuzeltMagaza.Properties.DisplayMember = "DIVNAME";
 
+                cmbKasaMerkezDuzeltMagaza2.Properties.DataSource = DataDonen("select DIVVAL,DIVNAME from DIVISON where DIVSALESTS = 1 and DIVVAL = '00'");
+                cmbKasaMerkezDuzeltMagaza2.Properties.ValueMember = "DIVVAL";
+                cmbKasaMerkezDuzeltMagaza2.Properties.DisplayMember = "DIVNAME";
 
                 dteKasaMerkezDuzeltStart.EditValue = DateTime.Now.AddDays(-5);
                 dteKasaMerkezDuzeltStart.Properties.MinValue = new DateTime(2023, 4, 1);
                 dteKasaMerkezDuzeltStart.Properties.MaxValue = DateTime.Now.AddDays(-1);
                 dteKasaMerkezDuzeltEnd.EditValue = DateTime.Now.AddDays(-1);
                 dteKasaMerkezDuzeltEnd.Properties.MaxValue = DateTime.Now.AddDays(-1);
+
+
+
+                dteKasaMerkezDuzeltStart2.EditValue = DateTime.Now.AddDays(-5);
+                dteKasaMerkezDuzeltStart2.Properties.MinValue = new DateTime(2023, 4, 1);
+                dteKasaMerkezDuzeltStart2.Properties.MaxValue = DateTime.Now.AddDays(-1);
 
                 cmbBankFark.Properties.DataSource = DataDonen("select DIVVAL,DIVNAME from DIVISON where DIVSALESTS = 1");
                 cmbBankFark.Properties.ValueMember = "DIVVAL";
@@ -506,7 +518,8 @@ namespace VolantMusteriDuzel
                         ViewIadeTaksitSorunlular.SetRowCellValue(selectedRows[i], "Sonuç", ex.Message);
                         ViewIadeTaksitSorunlular.RefreshRow(selectedRows[i]);
                     }
-                    XtraMessageBox.Show(ViewIadeTaksitSorunlular.GetRowCellValue(selectedRows[i], "INSCINSID").ToString() + "\r\n" + ViewIadeTaksitSorunlular.GetRowCellValue(selectedRows[i], "Sonuç").ToString());
+                    CustomMessageBox.ShowMessage("Sonuç", ViewIadeTaksitSorunlular.GetRowCellValue(selectedRows[i], "INSCINSID").ToString() + "\r\n" + ViewIadeTaksitSorunlular.GetRowCellValue(selectedRows[i], "Sonuç").ToString(), this, "Detaya Bakın", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //XtraMessageBox.Show(ViewIadeTaksitSorunlular.GetRowCellValue(selectedRows[i], "INSCINSID").ToString() + "\r\n" + ViewIadeTaksitSorunlular.GetRowCellValue(selectedRows[i], "Sonuç").ToString());
 
                 }
 
@@ -555,7 +568,8 @@ namespace VolantMusteriDuzel
                         ViewIadeTaksitSorunlular.SetRowCellValue(ViewIadeTaksitSorunlular.FocusedRowHandle, "Sonuç", exx.Message);
                         ViewIadeTaksitSorunlular.RefreshRow(ViewIadeTaksitSorunlular.FocusedRowHandle); ;
                     }
-                    XtraMessageBox.Show(ViewIadeTaksitSorunlular.GetRowCellValue(ViewIadeTaksitSorunlular.FocusedRowHandle, "INSCINSID").ToString() + "\r\n" + ViewIadeTaksitSorunlular.GetRowCellValue(ViewIadeTaksitSorunlular.FocusedRowHandle, "Sonuç").ToString());
+                    CustomMessageBox.ShowMessage("Sonuç", ViewIadeTaksitSorunlular.GetRowCellValue(ViewIadeTaksitSorunlular.FocusedRowHandle, "INSCINSID").ToString() + "\r\n" + ViewIadeTaksitSorunlular.GetRowCellValue(ViewIadeTaksitSorunlular.FocusedRowHandle, "Sonuç").ToString(), this, "Detaya Bakın", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //XtraMessageBox.Show(ViewIadeTaksitSorunlular.GetRowCellValue(ViewIadeTaksitSorunlular.FocusedRowHandle, "INSCINSID").ToString() + "\r\n" + ViewIadeTaksitSorunlular.GetRowCellValue(ViewIadeTaksitSorunlular.FocusedRowHandle, "Sonuç").ToString());
                 }
             }
         }
@@ -660,12 +674,12 @@ namespace VolantMusteriDuzel
                     srcOdemeTipi.DisplayMember = "DPYMNAME";
                 }
             }
-            if (!string.IsNullOrEmpty(txtOdemeID.Text))
+            if (!string.IsNullOrEmpty(txtOdemeID.Text) && txtOdemeID.Text != "")
             {
                 txtOdemeTutar.Text = conn.GetValue($"select PCDSAMOUNT from PROCEEDS where PCDSID = {txtOdemeID.Text}");
                 txtVadeFarki.Text = conn.GetValue($"select PCDSLATEINCOME from PROCEEDS where PCDSID = {txtOdemeID.Text}");
                 txtErkenOdeme.Text = conn.GetValue($"select PCDSEARLYPAYDISC from PROCEEDS where PCDSID = {txtOdemeID.Text}");
-                LastPCDSAMOUNT = (ParseToDouble(txtOdemeTutar.Text)+ParseToDouble(txtErkenOdeme.Text))-ParseToDouble(txtVadeFarki.Text);
+                LastPCDSAMOUNT = (ParseToDouble(txtOdemeTutar.Text) + ParseToDouble(txtErkenOdeme.Text)) - ParseToDouble(txtVadeFarki.Text);
                 grpOdemeID.Enabled = true;
                 string q = String.Format(@"select PCDSCHID,PCDSCHAMOUNT,DPYMVAL,DPYMNAME from PROCEEDSCHILD 
                 left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
@@ -685,24 +699,26 @@ namespace VolantMusteriDuzel
             }
             else
             {
-                txtOdemeTutar.Text = conn.GetValue($"select PCDSAMOUNT from PROCEEDS where PCDSSALID  = {txtSatısID.Text}");
-                txtVadeFarki.Text = conn.GetValue($"select PCDSLATEINCOME from PROCEEDS where PCDSSALID  = {txtSatısID.Text}");
-                txtErkenOdeme.Text = conn.GetValue($"select PCDSEARLYPAYDISC from PROCEEDS where PCDSSALID  = {txtSatısID.Text}");
-                LastPCDSAMOUNT = (ParseToDouble(txtOdemeTutar.Text) + ParseToDouble(txtErkenOdeme.Text)) - ParseToDouble(txtVadeFarki.Text);
-                grpOdemeID.Enabled = true;
-                string q = String.Format(@"select PCDSCHID,PCDSCHAMOUNT,DPYMVAL,DPYMNAME from PROCEEDSCHILD 
+                if (txtSatısID.Text.ToString() != "")
+                {
+                    txtOdemeTutar.Text = conn.GetValue($"select PCDSAMOUNT from PROCEEDS where PCDSSALID  = {txtSatısID.Text}");
+                    txtVadeFarki.Text = conn.GetValue($"select PCDSLATEINCOME from PROCEEDS where PCDSSALID  = {txtSatısID.Text}");
+                    txtErkenOdeme.Text = conn.GetValue($"select PCDSEARLYPAYDISC from PROCEEDS where PCDSSALID  = {txtSatısID.Text}");
+                    LastPCDSAMOUNT = (ParseToDouble(txtOdemeTutar.Text) + ParseToDouble(txtErkenOdeme.Text)) - ParseToDouble(txtVadeFarki.Text);
+                    grpOdemeID.Enabled = true;
+                    string q = String.Format(@"select PCDSCHID,PCDSCHAMOUNT,DPYMVAL,DPYMNAME from PROCEEDSCHILD 
                 left outer join DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
                 where PCDSCHPCDSID in (select PCDSID from PROCEEDS where PCDSSALID = {0})", txtSatısID.Text);
-                gridTaksitDetayi.DataSource = conn.GetData(q, sql);
-                if (srcOdemeTipi2.DataSource == null)
-                {
-                    srcOdemeTipi2.DataSource = conn.GetData("select DPYMVAL,DPYMNAME from DEFPAYMENTKIND where DPYMSTS = 1", sql);
-                    srcOdemeTipi2.ValueMember = "DPYMVAL";
-                    srcOdemeTipi2.DisplayMember = "DPYMNAME";
+                    gridTaksitDetayi.DataSource = conn.GetData(q, sql);
+                    if (srcOdemeTipi2.DataSource == null)
+                    {
+                        srcOdemeTipi2.DataSource = conn.GetData("select DPYMVAL,DPYMNAME from DEFPAYMENTKIND where DPYMSTS = 1", sql);
+                        srcOdemeTipi2.ValueMember = "DPYMVAL";
+                        srcOdemeTipi2.DisplayMember = "DPYMNAME";
+                    }
+                    btnOdemeDetayı.Enabled = true;
+                    btnAddRow.Enabled = true;
                 }
-                btnOdemeDetayı.Enabled = true;
-                btnAddRow.Enabled = true;
-
             }
             txtSatısID.Enabled = false;
             txtBakiyeMusteriNo.Enabled = false;
@@ -759,7 +775,8 @@ namespace VolantMusteriDuzel
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show(ex.Message);
+                CustomMessageBox.ShowMessage("Uyarı", ex.Message, this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //XtraMessageBox.Show(ex.Message);
             }
 
         }
@@ -822,14 +839,17 @@ namespace VolantMusteriDuzel
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Uygulamayı kapatmak istediğinize emin misiniz ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                DialogResult dialogResult =
+                CustomMessageBox.ShowMessage("Uygulamayı kapatmak istediğinize emin misiniz ?", "", this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Uygulamayı kapatmak istediğinize emin misiniz ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.OK)
                     System.Environment.Exit(0);
                 else e.Cancel = true;
             }
             catch (Exception eex)
             {
-                XtraMessageBox.Show(eex.Message);
+                CustomMessageBox.ShowMessage("Uyarı", eex.Message, this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //XtraMessageBox.Show(eex.Message);
             }
 
         }
@@ -977,7 +997,8 @@ namespace VolantMusteriDuzel
             }
             else
             {
-                XtraMessageBox.Show("Geçen Mağaza Yok", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.ShowMessage("Uyarı", "Geçen Mağaza Yok", this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //XtraMessageBox.Show("Geçen Mağaza Yok", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -998,45 +1019,45 @@ namespace VolantMusteriDuzel
                      select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
                 magazalar = conn.GetValue(q).Replace(")", "')");
 
-     //           if (cmbMagaza.EditValue.ToString() == "1")
-     //           {
-     //               string q = String.Format(@"
-                    //declare @WH varchar(2000)
-                    // if isnull(@WH,'') = ''
-                    // begin 
-                    //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-                    //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-                    // end 
-                    // select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
-     //               magazalar = conn.GetValue(q).Replace(")", "')");
+                //           if (cmbMagaza.EditValue.ToString() == "1")
+                //           {
+                //               string q = String.Format(@"
+                //declare @WH varchar(2000)
+                // if isnull(@WH,'') = ''
+                // begin 
+                //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                // end 
+                // select 'in (''' + @WH +')'as Magazalar", cmbMagaza.EditValue.ToString());
+                //               magazalar = conn.GetValue(q).Replace(")", "')");
 
-     //           }
-     //           else if (cmbMagaza.EditValue.ToString() == "2")
-     //           {
-     //               string q = String.Format(@"
-                    //declare @WH varchar(2000)
-                    // if isnull(@WH,'') = ''
-                    // begin 
-                    //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-                    //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-                    // end 
-                    // select 'in (''' + @WH +')'as Magazalar", "00KS003");
-     //               magazalar = conn.GetValue(q).Replace(")", "')");
+                //           }
+                //           else if (cmbMagaza.EditValue.ToString() == "2")
+                //           {
+                //               string q = String.Format(@"
+                //declare @WH varchar(2000)
+                // if isnull(@WH,'') = ''
+                // begin 
+                //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                // end 
+                // select 'in (''' + @WH +')'as Magazalar", "00KS003");
+                //               magazalar = conn.GetValue(q).Replace(")", "')");
 
-     //           }
-     //           else if (cmbMagaza.EditValue.ToString() == "3")
-     //           {
+                //           }
+                //           else if (cmbMagaza.EditValue.ToString() == "3")
+                //           {
 
-     //               string q = String.Format(@"
-                    //declare @WH varchar(2000)
-                    // if isnull(@WH,'') = ''
-                    // begin 
-                    //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
-                    //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
-                    // end 
-                    // select 'in (''' + @WH +')'as Magazalar", "00KS004");
-     //               magazalar = conn.GetValue(q).Replace(")", "')");
-     //           }
+                //               string q = String.Format(@"
+                //declare @WH varchar(2000)
+                // if isnull(@WH,'') = ''
+                // begin 
+                //  select @WH = COALESCE(@WH + ''',''','') + rtrim(POTNOTES1)
+                //  from (select POTNOTES1 from POTENCY where POTSOURCE = 'DIVISON' and POTDEPART like '{0}%' and POTSTS = 1) T
+                // end 
+                // select 'in (''' + @WH +')'as Magazalar", "00KS004");
+                //               magazalar = conn.GetValue(q).Replace(")", "')");
+                //           }
             }
             else
             {
@@ -1109,79 +1130,79 @@ namespace VolantMusteriDuzel
             where DIVVAL not in ('I0','WB','00','00')
             and DIVVAL {1}
             ) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"), magazalar);
-        //    if (cmbMagaza.EditValue != null)
-        //    {
-        //        if (cmbMagaza.EditValue.ToString() == "1")
-        //        {
-        //            kasasorgu = kasasorgu + String.Format(@" union select DIVVAL,'KAMALAR ' + DIVNAME,NAKİT,
-                    //isnull([Nakit Dekont],0) [Banka Dekont],
-                    //convert(varchar(20),FARK) as FARK,
-                    //isnull(GARANTİ,0) [GARANTİ],
-                    //isnull(VAKIF,0) [VAKIF],
-                    //isnull(AKBANK,0) [AKBANK],
-                    //isnull(HALKBANK,0) [HALKBANK],
-                    //isnull(FİNANSBANK,0) [FİNANSBANK],
-                    //isnull(TEB,0) [TEB],
-                    //isnull(YAPIKREDİ,0) [YAPIKREDİ],
-                    //isnull(İŞBANKASI,0) [İŞBANKASI],
-                    //isnull(İNG,0) [İNG],
-                    //isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
-                    //isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
-                    //isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
-                    //isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
-                 //   isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
-                    //convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
-                    //isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
-                    //isnull(FİBA,0) [FİBA],
-                    //isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
-                    //isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
-                    //from (
-                    //select * from (
-                    //select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
-                    //FROM VDB_KAMALAR01.dbo.DIVISON 
-                    //outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
-                       // FROM VDB_KAMALAR01.dbo.PROCEEDS
-                             //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.SALES ON SALID=PCDSSALID
-                             //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
-                             //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
-                             //   WHERE PCDSDIVISON = DIVVAL
-                             //   AND PCDSCOMPANY = '01'  
-                             //   AND PCDSDATE  = '{0}'
-                             //   AND DPYMKIND = 'N'
-                             //   ) sonuc
-                    //outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM VDB_KAMALAR01.dbo.SAFEBEHAVE iade
-                                //			    WHERE SABHCOMPANY = '01'  
-                                //			    AND iade.SABHDATE  = '{0}'
-                                //			    AND iade.SABHDIVISON = DIVVAL
-                                //			    AND SABHSOURCE = 'ML'
-                    //) msf
-                    //where DIVSTS  = 1 and DIVSALESTS = 1
-                    //union
+            //    if (cmbMagaza.EditValue != null)
+            //    {
+            //        if (cmbMagaza.EditValue.ToString() == "1")
+            //        {
+            //            kasasorgu = kasasorgu + String.Format(@" union select DIVVAL,'KAMALAR ' + DIVNAME,NAKİT,
+            //isnull([Nakit Dekont],0) [Banka Dekont],
+            //convert(varchar(20),FARK) as FARK,
+            //isnull(GARANTİ,0) [GARANTİ],
+            //isnull(VAKIF,0) [VAKIF],
+            //isnull(AKBANK,0) [AKBANK],
+            //isnull(HALKBANK,0) [HALKBANK],
+            //isnull(FİNANSBANK,0) [FİNANSBANK],
+            //isnull(TEB,0) [TEB],
+            //isnull(YAPIKREDİ,0) [YAPIKREDİ],
+            //isnull(İŞBANKASI,0) [İŞBANKASI],
+            //isnull(İNG,0) [İNG],
+            //isnull([VAKIF KATILIM],0) [VAKIF KATILIM],
+            //isnull([ZIRAT BANKASI],0) [ZIRAT BANKASI],
+            //isnull([ZIRAAT KATILIM],0) [ZIRAAT KATILIM],
+            //isnull([AVUKAT ÖDEMSİ],0) [AVUKAT ÖDEMSİ],
+            //   isnull([NKOLAY SANAL POS],0) [NKOLAY SANAL POS],
+            //convert(varchar(20),[KREDİ KARTI TOPLAMI]) as [KREDİ KARTI TOPLAMI],
+            //isnull([GARANTİ SANAL POS],0) [GARANTİ SANAL POS],
+            //isnull(FİBA,0) [FİBA],
+            //isnull([TÜRKİYE FİNANS],0) [TÜRKİYE FİNANS],
+            //isnull([KREDİ TOPLAMI],0) [TÜRKİYE FİNANS]
+            //from (
+            //select * from (
+            //select DIVVAL,DIVNAME,'NAKİT' as [Ödeme Tipi],isnull(nakit,0)- isnull([Masraf],0) as Giren
+            //FROM VDB_KAMALAR01.dbo.DIVISON 
+            //outer apply (select SUM(case when PCDSKIND >0 then PCDSCHAMOUNT else  PCDSCHAMOUNT*-1 end ) as nakit 
+            // FROM VDB_KAMALAR01.dbo.PROCEEDS
+            //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.SALES ON SALID=PCDSSALID
+            //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.PROCEEDSCHILD ON PCDSCHPCDSID = PCDSID
+            //   LEFT OUTER JOIN VDB_KAMALAR01.dbo.DEFPAYMENTKIND ON DPYMID=PCDSCHDPYMID
+            //   WHERE PCDSDIVISON = DIVVAL
+            //   AND PCDSCOMPANY = '01'  
+            //   AND PCDSDATE  = '{0}'
+            //   AND DPYMKIND = 'N'
+            //   ) sonuc
+            //outer apply (select SUM(isnull(SABHEXCHAMOUNT,0)) as [Masraf] FROM VDB_KAMALAR01.dbo.SAFEBEHAVE iade
+            //			    WHERE SABHCOMPANY = '01'  
+            //			    AND iade.SABHDATE  = '{0}'
+            //			    AND iade.SABHDIVISON = DIVVAL
+            //			    AND SABHSOURCE = 'ML'
+            //) msf
+            //where DIVSTS  = 1 and DIVSALESTS = 1
+            //union
 
-                    //select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from VDB_KAMALAR01.dbo.DIVISON
-                    //outer apply (select 
-                             //   replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
-                             //   SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
-                             //   from VDB_KAMALAR01.dbo.PROCEEDS			
-                             //   left outer join VDB_KAMALAR01.dbo.PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
-                             //   left outer join VDB_KAMALAR01.dbo.DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
-                             //   where PCDSCOMPANY = '01'  
-                             //   AND not exists (select * FROM VDB_KAMALAR01.dbo.SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
-                             //   AND PCDSDATE  = '{0}'
-                             //   AND DIVVAL = PCDSDIVISON
-                             //   group by DPYMNAME,DPYMKIND) kartlar
-                    //where DIVSTS  = 1 and DIVSALESTS = 1
+            //select DIVVAL,DIVNAME, kartlar.[Ödeme Tipi],kartlar.Tutar from VDB_KAMALAR01.dbo.DIVISON
+            //outer apply (select 
+            //   replace(replace(upper(isnull(DPYMNAME,'NAKİT')),' KREDİSİ',''),' KREDİ KARTI','') as [Ödeme Tipi], 
+            //   SUM(case when rtrim(ltrim(PCDSDC)) = 0 then PCDSCHAMOUNT else PCDSCHAMOUNT *-1 end ) as Tutar
+            //   from VDB_KAMALAR01.dbo.PROCEEDS			
+            //   left outer join VDB_KAMALAR01.dbo.PROCEEDSCHILD on PCDSID = PCDSCHPCDSID
+            //   left outer join VDB_KAMALAR01.dbo.DEFPAYMENTKIND on DPYMID = PCDSCHDPYMID
+            //   where PCDSCOMPANY = '01'  
+            //   AND not exists (select * FROM VDB_KAMALAR01.dbo.SAFEBEHAVE where PCDSCHID = SABHPCDSCHID)
+            //   AND PCDSDATE  = '{0}'
+            //   AND DIVVAL = PCDSDIVISON
+            //   group by DPYMNAME,DPYMKIND) kartlar
+            //where DIVSTS  = 1 and DIVSALESTS = 1
 
-                    //) pvt
-                                //			    pivot
-                                //			    (
-                                //				    sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
-                                //				    [KREDİ TOPLAMI])
-                                //			    )pivotsonuc
-                    //where DIVVAL not in ('I0','WB','00','00')
-                    //) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"));
-        //        }
-        //    }
+            //) pvt
+            //			    pivot
+            //			    (
+            //				    sum(Giren) for [Ödeme Tipi] in ([NAKİT],[Nakit Dekont],[FARK],[GARANTİ],[VAKIF],[AKBANK],[HALKBANK],[FİNANSBANK],[TEB],[YAPIKREDİ],[İŞBANKASI],[İNG],[VAKIF KATILIM],[ZIRAT BANKASI],[ZIRAAT KATILIM],[AVUKAT ÖDEMSİ],[KREDİ KARTI TOPLAMI],[GARANTİ SANAL POS],[FİBA],[TÜRKİYE FİNANS],[NKOLAY SANAL POS],
+            //				    [KREDİ TOPLAMI])
+            //			    )pivotsonuc
+            //where DIVVAL not in ('I0','WB','00','00')
+            //) sonuc", Convert.ToDateTime(dteKasaTarih.Value).ToString("yyyy-MM-dd"));
+            //        }
+            //    }
             var dt = DataDonen(kasasorgu);
             gridKasa.DataSource = dt;
             viewKasa.Columns["FARK"].ColumnType.ToString();
@@ -1370,7 +1391,7 @@ namespace VolantMusteriDuzel
                 else
                 {
                     MessageBox.Show("Dosya Seçilmedi");
-                }                
+                }
             }
             else
             {
@@ -1584,11 +1605,22 @@ namespace VolantMusteriDuzel
             WHERE CUSDELIVER.CDRSALID = {0}", txtTeslimatKaldir.Text);
             var dt = DataDonen(q);
             gridTeslimatKaldir.DataSource = dt;
+            if (dt.Rows.Count > 0)
+            {
+                btnTeslimatKaldır.Enabled = true;
+                btnTeslimatKaldirYeni.Enabled = true;
+                btnTeslimatKaldir.Enabled = false;
+            }
         }
 
 
         private void btnTeslimatKaldirYeni_Click(object sender, EventArgs e)
         {
+            txtTeslimatKaldir.Text = "";
+            gridTeslimatKaldir.DataSource = null;
+            btnTeslimatKaldır.Enabled = false;
+            btnTeslimatKaldir.Enabled = true;
+            btnTeslimatKaldirYeni.Enabled = false;
 
         }
 
@@ -1657,41 +1689,55 @@ namespace VolantMusteriDuzel
             };
             int success = 0;
             int error = 0;
-            this.Enabled = false;
+            executeBackground(
+       () =>
+       {
 
-            progressForm.Show(this);
-            for (int i = 0; i < selectedRows.Length; i++)
-            {
-                var id = ViewKasaTarih.GetRowCellValue(selectedRows[i], "SABHID");
-                string updateq = string.Format(@"update SAFEBEHAVE set SABHDATE = SFCOCEDSDATE 
+           progressForm.Show(this);
+           for (int i = 0; i < selectedRows.Length; i++)
+           {
+               var id = ViewKasaTarih.GetRowCellValue(selectedRows[i], "SABHID");
+               string updateq = string.Format(@"update SAFEBEHAVE set SABHDATE = SFCOCEDSDATE 
                 from SAFEBEHAVE
                 inner join SAFECONTROLCENTERDAYSUM on SFCOCEDSDIVISON = SABHDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1
                 where SABHID = '{0}'
                 and SFCOCEDSSABHCREATED = 1", id);
-                SqlCommand cmd = new SqlCommand(updateq, sql);
-                if (sql.State == ConnectionState.Closed)
-                {
-                    sql.Open();
-                }
-                var sonuc = cmd.ExecuteNonQuery();
-                if (sonuc > 0)
-                {
-                    ViewKasaTarih.SetRowCellValue(selectedRows[i], "Sonuc", "Başarılı");
-                    ViewKasaTarih.RefreshRow(selectedRows[i]);
-                    success++;
-                }
-                else
-                {
-                    ViewKasaTarih.SetRowCellValue(selectedRows[i], "Sonuc", "Hata Oldu Kontrol Edin");
-                    ViewKasaTarih.RefreshRow(selectedRows[i]);
-                    error++;
-                }
-                sql.Close();
-                progressForm.PerformStep(this);
-            }
-            this.Enabled = true;
-            progressForm.Hide(this);
-            XtraMessageBox.Show("Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error, "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               SqlCommand cmd = new SqlCommand(updateq, sql);
+               if (sql.State == ConnectionState.Closed)
+               {
+                   sql.Open();
+               }
+               var sonuc = cmd.ExecuteNonQuery();
+               Invoke((MethodInvoker)delegate
+               {
+
+                   if (sonuc > 0)
+                   {
+                       ViewKasaTarih.SetRowCellValue(selectedRows[i], "Sonuc", "Başarılı");
+                       ViewKasaTarih.RefreshRow(selectedRows[i]);
+                       success++;
+                   }
+                   else
+                   {
+                       ViewKasaTarih.SetRowCellValue(selectedRows[i], "Sonuc", "Hata Oldu Kontrol Edin");
+                       ViewKasaTarih.RefreshRow(selectedRows[i]);
+                       error++;
+                   }
+               });
+               sql.Close();
+               progressForm.PerformStep(this);
+           }
+       },
+                     null,
+                     () =>
+                     {
+                         completeProgress();
+                         progressForm.Hide(this);
+                         CustomMessageBox.ShowMessage("Bilgilendirme", "Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error, this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                         this.Focus();
+                     });
+
+            //XtraMessageBox.Show("Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error, "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -1880,7 +1926,8 @@ namespace VolantMusteriDuzel
                 catch (Exception ex)
                 {
                     error++;
-                    MessageBox.Show(ex.Message);
+                    CustomMessageBox.ShowMessage("Bilgilendirme", ex.Message, this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show(ex.Message);
                 }
 
                 progressForm.PerformStep(this);
@@ -1890,7 +1937,8 @@ namespace VolantMusteriDuzel
             gridKasaSil.DataSource = null;
             dteKasaSilStart.EditValue = DateTime.Now.AddDays(-1);
             dteKasaSilEnd.EditValue = DateTime.Now.AddDays(-1);
-            XtraMessageBox.Show("Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error, "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CustomMessageBox.ShowMessage("Bilgilendirme", "Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error, this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //XtraMessageBox.Show("Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error, "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
         private void btnKasaSilID_Click(object sender, EventArgs e)
@@ -1913,44 +1961,85 @@ namespace VolantMusteriDuzel
 
         private void btnKasaMerkezDuzeltListe_Click(object sender, EventArgs e)
         {
-            string q = string.Format(@"select SFCOCEDSID,DIVVAL,DIVNAME,SFCOCEDSDATE, SFCOCEDSAMOUNT1,SONAME + space(1) + SOSURNAME as Kasiyer,'' as Durum,'' as Sonuc
-                    from SAFECONTROLCENTERDAYSUM 
-                    left outer join SOCIAL on SOCODE = SFCOCEDSSOCODE
-                    left outer join DIVISON on DIVVAL = SFCOCEDSDIVISON
-                    where SFCOCEDSSENDCASH = 1
-                    and SFCOCEDSDATE >= '2024-01-01'
-                    and SFCOCEDSDATE between '{0}' and '{1}'", Convert.ToDateTime(dteKasaMerkezDuzeltStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaMerkezDuzeltEnd.EditValue).ToString("yyyy-MM-dd"));
+            gridKasaMerkezDuzelt.DataSource = null;
+            string q = string.Format(@"select s.SFCOCEDSID,DIVISON.DIVVAL,DIVNAME,SFCOCEDSDATE, SFCOCEDSAMOUNT1,SONAME + space(1) + SOSURNAME as Kasiyer,
+            case 
+            when m.SFCOCEDSID is not null then 'İşlem olmuş' else '' end as Durum,'' as Sonuc
+                                from SAFECONTROLCENTERDAYSUM s with (nolock)
+                                left outer join SOCIAL with (nolock) on SOCODE = SFCOCEDSSOCODE
+                                left outer join DIVISON with (nolock) on DIVVAL = SFCOCEDSDIVISON
+					            left outer join MDE_GENEL.dbo.SAFEMOVIE m on m.SFCOCEDSID = s.SFCOCEDSID
+					            --left outer join SAFEBEHAVE with (nolock) on SABHDEEDNO = Convert(varchar(20),SFCOCEDSID) and SABHSOURCE  = 'VI1' 
+					            --not in ('TA.TK','TA.PS')
+                                --left outer join SAFEBEHAVE on SABHDIVISON = SFCOCEDSDIVISON and SABHAMOUNT = SFCOCEDSAMOUNT1 and SABHDATE = SFCOCEDSDATE
+					            where SFCOCEDSSENDCASH = 1
+                                and SFCOCEDSDATE >= '2024-01-01'
+                                and SFCOCEDSDATE between '{0}' and '{1}'", Convert.ToDateTime(dteKasaMerkezDuzeltStart.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteKasaMerkezDuzeltEnd.EditValue).ToString("yyyy-MM-dd"));
             if (cmbKasaMerkezDuzeltMagaza.EditValue != null)
             {
                 q = q + string.Format(@" and SFCOCEDSDIVISON = '{0}'", cmbKasaMerkezDuzeltMagaza.EditValue);
             }
+            q = q + @"order by DIVISON.DIVVAL,SFCOCEDSDATE";
             SqlDataAdapter da = new SqlDataAdapter(q, sql);
             DataTable dt = new DataTable();
-            da.Fill(dt);
-            gridKasaMerkezDuzelt.DataSource = dt;
 
-            for (int i = 0; i < viewKasaMerkezDuzelt.RowCount; i++)
+            ProgressBarFrm progressForm = new ProgressBarFrm()
             {
-                string SFCOCEDSAMOUNT1 = viewKasaMerkezDuzelt.GetRowCellValue(i, "SFCOCEDSAMOUNT1").ToString();
-                string SFCOCEDSDATE = Convert.ToDateTime(viewKasaMerkezDuzelt.GetRowCellValue(i, "SFCOCEDSDATE").ToString()).ToString("yyyy-MM-dd");
-                string DIVVAL = viewKasaMerkezDuzelt.GetRowCellValue(i, "DIVVAL").ToString();
-                string qq = string.Format(@"select * from SAFEBEHAVE where SABHSOURCE = 'VI1' and SABHDIVISON = '{0}' and SABHAMOUNT = '{1}' and SABHDATE = '{2}'", DIVVAL, SFCOCEDSAMOUNT1, SFCOCEDSDATE);
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(qq, sql);
-                DataTable dataTable = new DataTable();
-                sqlDataAdapter.Fill(dataTable);
-                if (dataTable.Rows.Count != 0)
-                {
-                    viewKasaMerkezDuzelt.SetRowCellValue(i, "Durum", "İşlem olmuş");
-                }
-                else
-                {
-                    viewKasaMerkezDuzelt.SetRowCellValue(i, "Durum", "");
-                }
-            }
+                Start = 0,
+                Finish = dt.Rows.Count,
+                Position = 0,
+                ToplamAdet = dt.Rows.Count.ToString(),
+            };
+            int success = 0;
+            int error = 0;
+            executeBackground(
+        () =>
+        {
+            progressForm.Show(this);
 
+            Invoke((MethodInvoker)delegate
+            {
+                da.Fill(dt);
+                gridKasaMerkezDuzelt.DataSource = dt;
+                viewKasaMerkezDuzelt.OptionsView.BestFitMaxRowCount = -1;
+                viewKasaMerkezDuzelt.BestFitColumns(true);
+            });
+            progressForm.PerformStep(this);
+            success++;
+            //for (int i = 0; i < viewKasaMerkezDuzelt.RowCount; i++)
+            //{
+            //    string SFCOCEDSID = viewKasaMerkezDuzelt.GetRowCellValue(i, "SFCOCEDSID").ToString();
+            //    string SFCOCEDSAMOUNT1 = viewKasaMerkezDuzelt.GetRowCellValue(i, "SFCOCEDSAMOUNT1").ToString();
+            //    string SFCOCEDSDATE = Convert.ToDateTime(viewKasaMerkezDuzelt.GetRowCellValue(i, "SFCOCEDSDATE").ToString()).ToString("yyyy-MM-dd");
+            //    string DIVVAL = viewKasaMerkezDuzelt.GetRowCellValue(i, "DIVVAL").ToString();
+            //    string qq = String.Format($@"select * from SAFEBEHAVE where SABHDEEDNO = '{SFCOCEDSID}'");
+            //    //string qq = string.Format(@"select * from SAFEBEHAVE where SABHSOURCE = 'VI1' and SABHDIVISON = '{0}' and SABHAMOUNT = '{1}' and SABHDATE = '{2}'", DIVVAL, SFCOCEDSAMOUNT1, SFCOCEDSDATE);
+            //    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(qq, sql);
+            //    DataTable dataTable = new DataTable();
+            //    sqlDataAdapter.Fill(dataTable);
+
+            //    Invoke((MethodInvoker)delegate
+            //    {
+            //        if (dataTable.Rows.Count != 0)
+            //        {
+            //            viewKasaMerkezDuzelt.SetRowCellValue(i, "Durum", "İşlem olmuş");
+            //        }
+            //        else
+            //        {
+            //            viewKasaMerkezDuzelt.SetRowCellValue(i, "Durum", "");
+            //        }
+            //    });
+            //    progressForm.PerformStep(this);
+            //    success++;
+            //}
+        },
+                                null,
+                                () =>
+                                {
+                                    completeProgress();
+                                    progressForm.Hide(this);
+                                });
         }
-
-
 
         private void btnKasaMerkezDuzeltYeni_Click(object sender, EventArgs e)
         {
@@ -1993,6 +2082,10 @@ namespace VolantMusteriDuzel
             this.Enabled = false;
             KasiyerSec2 sec2 = new KasiyerSec2();
             sec2.ShowDialog();
+
+            executeBackground(
+        () =>
+        {
             progressForm.Show(this);
             for (int i = 0; i < selectedRows.Length; i++)
             {
@@ -2000,12 +2093,9 @@ namespace VolantMusteriDuzel
                 magazagirisID = "";
                 kasiyercikisID = "";
                 kasiyergirisID = "";
-                magazacikisID = "";
                 merkezgirisID = "";
                 merkezkasiyercikisID = "";
                 merkezkasiyergirisID = "";
-
-
 
                 var durum = viewKasaMerkezDuzelt.GetRowCellValue(selectedRows[i], "Durum").ToString();
                 if (durum == "")
@@ -2024,7 +2114,7 @@ namespace VolantMusteriDuzel
 
                         #region yeni
 
-                        var Islem = conn.GetData($"select * from SAFEMOVIE where SFCOCEDSID = {id}",MDE);
+                        var Islem = conn.GetData($"select * from SAFEMOVIE where SFCOCEDSID = {id}", MDE);
                         if (Islem == null)
                         {
                             try
@@ -2065,7 +2155,7 @@ namespace VolantMusteriDuzel
                                 SAFE2.Add("@SABHDIVISON", "00");
                                 SAFE2.Add("@SABHSOURCE", "VI0");
                                 SAFE2.Add("@SABHSOCODE", CHSOCODE);
-                                SAFE2.Add("@SABHDEEDNOTES", DIVVAL + " Mağaza Merkez Kasa Giriş");
+                                SAFE2.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza Merkez Kasa Giriş");
                                 SAFE2.Add("@SABHVERSEVAL", "00.Kasa.TL");
                                 SAFE2.Add("@SABHVERSENAME", "Merkez Yönetim Ana Kasa TL");
                                 SAFE2.Add("@ReturnDesc", "");
@@ -2116,7 +2206,7 @@ namespace VolantMusteriDuzel
                                 SAFE4.Add("@SABHDIVISON", "00");
                                 SAFE4.Add("@SABHSOURCE", "VK0");
                                 SAFE4.Add("@SABHSOCODE", CHSOCODE);
-                                SAFE4.Add("@SABHDEEDNOTES", DIVVAL + " MAağaza " + SABHDATE + " Tarihli Kasası");
+                                SAFE4.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza " + SABHDATE + " Tarihli Kasası");
                                 SAFE4.Add("@SABHVERSEVAL", "00.Kasa.TL");
                                 SAFE4.Add("@SABHVERSENAME", "Merkez Yönetim Ana Kasa TL");
                                 SAFE4.Add("@ReturnDesc", "");
@@ -2127,17 +2217,44 @@ namespace VolantMusteriDuzel
                                 Dictionary<string, string> SAFECH4 = new Dictionary<string, string>();
                                 SAFECH4.Add("@SABHID", kasiyergirisID);
                                 SAFECH4.Add("@SAFEID", "2155");
-                                SAFECH4.Add("@SABHDEEDNOTES", DIVVAL + " Mağaza " + SABHDATE + " Tarihli Kasası");
+                                SAFECH4.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza " + SABHDATE + " Tarihli Kasası");
                                 SAFECH4.Add("@ReturnDesc", "");
                                 var SABHCHID4 = conn.InsertBack("FK_KASAMERKEZAL", SAFECH4);
                                 string u8 = String.Format($"update SAFEMOVIE set VK0CH = '{SABHCHID4}', DSAFEID = {DSAFEID} where SFCOCEDSID = '{id}'");
                                 var sonuc8 = Logins(u8);
 
                             }
-                            catch (Exception)
+                            catch (Exception exp)
                             {
+                                if (magazacikisID != "")
+                                {
+                                    string sil1 = $@" delete SAFEBEHAVE where SABHID = {magazacikisID}";
+                                    conn.InsertValue(sil1, sql);
+                                }
 
-                                throw;
+                                if (magazagirisID != "")
+                                {
+                                    string sil2 = $@" delete SAFEBEHAVE where SABHID = {magazagirisID}";
+                                    conn.InsertValue(sil2, sql);
+
+                                }
+
+                                if (kasiyercikisID != "")
+                                {
+                                    string sil3 = $@" delete SAFEBEHAVE where SABHID = {kasiyercikisID}";
+                                    conn.InsertValue(sil3, sql);
+                                }
+
+                                if (kasiyergirisID != "")
+                                {
+                                    string sil4 = $@" delete SAFEBEHAVE where SABHID = {kasiyergirisID}";
+                                    conn.InsertValue(sil4, sql);
+                                }
+                                string sil5 = $@"delete MDE_GENEL.dbo.SAFEMOVIE where SFCOCEDSID = {id}";
+                                conn.InsertValue(sil5, MDE);
+
+                                CustomMessageBox.ShowMessage(SABHDATE + " Tarihli " + DIVVAL + " işlemi hata aldı Sonra Tekrar Çalışrıeınız!", exp.Message, this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //XtraMessageBox.Show(SABHDATE + " Tarihli "+ DIVVAL + " Mağaza işlemi hata aldı Sonra Tekrar Çalışrıeınız!", exp.Message);
                             }
                         }
                         else
@@ -2169,13 +2286,19 @@ namespace VolantMusteriDuzel
                                     SAFECH.Add("@SABHDEEDNOTES", "Merkeze Para Gönderimi");
                                     SAFECH.Add("@ReturnDesc", "");
                                     var SABHCHID = conn.InsertBack("FK_KASAMERKEZGONDER", SAFECH);
+                                    string u2 = String.Format($"update SAFEMOVIE set VI1CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
+                                    var sonuc2 = Logins(u2);
 
 
                                 }
                                 catch (Exception)
                                 {
-
-                                    throw;
+                                    string sil1 = $@" delete SAFEBEHAVE where SABHID = {magazacikisID}";
+                                    string sil5 = $@"delete MDE_GENEL.dbo.SAFEMOVIE where SFCOCEDSID = {id}";
+                                    conn.InsertValue(sil1, sql);
+                                    conn.InsertValue(sil5, MDE);
+                                    CustomMessageBox.ShowMessage(SABHDATE + " Tarihli " + DIVVAL + " işlemi hata aldı Sonra Tekrar Çalışrıeınız!", "", this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //XtraMessageBox.Show(SABHDATE + " Tarihli " + DIVVAL + " Mağaza işlemi hata aldı Sonra Tekrar Çalışrıeınız!");
                                 }
                             }
                             else if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VI1CH"].ToString()))
@@ -2183,142 +2306,200 @@ namespace VolantMusteriDuzel
                                 try
                                 {
                                     Dictionary<string, string> SAFECH = new Dictionary<string, string>();
-                                    SAFECH.Add("@SABHID", Islem.Rows[0]["VI1"].ToString());
+                                    SAFECH.Add("@SABHID", magazacikisID);
                                     SAFECH.Add("@SAFEID", "2155");
                                     SAFECH.Add("@SABHDEEDNOTES", "Merkeze Para Gönderimi");
                                     SAFECH.Add("@ReturnDesc", "");
                                     var SABHCHID = conn.InsertBack("FK_KASAMERKEZGONDER", SAFECH);
-                                    string u1 = String.Format($"update SAFEMOVIE set VI1CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
-                                    var sonuc1 = Logins(u1);
+                                    string u2 = String.Format($"update SAFEMOVIE set VI1CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
+                                    var sonuc2 = Logins(u2);
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
-                                    throw;
+                                    XtraMessageBox.Show(ex.Message);
                                 }
 
                             }
                             if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VI0"].ToString()))
                             {
-                                Dictionary<string, string> SAFE = new Dictionary<string, string>();
-                                SAFE.Add("@id", id);
-                                SAFE.Add("@SAFEID", "2155");
-                                SAFE.Add("@SABHID", Islem.Rows[0]["VI1"].ToString());
-                                SAFE.Add("@SABHDIVISON", "00");
-                                SAFE.Add("@SABHSOURCE", "VI0");
-                                SAFE.Add("@SABHSOCODE", CHSOCODE);
-                                SAFE.Add("@SABHDEEDNOTES", "Merkez Kasa Giriş");
-                                SAFE.Add("@SABHVERSEVAL", "00.Kasa.TL");
-                                SAFE.Add("@SABHVERSENAME", "Merkez Yönetim Ana Kasa TL");
-                                SAFE.Add("@ReturnDesc", "");
-                                magazagirisID = conn.InsertBack("FK_KASAILK", SAFE);
-                                string u1 = String.Format($"update SAFEMOVIE set VI0 = '{magazagirisID}' where SFCOCEDSID = '{id}'");
-                                var sonuc1 = Logins(u1);
+                                try
+                                {
 
-                                Dictionary<string, string> SAFECH = new Dictionary<string, string>();
-                                SAFECH.Add("@SABHID", magazagirisID);
-                                SAFECH.Add("@SAFEID", "2155");
-                                SAFECH.Add("@SABHDEEDNOTES", "Merkeze Kasa Giriş");
-                                SAFECH.Add("@ReturnDesc", "");
-                                var SABHCHID = conn.InsertBack("FK_KASAMERKEZAL", SAFECH);
-                                string u2 = String.Format($"update SAFEMOVIE set VI0CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
-                                var sonuc2 = Logins(u2);
+                                    Dictionary<string, string> SAFE2 = new Dictionary<string, string>();
+                                    SAFE2.Add("@id", id);
+                                    SAFE2.Add("@SAFEID", "2155");
+                                    SAFE2.Add("@SABHID", magazacikisID);
+                                    SAFE2.Add("@SABHDIVISON", "00");
+                                    SAFE2.Add("@SABHSOURCE", "VI0");
+                                    SAFE2.Add("@SABHSOCODE", CHSOCODE);
+                                    SAFE2.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza Merkez Kasa Giriş");
+                                    SAFE2.Add("@SABHVERSEVAL", "00.Kasa.TL");
+                                    SAFE2.Add("@SABHVERSENAME", "Merkez Yönetim Ana Kasa TL");
+                                    SAFE2.Add("@ReturnDesc", "");
+                                    magazagirisID = conn.InsertBack("FK_KASAILK", SAFE2);
+                                    string u3 = String.Format($"update SAFEMOVIE set VI0 = '{magazagirisID}' where SFCOCEDSID = '{id}'");
+                                    var sonuc3 = Logins(u3);
+
+                                    Dictionary<string, string> SAFECH2 = new Dictionary<string, string>();
+                                    SAFECH2.Add("@SABHID", magazagirisID);
+                                    SAFECH2.Add("@SAFEID", "2155");
+                                    SAFECH2.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza Merkeze Kasa Giriş");
+                                    SAFECH2.Add("@ReturnDesc", "");
+                                    var SABHCHID2 = conn.InsertBack("FK_KASAMERKEZAL", SAFECH2);
+                                    string u4 = String.Format($"update SAFEMOVIE set VI0CH = '{SABHCHID2}' where SFCOCEDSID = '{id}'");
+                                    var sonuc4 = Logins(u4);
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    string sil2 = $@" delete SAFEBEHAVE where SABHID = {magazagirisID}";
+                                    string sil5 = $@"delete MDE_GENEL.dbo.SAFEMOVIE where SFCOCEDSID = {id}";
+                                    conn.InsertValue(sil2, sql);
+                                    conn.InsertValue(sil5, MDE);
+                                    CustomMessageBox.ShowMessage(SABHDATE + " Tarihli " + DIVVAL + " işlemi hata aldı Sonra Tekrar Çalışrıeınız!", "", this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //XtraMessageBox.Show(SABHDATE + " Tarihli " + DIVVAL + " Mağaza işlemi hata aldı Sonra Tekrar Çalışrıeınız!");
+                                }
+
                             }
-                            else if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VI0"].ToString()))
+                            else if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VI0CH"].ToString()))
                             {
-
-                                Dictionary<string, string> SAFECH = new Dictionary<string, string>();
-                                SAFECH.Add("@SABHID", magazagirisID);
-                                SAFECH.Add("@SAFEID", "2155");
-                                SAFECH.Add("@SABHDEEDNOTES", "Merkeze Kasa Giriş");
-                                SAFECH.Add("@ReturnDesc", "");
-                                var SABHCHID = conn.InsertBack("FK_KASAMERKEZAL", SAFECH);
-                                string u2 = String.Format($"update SAFEMOVIE set VI0CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
-                                var sonuc2 = Logins(u2);
+                                try
+                                {
+                                    Dictionary<string, string> SAFECH2 = new Dictionary<string, string>();
+                                    SAFECH2.Add("@SABHID", magazagirisID);
+                                    SAFECH2.Add("@SAFEID", "2155");
+                                    SAFECH2.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza Merkeze Kasa Giriş");
+                                    SAFECH2.Add("@ReturnDesc", "");
+                                    var SABHCHID2 = conn.InsertBack("FK_KASAMERKEZAL", SAFECH2);
+                                    string u4 = String.Format($"update SAFEMOVIE set VI0CH = '{SABHCHID2}' where SFCOCEDSID = '{id}'");
+                                    var sonuc4 = Logins(u4);
+                                }
+                                catch (Exception ex)
+                                {
+                                    XtraMessageBox.Show(ex.Message);
+                                }
                             }
                             if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VK1"].ToString()))
                             {
-                                Dictionary<string, string> SAFE = new Dictionary<string, string>();
-                                SAFE.Add("@id", id);
-                                SAFE.Add("@SAFEID", "2155");
-                                SAFE.Add("@SABHID", "");
-                                SAFE.Add("@SABHDIVISON", "00");
-                                SAFE.Add("@SABHSOURCE", "VK1");
-                                SAFE.Add("@SABHSOCODE", CHSOCODE);
-                                SAFE.Add("@SABHDEEDNOTES", "Merkez Kasa Kasiyer Çıkış");
-                                SAFE.Add("@SABHVERSEVAL", DSAFEVAL);
-                                SAFE.Add("@SABHVERSENAME", DSAFENAME);
-                                SAFE.Add("@ReturnDesc", "");
-                                kasiyercikisID = conn.InsertBack("FK_KASAILK", SAFE);
-                                string u3 = String.Format($"update SAFEMOVIE set VK1 = '{kasiyercikisID}' where SFCOCEDSID = '{id}'");
-                                var sonuc3 = Logins(u3);
+                                try
+                                {
+                                    Dictionary<string, string> SAFE = new Dictionary<string, string>();
+                                    SAFE.Add("@id", id);
+                                    SAFE.Add("@SAFEID", "2155");
+                                    SAFE.Add("@SABHID", "");
+                                    SAFE.Add("@SABHDIVISON", "00");
+                                    SAFE.Add("@SABHSOURCE", "VK1");
+                                    SAFE.Add("@SABHSOCODE", CHSOCODE);
+                                    SAFE.Add("@SABHDEEDNOTES", "Merkez Kasa Kasiyer Çıkış");
+                                    SAFE.Add("@SABHVERSEVAL", DSAFEVAL);
+                                    SAFE.Add("@SABHVERSENAME", DSAFENAME);
+                                    SAFE.Add("@ReturnDesc", "");
+                                    kasiyercikisID = conn.InsertBack("FK_KASAILK", SAFE);
+                                    string u3 = String.Format($"update SAFEMOVIE set VK1 = '{kasiyercikisID}' where SFCOCEDSID = '{id}'");
+                                    var sonuc3 = Logins(u3);
 
-                                Dictionary<string, string> SAFECH = new Dictionary<string, string>();
-                                SAFECH.Add("@SABHID", kasiyercikisID);
-                                SAFECH.Add("@SAFEID", DSAFEID);
-                                SAFECH.Add("@SABHDEEDNOTES", "Merkez Kasa Kasiyer Çıkış");
-                                SAFECH.Add("@ReturnDesc", "");
-                                var SABHCHID = conn.InsertBack("FK_KASAMERKEZGONDER", SAFECH);
-                                string u4 = String.Format($"update SAFEMOVIE set VK1CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
-                                var sonuc4 = Logins(u4);
+                                    Dictionary<string, string> SAFECH = new Dictionary<string, string>();
+                                    SAFECH.Add("@SABHID", kasiyercikisID);
+                                    SAFECH.Add("@SAFEID", DSAFEID);
+                                    SAFECH.Add("@SABHDEEDNOTES", "Merkez Kasa Kasiyer Çıkış");
+                                    SAFECH.Add("@ReturnDesc", "");
+                                    var SABHCHID = conn.InsertBack("FK_KASAMERKEZGONDER", SAFECH);
+                                    string u4 = String.Format($"update SAFEMOVIE set VK1CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
+                                    var sonuc4 = Logins(u4);
+                                }
+                                catch (Exception)
+                                {
+                                    string sil3 = $@" delete SAFEBEHAVE where SABHID = {kasiyercikisID}";
+                                    string sil5 = $@"delete MDE_GENEL.dbo.SAFEMOVIE where SFCOCEDSID = {id}";
+                                    conn.InsertValue(sil3, sql);
+                                    conn.InsertValue(sil5, MDE);
+                                    XtraMessageBox.Show(SABHDATE + " Tarihli " + DIVVAL + "-" + DIVNAME + " Mağaza işlemi hata aldı Sonra Tekrar Çalışrıeınız!");
+                                }
 
-                            }
-                            else if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VK0CH"].ToString()))
-                            {
-                                Dictionary<string, string> SAFECH = new Dictionary<string, string>();
-                                SAFECH.Add("@SABHID", Islem.Rows[0]["VK0"].ToString());
-                                SAFECH.Add("@SAFEID", DSAFEID);
-                                SAFECH.Add("@SABHDEEDNOTES", "Merkez Kasa Kasiyer Çıkış");
-                                SAFECH.Add("@ReturnDesc", "");
-                                var SABHCHID = conn.InsertBack("FK_KASAMERKEZGONDER", SAFECH);
-                                string u4 = String.Format($"update SAFEMOVIE set VI0CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
-                                var sonuc4 = Logins(u4);
-                            }
-                            if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VK0"].ToString()))
-                            {
-                                Dictionary<string, string> SAFE = new Dictionary<string, string>();
-                                SAFE.Add("@id", id);
-                                SAFE.Add("@SAFEID", DSAFEID);
-                                SAFE.Add("@SABHID", kasiyercikisID);
-                                SAFE.Add("@SABHDIVISON", "00");
-                                SAFE.Add("@SABHSOURCE", "VK0");
-                                SAFE.Add("@SABHSOCODE", CHSOCODE);
-                                SAFE.Add("@SABHDEEDNOTES", DIVVAL + " MAağaza " + SABHDATE + " Tarihli Kasası");
-                                SAFE.Add("@SABHVERSEVAL", "00.Kasa.TL");
-                                SAFE.Add("@SABHVERSENAME", "Merkez Yönetim Ana Kasa TL");
-                                SAFE.Add("@ReturnDesc", "");
-                                kasiyergirisID = conn.InsertBack("FK_KASAILK", SAFE);
-                                string u1 = String.Format($"update SAFEMOVIE set VK0 = '{kasiyergirisID}' where SFCOCEDSID = '{id}'");
-                                var sonuc1 = Logins(u1);
-
-                                Dictionary<string, string> SAFECH = new Dictionary<string, string>();
-                                SAFECH.Add("@SABHID", kasiyergirisID);
-                                SAFECH.Add("@SAFEID", "2155");
-                                SAFECH.Add("@SABHDEEDNOTES", DIVVAL + " Mağaza " + SABHDATE + " Tarihli Kasası");
-                                SAFECH.Add("@ReturnDesc", "");
-                                var SABHCHID = conn.InsertBack("FK_KASAMERKEZAL", SAFECH);
-                                string u2 = String.Format($"update SAFEMOVIE set VK0CH = '{SABHCHID}', DSAFEID = {DSAFEID} where SFCOCEDSID = '{id}'");
-                                var sonuc2 = Logins(u2);
                             }
                             else if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VK1CH"].ToString()))
                             {
+                                try
+                                {
+                                    Dictionary<string, string> SAFECH = new Dictionary<string, string>();
+                                    SAFECH.Add("@SABHID", kasiyercikisID);
+                                    SAFECH.Add("@SAFEID", DSAFEID);
+                                    SAFECH.Add("@SABHDEEDNOTES", "Merkez Kasa Kasiyer Çıkış");
+                                    SAFECH.Add("@ReturnDesc", "");
+                                    var SABHCHID = conn.InsertBack("FK_KASAMERKEZGONDER", SAFECH);
+                                    string u4 = String.Format($"update SAFEMOVIE set VK1CH = '{SABHCHID}' where SFCOCEDSID = '{id}'");
+                                    var sonuc4 = Logins(u4);
+                                }
+                                catch (Exception ex)
+                                {
+                                    XtraMessageBox.Show(ex.Message);
+                                }
+                            }
+                            if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VK0"].ToString()))
+                            {
+                                try
+                                {
+                                    Dictionary<string, string> SAFE = new Dictionary<string, string>();
+                                    SAFE.Add("@id", id);
+                                    SAFE.Add("@SAFEID", DSAFEID);
+                                    SAFE.Add("@SABHID", kasiyercikisID);
+                                    SAFE.Add("@SABHDIVISON", "00");
+                                    SAFE.Add("@SABHSOURCE", "VK0");
+                                    SAFE.Add("@SABHSOCODE", CHSOCODE);
+                                    SAFE.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza " + SABHDATE + " Tarihli Kasası");
+                                    SAFE.Add("@SABHVERSEVAL", "00.Kasa.TL");
+                                    SAFE.Add("@SABHVERSENAME", "Merkez Yönetim Ana Kasa TL");
+                                    SAFE.Add("@ReturnDesc", "");
+                                    kasiyergirisID = conn.InsertBack("FK_KASAILK", SAFE);
+                                    string u1 = String.Format($"update SAFEMOVIE set VK0 = '{kasiyergirisID}' where SFCOCEDSID = '{id}'");
+                                    var sonuc1 = Logins(u1);
 
-                                Dictionary<string, string> SAFECH = new Dictionary<string, string>();
-                                SAFECH.Add("@SABHID", Islem.Rows[0]["VK0"].ToString());
-                                SAFECH.Add("@SAFEID", "2155");
-                                SAFECH.Add("@SABHDEEDNOTES", DIVVAL + " Mağaza " + SABHDATE + " Tarihli Kasası");
-                                SAFECH.Add("@ReturnDesc", "");
-                                var SABHCHID = conn.InsertBack("FK_KASAMERKEZAL", SAFECH);
-                                string u2 = String.Format($"update SAFEMOVIE set VK0CH = '{SABHCHID}', DSAFEID = {DSAFEID} where SFCOCEDSID = '{id}'");
-                                var sonuc2 = Logins(u2);
+                                    Dictionary<string, string> SAFECH = new Dictionary<string, string>();
+                                    SAFECH.Add("@SABHID", kasiyergirisID);
+                                    SAFECH.Add("@SAFEID", "2155");
+                                    SAFECH.Add("@SABHDEEDNOTES", DIVVAL + "-" + DIVNAME + " Mağaza " + SABHDATE + " Tarihli Kasası");
+                                    SAFECH.Add("@ReturnDesc", "");
+                                    var SABHCHID = conn.InsertBack("FK_KASAMERKEZAL", SAFECH);
+                                    string u2 = String.Format($"update SAFEMOVIE set VK0CH = '{SABHCHID}', DSAFEID = {DSAFEID} where SFCOCEDSID = '{id}'");
+                                    var sonuc2 = Logins(u2);
+                                }
+                                catch (Exception)
+                                {
+                                    string sil4 = $@" delete SAFEBEHAVE where SABHID = {kasiyergirisID}";
+                                    string sil5 = $@"delete MDE_GENEL.dbo.SAFEMOVIE where SFCOCEDSID = {id}";
+                                    conn.InsertValue(sil4, sql);
+                                    conn.InsertValue(sil5, MDE);
+                                    XtraMessageBox.Show(SABHDATE + " Tarihli " + DIVVAL + "-" + DIVNAME + " Mağaza işlemi hata aldı Sonra Tekrar Çalışrıeınız!");
+                                }
+                            }
+                            else if (string.IsNullOrWhiteSpace(Islem.Rows[0]["VK0CH"].ToString()))
+                            {
+                                try
+                                {
+                                    Dictionary<string, string> SAFECH = new Dictionary<string, string>();
+                                    SAFECH.Add("@SABHID", Islem.Rows[0]["VK0"].ToString());
+                                    SAFECH.Add("@SAFEID", "2155");
+                                    SAFECH.Add("@SABHDEEDNOTES", DIVVAL + " Mağaza " + SABHDATE + " Tarihli Kasası");
+                                    SAFECH.Add("@ReturnDesc", "");
+                                    var SABHCHID = conn.InsertBack("FK_KASAMERKEZAL", SAFECH);
+                                    string u2 = String.Format($"update SAFEMOVIE set VK0CH = '{SABHCHID}', DSAFEID = {DSAFEID} where SFCOCEDSID = '{id}'");
+                                    var sonuc2 = Logins(u2);
+                                }
+                                catch (Exception ex)
+                                {
+                                    XtraMessageBox.Show(ex.Message);
+                                }
                             }
                         }
                         #endregion
 
 
-                        viewKasaMerkezDuzelt.SetRowCellValue(selectedRows[i], "Sonuc", "Başarılı");
-                        viewKasaMerkezDuzelt.SetRowCellValue(selectedRows[i], "Durum", magazacikisID);
-                        viewKasaMerkezDuzelt.RefreshRow(selectedRows[i]);
+                        Invoke((MethodInvoker)delegate
+                        {
+                            viewKasaMerkezDuzelt.SetRowCellValue(selectedRows[i], "Sonuc", "Başarılı");
+                            viewKasaMerkezDuzelt.SetRowCellValue(selectedRows[i], "Durum", magazacikisID);
+                            viewKasaMerkezDuzelt.RefreshRow(selectedRows[i]);
+                        });
 
                         progressForm.PerformStep(this);
                         success++;
@@ -2326,20 +2507,32 @@ namespace VolantMusteriDuzel
                     catch (Exception ex)
                     {
                         progressForm.PerformStep(this);
-                        XtraMessageBox.Show(ex.Message);
+                        CustomMessageBox.ShowMessage("Bilgilendirme", ex.Message, this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //XtraMessageBox.Show(ex.Message);
                         error++;
                     }
                 }
                 else
                 {
-                    viewKasaMerkezDuzelt.SetRowCellValue(selectedRows[i], "Sonuc", "Tekrar İşlem Yapılamaz");
-                    viewKasaMerkezDuzelt.RefreshRow(selectedRows[i]);
+                    Invoke((MethodInvoker)delegate
+                    {
+                        viewKasaMerkezDuzelt.SetRowCellValue(selectedRows[i], "Sonuc", "Tekrar İşlem Yapılamaz");
+                        viewKasaMerkezDuzelt.RefreshRow(selectedRows[i]);
+                    });
+                    progressForm.PerformStep(this);
                     error += 1;
                 }
             }
-            this.Enabled = true;
-            progressForm.Hide(this);
-            XtraMessageBox.Show("İşlem tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error + "\r\n" + magazacikisID + "\r\n " + merkezgirisID + "\r\n " + merkezkasiyercikisID + "\r\n ");
+        },
+                                null,
+                                () =>
+                                {
+                                    completeProgress();
+                                    progressForm.Hide(this);
+
+                                    CustomMessageBox.ShowMessage("", "İşlem tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error + "\r\n" + magazacikisID + "\r\n " + merkezgirisID + "\r\n " + merkezkasiyercikisID + "\r\n ", this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //XtraMessageBox.Show("İşlem tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error + "\r\n" + magazacikisID + "\r\n " + merkezgirisID + "\r\n " + merkezkasiyercikisID + "\r\n ");
+                                });
         }
         internal int Logins(string query)
         {
@@ -2690,6 +2883,7 @@ namespace VolantMusteriDuzel
 
         private void seçileniSilToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+
             try
             {
                 string SABHID = ViewGunDetay.GetRowCellValue(ViewGunDetay.FocusedRowHandle, "SABHID").ToString();
@@ -2896,37 +3090,37 @@ namespace VolantMusteriDuzel
                {
                    progressForm.Show(this);
                    try
-                    {
-                        string q = String.Format(@"select CURID,PCDSUSEFIELDS1,CURVAL,CURNAME,PCDSDATE,count(*) as Adet,max(PCDSLATEINCOME) as vade,max(PCDSEARLYPAYDISC) as erken,max(PCDSAMOUNT) as OdemeTutari,sum(PCDSCHAMOUNT) as ToplamDsusum from PROCEEDS with (nolock)
+                   {
+                       string q = String.Format(@"select CURID,PCDSUSEFIELDS1,CURVAL,CURNAME,PCDSDATE,count(*) as Adet,max(PCDSLATEINCOME) as vade,max(PCDSEARLYPAYDISC) as erken,max(PCDSAMOUNT) as OdemeTutari,sum(PCDSCHAMOUNT) as ToplamDsusum from PROCEEDS with (nolock)
                        left outer join PROCEEDSCHILD with (nolock) on PCDSCHPCDSID = PCDSID
                        left outer join CURRENTS with (nolock) on CURID = PCDSCURID
                        where PCDSDATE between '{0}' and '{1}'					   
                        ", Convert.ToDateTime(dteWebOdemeBasTarih.EditValue).ToString("yyyy-MM-dd"), Convert.ToDateTime(dteWebOdemeBitTarih.EditValue).ToString("yyyy-MM-dd"));
-                        if (txtWebOdemeMusteriNo.Text != "")
-                        {
-                            q = q + String.Format(@" and CURVAL = '{0}'", txtWebOdemeMusteriNo.Text);
-                        }
-                        if (srcWebOdemeOdemeTipi.EditValue.ToString() != "Seçiniz....!")
-                        {
-                            q = q + String.Format(@" and PCDSCHDPYMID = {0}", srcWebOdemeOdemeTipi.EditValue);
-                        }
-                        if (srcWebOdemeKasiyer.EditValue.ToString() != "Seçiniz....!")
-                        {
-                            q = q + String.Format(@" and PCDSCASHIER = '{0}'", srcWebOdemeKasiyer.EditValue);
-                        }
-                        q = q + @"
+                       if (txtWebOdemeMusteriNo.Text != "")
+                       {
+                           q = q + String.Format(@" and CURVAL = '{0}'", txtWebOdemeMusteriNo.Text);
+                       }
+                       if (srcWebOdemeOdemeTipi.EditValue.ToString() != "Seçiniz....!")
+                       {
+                           q = q + String.Format(@" and PCDSCHDPYMID = {0}", srcWebOdemeOdemeTipi.EditValue);
+                       }
+                       if (srcWebOdemeKasiyer.EditValue.ToString() != "Seçiniz....!")
+                       {
+                           q = q + String.Format(@" and PCDSCASHIER = '{0}'", srcWebOdemeKasiyer.EditValue);
+                       }
+                       q = q + @"
                        group by CURID,PCDSUSEFIELDS1,PCDSDATE,CURVAL,CURNAME
                        having COUNT(*) > 1
                        order by PCDSDATE ,adet desc,CURID";
-                       dt = conn.GetData(q, sql);                       
-                        success++;
-                        progressForm.PerformStep(this);
-                    }
-                    catch (Exception exx)
-                    {
-                        error++;
-                        progressForm.PerformStep(this);
-                    }
+                       dt = conn.GetData(q, sql);
+                       success++;
+                       progressForm.PerformStep(this);
+                   }
+                   catch (Exception exx)
+                   {
+                       error++;
+                       progressForm.PerformStep(this);
+                   }
 
                },
                      null,
@@ -3135,7 +3329,7 @@ namespace VolantMusteriDuzel
                        progressForm.PerformStep(this);
                    }
                    success++;
-                   conn.InsertValue($"update CUSTOMER set CUSCREDIT = 50000 CUSCURID = {ViewWebOdeme.GetRowCellValue(i, "CURID").ToString()}", sql); 
+                   conn.InsertValue($"update CUSTOMER set CUSCREDIT = 50000 CUSCURID = {ViewWebOdeme.GetRowCellValue(i, "CURID").ToString()}", sql);
                    //CURID,PCDSUSEFIELDS1
                }
                catch (Exception exx)
@@ -3312,7 +3506,7 @@ namespace VolantMusteriDuzel
                var sonuc1 = conn.InsertValue($"update PROCEEDS set PCDSAMOUNT = {PCDSAMOUNT},PCDSEXCHAMOUNT = {PCDSAMOUNT},PCDSEARLYPAYDISC={PCDSEARLYPAYDISC},PCDSLATEINCOME={PCDSLATEINCOME} where PCDSID = {txtOdemeID.Text}", sql);
                if (sonuc1 != 0)
                {
-                   double Fark = ((PCDSAMOUNT+ PCDSEARLYPAYDISC)- PCDSLATEINCOME) - LastPCDSAMOUNT;
+                   double Fark = ((PCDSAMOUNT + PCDSEARLYPAYDISC) - PCDSLATEINCOME) - LastPCDSAMOUNT;
                    if (toggleSwitch1.IsOn == true)
                    {
                        Fark = 0;
@@ -3468,6 +3662,7 @@ namespace VolantMusteriDuzel
                    CURID = ViewIYS.GetRowCellValue(selectedRows[i], "ID").ToString();
                    if (GSM1 != "")
                    {
+                       #region direkkod
                        // Gönderilecek JSON verisi
                        var requestBody = new
                        {
@@ -3488,60 +3683,142 @@ namespace VolantMusteriDuzel
                                }
                            }
                        };
-
-                       // JSON verisini oluştur
                        var jsonContent = JsonConvert.SerializeObject(requestBody);
-
-                       // İçeriği oluştur
                        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
                        try
                        {
-                           // API'ye POST isteği gönder
                            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Properties.Settings.Default.SmsToken);
                            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
                            if (response.IsSuccessStatusCode)
                            {
-                               // Başarılı ise yanıtı al ve işle
                                var responseBody = await response.Content.ReadAsStringAsync();
                                IYSResponse smsSonuc = JsonConvert.DeserializeObject<IYSResponse>(responseBody);
-                               var update = conn.InsertValue($@"update CURRENTS set CURUSEFIELD2 = '{smsSonuc.PackageId}' where CURID = {CURID}", sql);
-                               SatirSonuc += GSM1 + "-" + smsSonuc.ResponseDesc;
-                               Invoke((MethodInvoker)delegate
+                               if (smsSonuc.PackageId != null)
                                {
-                                   ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", smsSonuc.ResponseDesc);
-                               });
+                                   var update = conn.InsertValue($@"update CURRENTS set CURUSEFIELD2 = '{smsSonuc.PackageId}' where CURID = {CURID}", sql);
+                                   update += conn.InsertValue($@"update CURRENTSCHILD set CURCHKVKKOK = 1, CURCHCHECKGSM = 1, CURCHIYS = 1 where CURCHID = {CURID}", sql);
+                               }
+                               SatirSonuc += "\r\n" + GSM1 + "-" + smsSonuc.ResponseDesc;
+                               ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", "\r\n" + GSM1 + "-" + smsSonuc.ResponseDesc);
                            }
                            else
                            {
-                               // Hata durumunda
-                               Console.WriteLine("Hata: " + response.StatusCode);
-                               SatirSonuc += GSM1 + "-" + response;
-                               Invoke((MethodInvoker)delegate
-                               {
-                                   ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", response);
-                               });
+                               SatirSonuc += "\r\n" + GSM1 + "-" + response;
+                               ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", response.IsSuccessStatusCode);
                            }
+
                        }
                        catch (Exception ex)
                        {
-                           // İstek sırasında oluşan hatayı yakala
-                           Invoke((MethodInvoker)delegate
-                           {
-                               ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ex.Message);
-                           });
-                           Console.WriteLine("Hata: " + ex.Message);
-                           SatirSonuc += GSM1 + "-" + ex.Message;
+                           ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ex.Message);
+                           SatirSonuc += "\r\n" + GSM1 + "-" + ex.Message;
                        }
+
+                       #endregion
                    }
                    if (GSM2 != "")
                    {
-                       //SMS.SendRequest("ONAY", "MESAJ", GSM3, DateTime.Parse(DateTime.Now.AddDays(-1).ToString("dd.MM.yyyy hh:mm")));
+                       var requestBody = new
+                       {
+                           userName = Properties.Settings.Default.SmsUser, // Kullanıcı adı
+                           password = Properties.Settings.Default.SmsPassword, // Şifre
+                           permissionType = "MESAJ", // İzin türü
+                           brandCode = "611821", // Marka kodu
+                           permissionStatus = "ONAY", // İzin durumu
+                           permissionSource = 4, // Kaynak
+                           isCheckBlackList = "1", // Kara liste kontrolü
+                           iysDatas = new[]
+                           {
+                               new
+                               {
+                                   recipient = GSM2, // Alıcı numarası
+                                   receiveType = "BIREYSEL", // Alıcı tipi
+                                   consentDate = DateTime.Parse(DateTime.Now.AddDays(-1).ToString("dd.MM.yyyy hh:mm")) // Onay tarihi
+                               }
+                           }
+                       };
+                       var jsonContent = JsonConvert.SerializeObject(requestBody);
+                       var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                       try
+                       {
+                           client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Properties.Settings.Default.SmsToken);
+                           HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                           if (response.IsSuccessStatusCode)
+                           {
+                               var responseBody = await response.Content.ReadAsStringAsync();
+                               IYSResponse smsSonuc = JsonConvert.DeserializeObject<IYSResponse>(responseBody);
+                               if (smsSonuc.PackageId != null)
+                               {
+                                   ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ViewIYS.GetRowCellValue(selectedRows[i], "Sonuc").ToString() + Environment.NewLine + GSM2 + "=" + smsSonuc.ResponseDesc);
+                               }
+                               SatirSonuc += "\r\n" + GSM2 + "=" + smsSonuc.ResponseDesc;
+                           }
+                           else
+                           {
+                               SatirSonuc += "\r\n" + GSM2 + "=" + response;
+                               ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ViewIYS.GetRowCellValue(selectedRows[i], "Sonuc").ToString() + " - " + response.IsSuccessStatusCode);
+                           }
+
+                       }
+                       catch (Exception ex)
+                       {
+                           ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ViewIYS.GetRowCellValue(selectedRows[i], "Sonuc").ToString() + " - " + ex.Message);
+                           SatirSonuc += "\r\n" + GSM2 + "=" + ex.Message;
+                       }
                    }
                    if (GSM3 != "")
                    {
-                       //SMS.SendRequest("ONAY", "4", GSM3, DateTime.Parse(DateTime.Now.AddDays(-1).ToString("dd.MM.yyyy hh:mm")));
+                       var requestBody = new
+                       {
+                           userName = Properties.Settings.Default.SmsUser, // Kullanıcı adı
+                           password = Properties.Settings.Default.SmsPassword, // Şifre
+                           permissionType = "MESAJ", // İzin türü
+                           brandCode = "611821", // Marka kodu
+                           permissionStatus = "ONAY", // İzin durumu
+                           permissionSource = 4, // Kaynak
+                           isCheckBlackList = "1", // Kara liste kontrolü
+                           iysDatas = new[]
+                           {
+                               new
+                               {
+                                   recipient = GSM3, // Alıcı numarası
+                                   receiveType = "BIREYSEL", // Alıcı tipi
+                                   consentDate = DateTime.Parse(DateTime.Now.AddDays(-1).ToString("dd.MM.yyyy hh:mm")) // Onay tarihi
+                               }
+                           }
+                       };
+                       var jsonContent = JsonConvert.SerializeObject(requestBody);
+                       var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                       try
+                       {
+                           client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Properties.Settings.Default.SmsToken);
+                           HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                           if (response.IsSuccessStatusCode)
+                           {
+                               var responseBody = await response.Content.ReadAsStringAsync();
+                               IYSResponse smsSonuc = JsonConvert.DeserializeObject<IYSResponse>(responseBody);
+                               if (smsSonuc.PackageId != null)
+                               {
+                                   ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ViewIYS.GetRowCellValue(selectedRows[i], "Sonuc").ToString() + Environment.NewLine + GSM3 + ":" + smsSonuc.ResponseDesc);
+                               }
+                               SatirSonuc += "\r\n" + GSM3 + "=" + smsSonuc.ResponseDesc;
+                           }
+                           else
+                           {
+                               SatirSonuc += "\r\n" + GSM3 + "=" + response;
+                               ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ViewIYS.GetRowCellValue(selectedRows[i], "Sonuc").ToString() + Environment.NewLine + GSM3 + "=" + response.IsSuccessStatusCode);
+                           }
+
+                       }
+                       catch (Exception ex)
+                       {
+                           ViewIYS.SetRowCellValue(selectedRows[i], "Sonuc", ViewIYS.GetRowCellValue(selectedRows[i], "Sonuc").ToString() + Environment.NewLine + GSM3 + " = " + ex.Message);
+                           SatirSonuc += "\r\n" + GSM3 + "=" + ex.Message;
+                       }
                    }
 
                    progressForm.PerformStep(this);
@@ -3558,12 +3835,14 @@ namespace VolantMusteriDuzel
                      null,
                      () =>
                      {
-                         completeProgress();
-                         progressForm.Hide(this);
-                         XtraMessageBox.Show("Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error + "Sonuc: " + SatirSonuc.ToString(), "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                         this.Focus();
+
                      });
+            completeProgress();
             progressForm.Hide(this);
+            CustomMessageBox.ShowMessage("Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error, SatirSonuc.ToString(), this, "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //XtraMessageBox.Show("Gönderim tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error + "Sonuc: " + SatirSonuc.ToString(), "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Focus();
+            //btnIysListele_Click(null, null);
         }
 
         private void ViewTaksitDetayi_InitNewRow(object sender, InitNewRowEventArgs e)
@@ -3583,7 +3862,7 @@ namespace VolantMusteriDuzel
             for (int i = 0; i < ViewTaksitDetayi.RowCount; i++)
             {
                 double existingAmount;
-                if (double.TryParse(ViewTaksitDetayi.GetRowCellValue(i,"PCDSCHAMOUNT").ToString(), out existingAmount))
+                if (double.TryParse(ViewTaksitDetayi.GetRowCellValue(i, "PCDSCHAMOUNT").ToString(), out existingAmount))
                 {
                     Amount += existingAmount;
                 }
@@ -3741,7 +4020,7 @@ namespace VolantMusteriDuzel
                                    conn.InsertValue($@"update SAFEBEHAVE set SABHAMOUNT = {PCSDAMOUNT} , SABHEXCHAMOUNT = {PCSDAMOUNT} where SABHPCDSCHID = {ViewTaksitDetayi.GetRowCellValue(i, "PCDSCHID").ToString()}", sql);
                                    conn.InsertValue($@"update SAFEBEHAVECHILD set SABHCHAMOUNT = {PCSDAMOUNT}, SABHCHEXCHAMOUNT = {PCSDAMOUNT} from SAFEBEHAVE 
                                     left outer join SAFEBEHAVECHILD on SABHCHSABHID = SABHID
-                                    where SABHPCDSCHID = {ViewTaksitDetayi.GetRowCellValue(i, "PCDSCHID").ToString()}",sql);
+                                    where SABHPCDSCHID = {ViewTaksitDetayi.GetRowCellValue(i, "PCDSCHID").ToString()}", sql);
                                }
                                success++;
                            }
@@ -3830,7 +4109,7 @@ namespace VolantMusteriDuzel
                                        sAFEBHAVE.SABHCOMPANY = "01";
                                        sAFEBHAVE.SABHDIVISON = DIVISON;
                                        sAFEBHAVE.SABHSOURCE = SOURCE;
-                                       sAFEBHAVE.SABHDATE = Convert.ToDateTime(DATETIME.ToString("yyyy-MM-dd")); 
+                                       sAFEBHAVE.SABHDATE = Convert.ToDateTime(DATETIME.ToString("yyyy-MM-dd"));
                                        sAFEBHAVE.SABHDC = "0";
                                        sAFEBHAVE.SABHBT = false;
                                        sAFEBHAVE.SABHDEEDKIND = "K1";
@@ -3899,6 +4178,183 @@ namespace VolantMusteriDuzel
         private void btnKrediYeni_Click(object sender, EventArgs e)
         {
             gridKredi.DataSource = null;
+        }
+
+        private void tileBarItem14_ItemClick(object sender, TileItemEventArgs e)
+        {
+            var selectedRows = viewKasaMerkezDuzelt.GetSelectedRows();
+            ProgressBarFrm progressForm = new ProgressBarFrm()
+            {
+                Start = 0,
+                Finish = selectedRows.Length,
+                Position = 0,
+                ToplamAdet = selectedRows.Length.ToString(),
+            };
+            int success = 0;
+            int error = 0;
+            this.Enabled = false;
+            executeBackground(
+        () =>
+        {
+            progressForm.Show(this);
+            for (int i = 0; i < selectedRows.Length; i++)
+            {
+                try
+                {
+                    var SFCOCEDSID = viewKasaMerkezDuzelt.GetRowCellValue(viewKasaMerkezDuzelt.FocusedRowHandle, "SFCOCEDSID").ToString();
+                    var islemler = conn.GetData($"select * from MDE_GENEL.dbo.SAFEMOVIE where SFCOCEDSID = {SFCOCEDSID}", sql);
+                    if (islemler.Rows.Count > 0)
+                    {
+                        foreach (DataRow item in islemler.Rows)
+                        {
+                            var VI1 = item.ItemArray[5];
+                            var VI1CH = item.ItemArray[6];
+                            var VI0 = item.ItemArray[7];
+                            var VI0CH = item.ItemArray[8];
+                            var VK1 = item.ItemArray[10];
+                            var VK1CH = item.ItemArray[11];
+                            var VK0 = item.ItemArray[12];
+                            var VK0CH = item.ItemArray[13];
+
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VI1}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VI1CH}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VI0}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VI0CH}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VK1}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VK1CH}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VK0}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VK0CH}", sql);
+                            conn.InsertValue($"delete SAFEBEHAVE where SABHID = {VK0CH}", sql);
+                            conn.InsertValue($"delete MDE_GENEL.dbo.SAFEMOVIE where SFCOCEDSID = {SFCOCEDSID}", sql);
+
+                        }
+                        progressForm.PerformStep(this);
+                        success++;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    progressForm.PerformStep(this);
+                    error++;
+                    CustomMessageBox.ShowMessage("Bilğilendirme", ex.Message, this, "",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+            }
+        },
+                                null,
+                                () =>
+                                {
+                                    completeProgress();
+                                    progressForm.Hide(this);
+
+                                    CustomMessageBox.ShowMessage("", "İşlem tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error + "\r\n" + magazacikisID + "\r\n " + merkezgirisID + "\r\n " + merkezkasiyercikisID + "\r\n ", this, "Detaya Bakınız", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //XtraMessageBox.Show("İşlem tamamlandı. Toplam Başarılı : ." + success + " Toplam Hatalı : " + error + "\r\n" + magazacikisID + "\r\n " + merkezgirisID + "\r\n " + merkezkasiyercikisID + "\r\n ");
+                                });
+        }
+
+        private void btnKasaMerkezDuzeltKasiyerListele_Click(object sender, EventArgs e)
+        {
+            var SABHDIVISON = cmbKasaMerkezDuzeltMagaza2.EditValue;
+            var SABHDATE = dteKasaMerkezDuzeltStart2.EditValue;
+            var SABHDSAFEID = cmbKasaMerkezDuzeltKasiyer.EditValue;
+            string q = String.Format(@"select SABHID,DSASONAME,SABHDATE,SABHDEEDNOTES,SABHAMOUNT,SABHCHNOTES from SAFEBEHAVE 
+            left outer join SAFEBEHAVECHILD on SABHID = SABHCHSABHID
+            left outer join DEFSAFESOURCE on DSASOVAL = SABHSOURCE
+            where SABHDIVISON = '{0}' and SABHDATE = '{1}' and SABHDSAFEID = '{2}'", SABHDIVISON, Convert.ToDateTime(SABHDATE).ToString("yyyy-MM-dd"), SABHDSAFEID);
+            gridKasiyerKasaHareket.DataSource = conn.GetData(q, sql);
+            ViewKasiyerKasaHareket.OptionsView.BestFitMaxRowCount = -1;
+            ViewKasiyerKasaHareket.BestFitColumns(true);
+        }
+
+        private void btnKasaMerkezDuzeltYeni2_Click(object sender, EventArgs e)
+        {
+            cmbKasaMerkezDuzeltMagaza2.EditValue = null;
+            cmbKasaMerkezDuzeltKasiyer.Properties.DataSource = null;
+            cmbKasaMerkezDuzeltKasiyer.Enabled = false;
+            dteKasaMerkezDuzeltStart2.Enabled = false;
+            dteKasaMerkezDuzeltStart2.Enabled = false;
+            btnKasaMerkezDuzeltKasiyerListele.Enabled = false;
+        }
+        private void cmbKasaMerkezDuzeltMagaza2_EditValueChanged(object sender, EventArgs e)
+        {
+            cmbKasaMerkezDuzeltKasiyer.Properties.DataSource = null;
+            if (cmbKasaMerkezDuzeltMagaza2.EditValue != null)
+            {
+                try
+                {
+                    var CASHIER = conn.GetData($@"select CHSOCODE,DSAFEID,DSAFEVAL,DSAFENAME,UPPER(SONAME + ' ' + SOSURNAME) as KasiyerAdı from DEFSAFE 
+                    left outer join CASHIER on DSAFEUNITE = CHSAFEUNI
+                    left outer join SOCIAL on SOCODE = CHSOCODE
+                    where DSAFEDIVISON = '{cmbKasaMerkezDuzeltMagaza2.EditValue}'  and SOSTS = 1and CHSOCODE != 'VOLANT'
+                    order by 5", sql);
+                    cmbKasaMerkezDuzeltKasiyer.Properties.DataSource = CASHIER;
+                    cmbKasaMerkezDuzeltKasiyer.Properties.ValueMember = "DSAFEID";
+                    cmbKasaMerkezDuzeltKasiyer.Properties.DisplayMember = "DSAFENAME";
+                    cmbKasaMerkezDuzeltKasiyer.Enabled = true;
+                    dteKasaMerkezDuzeltStart2.Enabled = true;
+                    btnKasaMerkezDuzeltKasiyerListele.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    CustomMessageBox.ShowMessage("Bilğilendirme", ex.Message, this, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                cmbKasaMerkezDuzeltKasiyer.Enabled = false;
+                dteKasaMerkezDuzeltStart2.Enabled = false;
+                btnKasaMerkezDuzeltKasiyerListele.Enabled = false;
+
+            }
+        }
+
+        private void ViewKasiyerKasaHareket_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            GridView view = sender as GridView;
+            view.BeginSelection();
+            if (e.Action == CollectionChangeAction.Add && view.GetSelectedRows().Length > 1)
+                view.ClearSelection();
+            if (e.Action == CollectionChangeAction.Refresh)
+                view.SelectRow(view.FocusedRowHandle);
+            //an additional check
+            if (e.Action == CollectionChangeAction.Remove & view.GetSelectedRows().Length == 1)
+                view.UnselectRow(view.FocusedRowHandle);
+            if (view.SelectedRowsCount > 0)
+            {
+                navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Expanded;
+            }
+            else
+            {
+                navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
+            }
+
+            view.EndSelection();
+            tablePanel1.Tag = ViewKasiyerKasaHareket.GetRowCellValue(ViewKasiyerKasaHareket.FocusedRowHandle, "SABHID").ToString();
+            txtSabhdate.Text = ViewKasiyerKasaHareket.GetRowCellValue(ViewKasiyerKasaHareket.FocusedRowHandle, "SABHDATE").ToString();
+            txtSabhamount.Text = ViewKasiyerKasaHareket.GetRowCellValue(ViewKasiyerKasaHareket.FocusedRowHandle, "SABHAMOUNT").ToString();
+            txtSabhNote.Text = ViewKasiyerKasaHareket.GetRowCellValue(ViewKasiyerKasaHareket.FocusedRowHandle, "SABHDEEDNOTES").ToString();
+            dteNewSabhdate.EditValue = ViewKasiyerKasaHareket.GetRowCellValue(ViewKasiyerKasaHareket.FocusedRowHandle, "SABHDATE").ToString();
+            txtNewSabhAmount.Text = ViewKasiyerKasaHareket.GetRowCellValue(ViewKasiyerKasaHareket.FocusedRowHandle, "SABHAMOUNT").ToString();
+            txtNewSabhNote.Text = ViewKasiyerKasaHareket.GetRowCellValue(ViewKasiyerKasaHareket.FocusedRowHandle, "SABHDEEDNOTES").ToString();
+        }
+
+        private void tileBarItem15_ItemClick(object sender, TileItemEventArgs e)
+        {
+            navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
+            gridKasiyerKasaHareket.DataSource = null;
+            cmbKasaMerkezDuzeltKasiyer.Enabled = false;
+            dteKasaMerkezDuzeltStart2.Enabled = false;
+            btnKasaMerkezDuzeltKasiyerListele.Enabled = false;
+            cmbKasaMerkezDuzeltMagaza2.EditValue = null;
+        }
+
+        private void tileBarItem13_ItemClick(object sender, TileItemEventArgs e)
+        {
+            string q = String.Format(@"update SAFEBEHAVE set SABHAMOUNT = {0}, SABHDATE = '{1}', SABHDEEDNOTES = '{2}' where SABHID = '{3}'", txtNewSabhAmount.Text, Convert.ToDateTime(dteNewSabhdate.EditValue).ToString("yyyy-MM-dd"), txtNewSabhNote.Text, tablePanel1.Tag);
+            string q3 = String.Format(@"update SAFEBEHAVECHILD set SABHCHAMOUNT = {0} , SABHCHEXCHAMOUNT= {0}, SABHCHNOTES = '{1}' where SABHCHSABHID = '{2}'", txtNewSabhAmount.Text,  txtNewSabhNote.Text, tablePanel1.Tag);
+            conn.InsertValue(q, sql);
+            conn.InsertValue(q3, sql);
+            tileBarItem15_ItemClick(null, null);
         }
     }
 }

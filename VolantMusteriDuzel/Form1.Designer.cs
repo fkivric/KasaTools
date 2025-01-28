@@ -33,27 +33,30 @@ namespace VolantMusteriDuzel
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, null, true, true);
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement24 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement25 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement16 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement17 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement18 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement20 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement26 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement27 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement28 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement29 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement30 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement31 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement32 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement33 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement34 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement35 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement36 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement37 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement38 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement39 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement40 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement41 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement42 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement43 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement44 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement45 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement46 = new DevExpress.XtraEditors.TileItemElement();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.employeesNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -297,6 +300,26 @@ namespace VolantMusteriDuzel
             this.cmbKasaSilMagaza = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.gridKasiyerKasaHareket = new DevExpress.XtraGrid.GridControl();
+            this.ViewKasiyerKasaHareket = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn67 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn68 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn69 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn70 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn71 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarGroupControlContainer3 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
+            this.txtNewSabhNote = new DevExpress.XtraEditors.MemoEdit();
+            this.txtSabhNote = new DevExpress.XtraEditors.MemoEdit();
+            this.labelControl37 = new DevExpress.XtraEditors.LabelControl();
+            this.txtSabhdate = new DevExpress.XtraEditors.TextEdit();
+            this.dteNewSabhdate = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl40 = new DevExpress.XtraEditors.LabelControl();
+            this.txtSabhamount = new DevExpress.XtraEditors.TextEdit();
+            this.txtNewSabhAmount = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl41 = new DevExpress.XtraEditors.LabelControl();
             this.gridKasaMerkezDuzelt = new DevExpress.XtraGrid.GridControl();
             this.viewKasaMerkezDuzelt = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridSFCOCEDSID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -308,19 +331,41 @@ namespace VolantMusteriDuzel
             this.gridDurum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridSonuc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl16 = new DevExpress.XtraEditors.PanelControl();
+            this.tileBar13 = new DevExpress.XtraBars.Navigation.TileBar();
+            this.tileBarGroup7 = new DevExpress.XtraBars.Navigation.TileBarGroup();
+            this.tileBarItem15 = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.tileBarItem13 = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.tileBar6 = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup4 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.btnKasaMerkezGelenDuzelt = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.tileBarItem14 = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.panelControl15 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
-            this.dteKasaMerkezDuzeltEnd = new DevExpress.XtraEditors.DateEdit();
-            this.btnKasaMerkezDuzeltYeni = new DevExpress.XtraEditors.SimpleButton();
-            this.btnKasaMerkezDuzeltListe = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
-            this.dteKasaMerkezDuzeltStart = new DevExpress.XtraEditors.DateEdit();
+            this.panelControl26 = new DevExpress.XtraEditors.PanelControl();
+            this.cmbKasaMerkezDuzeltMagaza2 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.labelControl39 = new DevExpress.XtraEditors.LabelControl();
+            this.cmbKasaMerkezDuzeltKasiyer = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn61 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn63 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn64 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn65 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn66 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
+            this.dteKasaMerkezDuzeltStart2 = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl38 = new DevExpress.XtraEditors.LabelControl();
+            this.btnKasaMerkezDuzeltKasiyerListele = new DevExpress.XtraEditors.SimpleButton();
+            this.btnKasaMerkezDuzeltYeni2 = new DevExpress.XtraEditors.SimpleButton();
+            this.panelControl25 = new DevExpress.XtraEditors.PanelControl();
             this.cmbKasaMerkezDuzeltMagaza = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.dteKasaMerkezDuzeltStart = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
+            this.dteKasaMerkezDuzeltEnd = new DevExpress.XtraEditors.DateEdit();
+            this.btnKasaMerkezDuzeltListe = new DevExpress.XtraEditors.SimpleButton();
+            this.btnKasaMerkezDuzeltYeni = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
             this.gridBankFark = new DevExpress.XtraGrid.GridControl();
             this.ViewBankFark = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -586,18 +631,42 @@ namespace VolantMusteriDuzel
             ((System.ComponentModel.ISupportInitialize)(this.cmbKasaSilMagaza.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.xtraTabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridKasiyerKasaHareket)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewKasiyerKasaHareket)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            this.navBarControl1.SuspendLayout();
+            this.navBarGroupControlContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
+            this.tablePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewSabhNote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSabhNote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSabhdate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteNewSabhdate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteNewSabhdate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSabhamount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewSabhAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKasaMerkezDuzelt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewKasaMerkezDuzelt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl16)).BeginInit();
             this.panelControl16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl15)).BeginInit();
             this.panelControl15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl26)).BeginInit();
+            this.panelControl26.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbKasaMerkezDuzeltMagaza2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbKasaMerkezDuzeltKasiyer.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart2.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl25)).BeginInit();
+            this.panelControl25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbKasaMerkezDuzeltMagaza.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties)).BeginInit();
             this.xtraTabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBankFark)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ViewBankFark)).BeginInit();
@@ -870,12 +939,12 @@ namespace VolantMusteriDuzel
             this.tileBarItem1.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Blue;
             this.tileBarItem1.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem1.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement1.ImageOptions.ImageUri.Uri = "Edit";
-            tileItemElement1.Text = "Seçili Müşteri İade Düzelt";
-            tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.tileBarItem1.Elements.Add(tileItemElement1);
+            tileItemElement24.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement24.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement24.ImageOptions.ImageUri.Uri = "Edit";
+            tileItemElement24.Text = "Seçili Müşteri İade Düzelt";
+            tileItemElement24.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem1.Elements.Add(tileItemElement24);
             this.tileBarItem1.Id = 3;
             this.tileBarItem1.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem1.Name = "tileBarItem1";
@@ -1049,12 +1118,12 @@ namespace VolantMusteriDuzel
             // btnWebOdemeDuzelt
             // 
             this.btnWebOdemeDuzelt.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement2.ImageOptions.Image = global::VolantMusteriDuzel.Properties.Resources.resetmodeldifferences_32x32;
-            tileItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement2.Text = "Listeyi Düzelt";
-            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.btnWebOdemeDuzelt.Elements.Add(tileItemElement2);
+            tileItemElement25.ImageOptions.Image = global::VolantMusteriDuzel.Properties.Resources.resetmodeldifferences_32x32;
+            tileItemElement25.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement25.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement25.Text = "Listeyi Düzelt";
+            tileItemElement25.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.btnWebOdemeDuzelt.Elements.Add(tileItemElement25);
             this.btnWebOdemeDuzelt.Id = 0;
             this.btnWebOdemeDuzelt.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.btnWebOdemeDuzelt.Name = "btnWebOdemeDuzelt";
@@ -1734,11 +1803,11 @@ namespace VolantMusteriDuzel
             // btnOdemeDetayı
             // 
             this.btnOdemeDetayı.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage")));
-            tileItemElement3.Text = "Ödeme Detayı Değiştir";
-            this.btnOdemeDetayı.Elements.Add(tileItemElement3);
+            tileItemElement26.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement26.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement26.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage")));
+            tileItemElement26.Text = "Ödeme Detayı Değiştir";
+            this.btnOdemeDetayı.Elements.Add(tileItemElement26);
             this.btnOdemeDetayı.Enabled = false;
             this.btnOdemeDetayı.Id = 0;
             this.btnOdemeDetayı.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
@@ -1777,12 +1846,12 @@ namespace VolantMusteriDuzel
             this.tileBarItem2.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Blue;
             this.tileBarItem2.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem2.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement4.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement4.ImageOptions.ImageUri.Uri = "Edit";
-            tileItemElement4.Text = "Taksitleri Düzelt";
-            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.tileBarItem2.Elements.Add(tileItemElement4);
+            tileItemElement27.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement27.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement27.ImageOptions.ImageUri.Uri = "Edit";
+            tileItemElement27.Text = "Taksitleri Düzelt";
+            tileItemElement27.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem2.Elements.Add(tileItemElement27);
             this.tileBarItem2.Enabled = false;
             this.tileBarItem2.Id = 3;
             this.tileBarItem2.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
@@ -1795,11 +1864,11 @@ namespace VolantMusteriDuzel
             this.tileBarItem12.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem12.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem12.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            tileItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement5.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement5.Text = "Ödeme Tipi Düzelt";
-            this.tileBarItem12.Elements.Add(tileItemElement5);
+            tileItemElement28.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            tileItemElement28.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement28.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement28.Text = "Ödeme Tipi Düzelt";
+            this.tileBarItem12.Elements.Add(tileItemElement28);
             this.tileBarItem12.Enabled = false;
             this.tileBarItem12.Id = 4;
             this.tileBarItem12.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
@@ -2405,6 +2474,7 @@ namespace VolantMusteriDuzel
             // 
             // btnTeslimatKaldır
             // 
+            this.btnTeslimatKaldır.Enabled = false;
             this.btnTeslimatKaldır.Location = new System.Drawing.Point(5, 7);
             this.btnTeslimatKaldır.Name = "btnTeslimatKaldır";
             this.btnTeslimatKaldır.Size = new System.Drawing.Size(198, 43);
@@ -2446,6 +2516,7 @@ namespace VolantMusteriDuzel
             // 
             // btnTeslimatKaldirYeni
             // 
+            this.btnTeslimatKaldirYeni.Enabled = false;
             this.btnTeslimatKaldirYeni.Location = new System.Drawing.Point(286, 27);
             this.btnTeslimatKaldirYeni.Name = "btnTeslimatKaldirYeni";
             this.btnTeslimatKaldirYeni.Size = new System.Drawing.Size(75, 23);
@@ -2457,9 +2528,9 @@ namespace VolantMusteriDuzel
             // 
             this.labelControl9.Location = new System.Drawing.Point(19, 10);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(90, 13);
+            this.labelControl9.Size = new System.Drawing.Size(49, 13);
             this.labelControl9.TabIndex = 1;
-            this.labelControl9.Text = "Müşteri Numarası";
+            this.labelControl9.Text = "Satış #No";
             // 
             // btnTeslimatKaldir
             // 
@@ -2589,12 +2660,12 @@ namespace VolantMusteriDuzel
             this.btnKasaTarihDuzelt.AppearanceItem.Selected.BackColor2 = System.Drawing.Color.Blue;
             this.btnKasaTarihDuzelt.AppearanceItem.Selected.Options.UseBackColor = true;
             this.btnKasaTarihDuzelt.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement6.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement6.ImageOptions.ImageUri.Uri = "Edit";
-            tileItemElement6.Text = "Seçili Kasa Tarihlerini Düzelt";
-            tileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.btnKasaTarihDuzelt.Elements.Add(tileItemElement6);
+            tileItemElement29.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement29.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement29.ImageOptions.ImageUri.Uri = "Edit";
+            tileItemElement29.Text = "Seçili Kasa Tarihlerini Düzelt";
+            tileItemElement29.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.btnKasaTarihDuzelt.Elements.Add(tileItemElement29);
             this.btnKasaTarihDuzelt.Id = 3;
             this.btnKasaTarihDuzelt.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.btnKasaTarihDuzelt.Name = "btnKasaTarihDuzelt";
@@ -3026,12 +3097,12 @@ namespace VolantMusteriDuzel
             this.tileBarItem9.AppearanceItem.Selected.BackColor2 = System.Drawing.Color.Blue;
             this.tileBarItem9.AppearanceItem.Selected.Options.UseBackColor = true;
             this.tileBarItem9.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement7.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement7.ImageOptions.ImageUri.Uri = "Edit";
-            tileItemElement7.Text = "Seçili Kasa Haraketlerini Sil";
-            tileItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.tileBarItem9.Elements.Add(tileItemElement7);
+            tileItemElement30.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement30.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement30.ImageOptions.ImageUri.Uri = "Edit";
+            tileItemElement30.Text = "Seçili Kasa Haraketlerini Sil";
+            tileItemElement30.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem9.Elements.Add(tileItemElement30);
             this.tileBarItem9.Id = 3;
             this.tileBarItem9.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem9.Name = "tileBarItem9";
@@ -3165,6 +3236,8 @@ namespace VolantMusteriDuzel
             this.xtraTabPage4.Appearance.Header.Options.UseForeColor = true;
             this.xtraTabPage4.Appearance.HeaderActive.BackColor = System.Drawing.Color.Navy;
             this.xtraTabPage4.Appearance.HeaderActive.Options.UseBackColor = true;
+            this.xtraTabPage4.Controls.Add(this.gridKasiyerKasaHareket);
+            this.xtraTabPage4.Controls.Add(this.navBarControl1);
             this.xtraTabPage4.Controls.Add(this.gridKasaMerkezDuzelt);
             this.xtraTabPage4.Controls.Add(this.panelControl16);
             this.xtraTabPage4.Controls.Add(this.panelControl15);
@@ -3173,13 +3246,243 @@ namespace VolantMusteriDuzel
             this.xtraTabPage4.Size = new System.Drawing.Size(1478, 526);
             this.xtraTabPage4.Text = "Merkeze Gönderilen Tutarı Kasadan Düş";
             // 
+            // gridKasiyerKasaHareket
+            // 
+            this.gridKasiyerKasaHareket.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridKasiyerKasaHareket.Location = new System.Drawing.Point(832, 60);
+            this.gridKasiyerKasaHareket.MainView = this.ViewKasiyerKasaHareket;
+            this.gridKasiyerKasaHareket.Name = "gridKasiyerKasaHareket";
+            this.gridKasiyerKasaHareket.Size = new System.Drawing.Size(614, 369);
+            this.gridKasiyerKasaHareket.TabIndex = 20;
+            this.gridKasiyerKasaHareket.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.ViewKasiyerKasaHareket});
+            // 
+            // ViewKasiyerKasaHareket
+            // 
+            this.ViewKasiyerKasaHareket.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn67,
+            this.gridColumn68,
+            this.gridColumn69,
+            this.gridColumn70,
+            this.gridColumn71});
+            this.ViewKasiyerKasaHareket.GridControl = this.gridKasiyerKasaHareket;
+            this.ViewKasiyerKasaHareket.Name = "ViewKasiyerKasaHareket";
+            this.ViewKasiyerKasaHareket.OptionsSelection.MultiSelect = true;
+            this.ViewKasiyerKasaHareket.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.ViewKasiyerKasaHareket.OptionsView.ColumnAutoWidth = false;
+            this.ViewKasiyerKasaHareket.OptionsView.ShowGroupPanel = false;
+            this.ViewKasiyerKasaHareket.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.ViewKasiyerKasaHareket_SelectionChanged);
+            // 
+            // gridColumn67
+            // 
+            this.gridColumn67.Caption = "gridColumn67";
+            this.gridColumn67.FieldName = "SABHID";
+            this.gridColumn67.Name = "gridColumn67";
+            this.gridColumn67.OptionsColumn.AllowEdit = false;
+            this.gridColumn67.OptionsColumn.ReadOnly = true;
+            // 
+            // gridColumn68
+            // 
+            this.gridColumn68.Caption = "Fiş Tipi";
+            this.gridColumn68.FieldName = "DSASONAME";
+            this.gridColumn68.Name = "gridColumn68";
+            this.gridColumn68.OptionsColumn.AllowEdit = false;
+            this.gridColumn68.OptionsColumn.ReadOnly = true;
+            this.gridColumn68.Visible = true;
+            this.gridColumn68.VisibleIndex = 1;
+            // 
+            // gridColumn69
+            // 
+            this.gridColumn69.Caption = "Fiş Tarihi";
+            this.gridColumn69.FieldName = "SABHDATE";
+            this.gridColumn69.Name = "gridColumn69";
+            this.gridColumn69.OptionsColumn.AllowEdit = false;
+            this.gridColumn69.OptionsColumn.ReadOnly = true;
+            this.gridColumn69.Visible = true;
+            this.gridColumn69.VisibleIndex = 2;
+            // 
+            // gridColumn70
+            // 
+            this.gridColumn70.Caption = "Tutar";
+            this.gridColumn70.FieldName = "SABHAMOUNT";
+            this.gridColumn70.Name = "gridColumn70";
+            this.gridColumn70.OptionsColumn.AllowEdit = false;
+            this.gridColumn70.OptionsColumn.ReadOnly = true;
+            this.gridColumn70.Visible = true;
+            this.gridColumn70.VisibleIndex = 3;
+            // 
+            // gridColumn71
+            // 
+            this.gridColumn71.Caption = "Note";
+            this.gridColumn71.FieldName = "SABHDEEDNOTES";
+            this.gridColumn71.Name = "gridColumn71";
+            this.gridColumn71.OptionsColumn.AllowEdit = false;
+            this.gridColumn71.OptionsColumn.ReadOnly = true;
+            this.gridColumn71.Visible = true;
+            this.gridColumn71.VisibleIndex = 4;
+            // 
+            // navBarControl1
+            // 
+            this.navBarControl1.ActiveGroup = this.navBarGroup3;
+            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer3);
+            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarGroup3});
+            this.navBarControl1.Location = new System.Drawing.Point(1446, 60);
+            this.navBarControl1.Name = "navBarControl1";
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 742;
+            this.navBarControl1.OptionsNavPane.NavPaneState = DevExpress.XtraNavBar.NavPaneState.Collapsed;
+            this.navBarControl1.OptionsNavPane.ShowOverflowPanel = false;
+            this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
+            this.navBarControl1.Size = new System.Drawing.Size(32, 369);
+            this.navBarControl1.TabIndex = 19;
+            // 
+            // navBarGroup3
+            // 
+            this.navBarGroup3.Caption = "İşlemler";
+            this.navBarGroup3.ControlContainer = this.navBarGroupControlContainer3;
+            this.navBarGroup3.Expanded = true;
+            this.navBarGroup3.GroupClientHeight = 342;
+            this.navBarGroup3.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarGroup3.Name = "navBarGroup3";
+            this.navBarGroup3.NavigationPaneVisible = false;
+            // 
+            // navBarGroupControlContainer3
+            // 
+            this.navBarGroupControlContainer3.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer3.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer3.Controls.Add(this.tablePanel1);
+            this.navBarGroupControlContainer3.Name = "navBarGroupControlContainer3";
+            this.navBarGroupControlContainer3.Size = new System.Drawing.Size(742, 342);
+            this.navBarGroupControlContainer3.TabIndex = 0;
+            // 
+            // tablePanel1
+            // 
+            this.tablePanel1.AutoScroll = true;
+            this.tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 19.23F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 47.46F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 43.31F)});
+            this.tablePanel1.Controls.Add(this.txtNewSabhNote);
+            this.tablePanel1.Controls.Add(this.txtSabhNote);
+            this.tablePanel1.Controls.Add(this.labelControl37);
+            this.tablePanel1.Controls.Add(this.txtSabhdate);
+            this.tablePanel1.Controls.Add(this.dteNewSabhdate);
+            this.tablePanel1.Controls.Add(this.labelControl40);
+            this.tablePanel1.Controls.Add(this.txtSabhamount);
+            this.tablePanel1.Controls.Add(this.txtNewSabhAmount);
+            this.tablePanel1.Controls.Add(this.labelControl41);
+            this.tablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablePanel1.Location = new System.Drawing.Point(0, 0);
+            this.tablePanel1.Name = "tablePanel1";
+            this.tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
+            this.tablePanel1.Size = new System.Drawing.Size(742, 342);
+            this.tablePanel1.TabIndex = 0;
+            // 
+            // txtNewSabhNote
+            // 
+            this.tablePanel1.SetColumn(this.txtNewSabhNote, 2);
+            this.txtNewSabhNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNewSabhNote.Location = new System.Drawing.Point(453, 55);
+            this.txtNewSabhNote.Name = "txtNewSabhNote";
+            this.tablePanel1.SetRow(this.txtNewSabhNote, 2);
+            this.txtNewSabhNote.Size = new System.Drawing.Size(286, 284);
+            this.txtNewSabhNote.TabIndex = 4;
+            // 
+            // txtSabhNote
+            // 
+            this.tablePanel1.SetColumn(this.txtSabhNote, 1);
+            this.txtSabhNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSabhNote.Location = new System.Drawing.Point(133, 55);
+            this.txtSabhNote.Name = "txtSabhNote";
+            this.txtSabhNote.Properties.ReadOnly = true;
+            this.tablePanel1.SetRow(this.txtSabhNote, 2);
+            this.txtSabhNote.Size = new System.Drawing.Size(314, 284);
+            this.txtSabhNote.TabIndex = 3;
+            // 
+            // labelControl37
+            // 
+            this.tablePanel1.SetColumn(this.labelControl37, 0);
+            this.labelControl37.Location = new System.Drawing.Point(3, 3);
+            this.labelControl37.Name = "labelControl37";
+            this.tablePanel1.SetRow(this.labelControl37, 0);
+            this.labelControl37.Size = new System.Drawing.Size(63, 13);
+            this.labelControl37.TabIndex = 2;
+            this.labelControl37.Text = "İşlem Tarihi :";
+            // 
+            // txtSabhdate
+            // 
+            this.tablePanel1.SetColumn(this.txtSabhdate, 1);
+            this.txtSabhdate.Location = new System.Drawing.Point(133, 3);
+            this.txtSabhdate.Name = "txtSabhdate";
+            this.txtSabhdate.Properties.ReadOnly = true;
+            this.tablePanel1.SetRow(this.txtSabhdate, 0);
+            this.txtSabhdate.Size = new System.Drawing.Size(314, 20);
+            this.txtSabhdate.TabIndex = 1;
+            // 
+            // dteNewSabhdate
+            // 
+            this.tablePanel1.SetColumn(this.dteNewSabhdate, 2);
+            this.dteNewSabhdate.EditValue = null;
+            this.dteNewSabhdate.Location = new System.Drawing.Point(453, 3);
+            this.dteNewSabhdate.Name = "dteNewSabhdate";
+            this.dteNewSabhdate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dteNewSabhdate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tablePanel1.SetRow(this.dteNewSabhdate, 0);
+            this.dteNewSabhdate.Size = new System.Drawing.Size(286, 20);
+            this.dteNewSabhdate.TabIndex = 0;
+            // 
+            // labelControl40
+            // 
+            this.tablePanel1.SetColumn(this.labelControl40, 0);
+            this.labelControl40.Location = new System.Drawing.Point(3, 29);
+            this.labelControl40.Name = "labelControl40";
+            this.tablePanel1.SetRow(this.labelControl40, 1);
+            this.labelControl40.Size = new System.Drawing.Size(64, 13);
+            this.labelControl40.TabIndex = 2;
+            this.labelControl40.Text = "İşlem Tutarı :";
+            // 
+            // txtSabhamount
+            // 
+            this.tablePanel1.SetColumn(this.txtSabhamount, 1);
+            this.txtSabhamount.Location = new System.Drawing.Point(133, 29);
+            this.txtSabhamount.Name = "txtSabhamount";
+            this.txtSabhamount.Properties.ReadOnly = true;
+            this.tablePanel1.SetRow(this.txtSabhamount, 1);
+            this.txtSabhamount.Size = new System.Drawing.Size(314, 20);
+            this.txtSabhamount.TabIndex = 1;
+            // 
+            // txtNewSabhAmount
+            // 
+            this.tablePanel1.SetColumn(this.txtNewSabhAmount, 2);
+            this.txtNewSabhAmount.Location = new System.Drawing.Point(453, 29);
+            this.txtNewSabhAmount.Name = "txtNewSabhAmount";
+            this.tablePanel1.SetRow(this.txtNewSabhAmount, 1);
+            this.txtNewSabhAmount.Size = new System.Drawing.Size(286, 20);
+            this.txtNewSabhAmount.TabIndex = 1;
+            // 
+            // labelControl41
+            // 
+            this.tablePanel1.SetColumn(this.labelControl41, 0);
+            this.labelControl41.Location = new System.Drawing.Point(3, 55);
+            this.labelControl41.Name = "labelControl41";
+            this.tablePanel1.SetRow(this.labelControl41, 2);
+            this.labelControl41.Size = new System.Drawing.Size(64, 13);
+            this.labelControl41.TabIndex = 2;
+            this.labelControl41.Text = "İşlem Tutarı :";
+            // 
             // gridKasaMerkezDuzelt
             // 
-            this.gridKasaMerkezDuzelt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridKasaMerkezDuzelt.Dock = System.Windows.Forms.DockStyle.Left;
             this.gridKasaMerkezDuzelt.Location = new System.Drawing.Point(0, 60);
             this.gridKasaMerkezDuzelt.MainView = this.viewKasaMerkezDuzelt;
             this.gridKasaMerkezDuzelt.Name = "gridKasaMerkezDuzelt";
-            this.gridKasaMerkezDuzelt.Size = new System.Drawing.Size(1478, 369);
+            this.gridKasaMerkezDuzelt.Size = new System.Drawing.Size(832, 369);
             this.gridKasaMerkezDuzelt.TabIndex = 4;
             this.gridKasaMerkezDuzelt.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewKasaMerkezDuzelt});
@@ -3218,6 +3521,7 @@ namespace VolantMusteriDuzel
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, DevExpress.Data.SummaryMode.Selection, "SFCOCEDSAMOUNT1", "Secili Toplam={0:0.##}", 0D)});
             this.gridDIVVAL.Visible = true;
             this.gridDIVVAL.VisibleIndex = 3;
+            this.gridDIVVAL.Width = 110;
             // 
             // gridDIVNAME
             // 
@@ -3228,6 +3532,7 @@ namespace VolantMusteriDuzel
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "DIVNAME", "{0}")});
             this.gridDIVNAME.Visible = true;
             this.gridDIVNAME.VisibleIndex = 1;
+            this.gridDIVNAME.Width = 105;
             // 
             // gridSFCOCEDSDATE
             // 
@@ -3246,6 +3551,7 @@ namespace VolantMusteriDuzel
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SFCOCEDSAMOUNT1", "Toplam={0:0.##}")});
             this.gridSFCOCEDSAMOUNT1.Visible = true;
             this.gridSFCOCEDSAMOUNT1.VisibleIndex = 4;
+            this.gridSFCOCEDSAMOUNT1.Width = 110;
             // 
             // gridKasiyer
             // 
@@ -3254,6 +3560,7 @@ namespace VolantMusteriDuzel
             this.gridKasiyer.Name = "gridKasiyer";
             this.gridKasiyer.Visible = true;
             this.gridKasiyer.VisibleIndex = 5;
+            this.gridKasiyer.Width = 110;
             // 
             // gridDurum
             // 
@@ -3262,6 +3569,7 @@ namespace VolantMusteriDuzel
             this.gridDurum.Name = "gridDurum";
             this.gridDurum.Visible = true;
             this.gridDurum.VisibleIndex = 6;
+            this.gridDurum.Width = 110;
             // 
             // gridSonuc
             // 
@@ -3270,15 +3578,84 @@ namespace VolantMusteriDuzel
             this.gridSonuc.Name = "gridSonuc";
             this.gridSonuc.Visible = true;
             this.gridSonuc.VisibleIndex = 7;
+            this.gridSonuc.Width = 116;
             // 
             // panelControl16
             // 
+            this.panelControl16.Controls.Add(this.tileBar13);
             this.panelControl16.Controls.Add(this.tileBar6);
             this.panelControl16.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl16.Location = new System.Drawing.Point(0, 429);
             this.panelControl16.Name = "panelControl16";
             this.panelControl16.Size = new System.Drawing.Size(1478, 97);
             this.panelControl16.TabIndex = 3;
+            // 
+            // tileBar13
+            // 
+            this.tileBar13.AllowGlyphSkinning = true;
+            this.tileBar13.AllowSelectedItem = true;
+            this.tileBar13.AppearanceGroupText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tileBar13.AppearanceGroupText.Options.UseForeColor = true;
+            this.tileBar13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.tileBar13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tileBar13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tileBar13.DropDownButtonWidth = 30;
+            this.tileBar13.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.tileBar13.Groups.Add(this.tileBarGroup7);
+            this.tileBar13.IndentBetweenGroups = 1;
+            this.tileBar13.IndentBetweenItems = 10;
+            this.tileBar13.ItemPadding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.tileBar13.Location = new System.Drawing.Point(832, 2);
+            this.tileBar13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tileBar13.MaxId = 5;
+            this.tileBar13.Name = "tileBar13";
+            this.tileBar13.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.tileBar13.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.None;
+            this.tileBar13.SelectionBorderWidth = 2;
+            this.tileBar13.SelectionColorMode = DevExpress.XtraBars.Navigation.SelectionColorMode.UseItemBackColor;
+            this.tileBar13.Size = new System.Drawing.Size(644, 93);
+            this.tileBar13.TabIndex = 4;
+            this.tileBar13.Text = "tileBar13";
+            this.tileBar13.WideTileWidth = 150;
+            // 
+            // tileBarGroup7
+            // 
+            this.tileBarGroup7.Items.Add(this.tileBarItem15);
+            this.tileBarGroup7.Items.Add(this.tileBarItem13);
+            this.tileBarGroup7.Name = "tileBarGroup7";
+            // 
+            // tileBarItem15
+            // 
+            this.tileBarItem15.AppearanceItem.Normal.BackColor = System.Drawing.Color.Blue;
+            this.tileBarItem15.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Yellow;
+            this.tileBarItem15.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.tileBarItem15.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement31.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement31.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement31.ImageOptions.ImageUri.Uri = "ClearFormatting";
+            tileItemElement31.Text = "Yeni";
+            this.tileBarItem15.Elements.Add(tileItemElement31);
+            this.tileBarItem15.Id = 4;
+            this.tileBarItem15.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium;
+            this.tileBarItem15.Name = "tileBarItem15";
+            this.tileBarItem15.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileBarItem15_ItemClick);
+            // 
+            // tileBarItem13
+            // 
+            this.tileBarItem13.AppearanceItem.Normal.BackColor = System.Drawing.Color.Blue;
+            this.tileBarItem13.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Red;
+            this.tileBarItem13.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.tileBarItem13.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement32.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement32.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement32.ImageOptions.ImageUri.Uri = "Edit";
+            tileItemElement32.Text = "Seçili Kasa Hareketlini Düzelt";
+            tileItemElement32.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem13.Elements.Add(tileItemElement32);
+            this.tileBarItem13.Id = 3;
+            this.tileBarItem13.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.tileBarItem13.Name = "tileBarItem13";
+            this.tileBarItem13.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileBarItem13_ItemClick);
             // 
             // tileBar6
             // 
@@ -3288,7 +3665,7 @@ namespace VolantMusteriDuzel
             this.tileBar6.AppearanceGroupText.Options.UseForeColor = true;
             this.tileBar6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.tileBar6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tileBar6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tileBar6.Dock = System.Windows.Forms.DockStyle.Left;
             this.tileBar6.DropDownButtonWidth = 30;
             this.tileBar6.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             this.tileBar6.Groups.Add(this.tileBarGroup4);
@@ -3297,13 +3674,13 @@ namespace VolantMusteriDuzel
             this.tileBar6.ItemPadding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.tileBar6.Location = new System.Drawing.Point(2, 2);
             this.tileBar6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tileBar6.MaxId = 4;
+            this.tileBar6.MaxId = 5;
             this.tileBar6.Name = "tileBar6";
             this.tileBar6.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.tileBar6.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.None;
             this.tileBar6.SelectionBorderWidth = 2;
             this.tileBar6.SelectionColorMode = DevExpress.XtraBars.Navigation.SelectionColorMode.UseItemBackColor;
-            this.tileBar6.Size = new System.Drawing.Size(1474, 93);
+            this.tileBar6.Size = new System.Drawing.Size(830, 93);
             this.tileBar6.TabIndex = 3;
             this.tileBar6.Text = "tileBar6";
             this.tileBar6.WideTileWidth = 150;
@@ -3311,6 +3688,7 @@ namespace VolantMusteriDuzel
             // tileBarGroup4
             // 
             this.tileBarGroup4.Items.Add(this.btnKasaMerkezGelenDuzelt);
+            this.tileBarGroup4.Items.Add(this.tileBarItem14);
             this.tileBarGroup4.Name = "tileBarGroup4";
             // 
             // btnKasaMerkezGelenDuzelt
@@ -3319,102 +3697,209 @@ namespace VolantMusteriDuzel
             this.btnKasaMerkezGelenDuzelt.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Blue;
             this.btnKasaMerkezGelenDuzelt.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnKasaMerkezGelenDuzelt.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement8.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement8.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement8.ImageOptions.ImageUri.Uri = "Edit";
-            tileItemElement8.Text = "Seçili Kasa Hareketlini Düzelt";
-            tileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.btnKasaMerkezGelenDuzelt.Elements.Add(tileItemElement8);
+            tileItemElement33.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement33.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement33.ImageOptions.ImageUri.Uri = "Edit";
+            tileItemElement33.Text = "Seçili İşlemlerin Mekeze Para Aktar";
+            tileItemElement33.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.btnKasaMerkezGelenDuzelt.Elements.Add(tileItemElement33);
             this.btnKasaMerkezGelenDuzelt.Id = 3;
             this.btnKasaMerkezGelenDuzelt.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.btnKasaMerkezGelenDuzelt.Name = "btnKasaMerkezGelenDuzelt";
             this.btnKasaMerkezGelenDuzelt.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btnKasaMerkezGelenDuzelt_ItemClick);
             // 
+            // tileBarItem14
+            // 
+            this.tileBarItem14.AppearanceItem.Normal.BackColor = System.Drawing.Color.Black;
+            this.tileBarItem14.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Red;
+            this.tileBarItem14.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.tileBarItem14.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement34.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement34.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement34.ImageOptions.ImageUri.Uri = "business%20objects/bo_audit_changehistory";
+            tileItemElement34.Text = "Seçili Kaydın Hareketlerini Sil";
+            this.tileBarItem14.Elements.Add(tileItemElement34);
+            this.tileBarItem14.Id = 4;
+            this.tileBarItem14.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.tileBarItem14.Name = "tileBarItem14";
+            this.tileBarItem14.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileBarItem14_ItemClick);
+            // 
             // panelControl15
             // 
-            this.panelControl15.Controls.Add(this.labelControl21);
-            this.panelControl15.Controls.Add(this.labelControl22);
-            this.panelControl15.Controls.Add(this.dteKasaMerkezDuzeltEnd);
-            this.panelControl15.Controls.Add(this.btnKasaMerkezDuzeltYeni);
-            this.panelControl15.Controls.Add(this.btnKasaMerkezDuzeltListe);
-            this.panelControl15.Controls.Add(this.labelControl20);
-            this.panelControl15.Controls.Add(this.dteKasaMerkezDuzeltStart);
-            this.panelControl15.Controls.Add(this.cmbKasaMerkezDuzeltMagaza);
+            this.panelControl15.Controls.Add(this.panelControl26);
+            this.panelControl15.Controls.Add(this.panelControl25);
             this.panelControl15.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl15.Location = new System.Drawing.Point(0, 0);
             this.panelControl15.Name = "panelControl15";
             this.panelControl15.Size = new System.Drawing.Size(1478, 60);
             this.panelControl15.TabIndex = 2;
             // 
-            // labelControl21
+            // panelControl26
             // 
-            this.labelControl21.Location = new System.Drawing.Point(166, 4);
-            this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(106, 13);
-            this.labelControl21.TabIndex = 8;
-            this.labelControl21.Text = "Kasa Başlangıç Tarihi";
+            this.panelControl26.Controls.Add(this.cmbKasaMerkezDuzeltMagaza2);
+            this.panelControl26.Controls.Add(this.labelControl39);
+            this.panelControl26.Controls.Add(this.cmbKasaMerkezDuzeltKasiyer);
+            this.panelControl26.Controls.Add(this.labelControl35);
+            this.panelControl26.Controls.Add(this.dteKasaMerkezDuzeltStart2);
+            this.panelControl26.Controls.Add(this.labelControl38);
+            this.panelControl26.Controls.Add(this.btnKasaMerkezDuzeltKasiyerListele);
+            this.panelControl26.Controls.Add(this.btnKasaMerkezDuzeltYeni2);
+            this.panelControl26.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl26.Location = new System.Drawing.Point(832, 2);
+            this.panelControl26.Name = "panelControl26";
+            this.panelControl26.Size = new System.Drawing.Size(644, 56);
+            this.panelControl26.TabIndex = 11;
             // 
-            // labelControl22
+            // cmbKasaMerkezDuzeltMagaza2
             // 
-            this.labelControl22.Location = new System.Drawing.Point(322, 6);
-            this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(79, 13);
-            this.labelControl22.TabIndex = 9;
-            this.labelControl22.Text = "Kasa Bitiş Tarihi";
-            // 
-            // dteKasaMerkezDuzeltEnd
-            // 
-            this.dteKasaMerkezDuzeltEnd.EditValue = null;
-            this.dteKasaMerkezDuzeltEnd.Location = new System.Drawing.Point(322, 27);
-            this.dteKasaMerkezDuzeltEnd.Name = "dteKasaMerkezDuzeltEnd";
-            this.dteKasaMerkezDuzeltEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbKasaMerkezDuzeltMagaza2.Location = new System.Drawing.Point(6, 29);
+            this.cmbKasaMerkezDuzeltMagaza2.Name = "cmbKasaMerkezDuzeltMagaza2";
+            this.cmbKasaMerkezDuzeltMagaza2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dteKasaMerkezDuzeltEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbKasaMerkezDuzeltMagaza2.Properties.NullText = "Seçiniz...!";
+            this.cmbKasaMerkezDuzeltMagaza2.Properties.PopupView = this.gridView14;
+            this.cmbKasaMerkezDuzeltMagaza2.Size = new System.Drawing.Size(140, 20);
+            this.cmbKasaMerkezDuzeltMagaza2.TabIndex = 18;
+            this.cmbKasaMerkezDuzeltMagaza2.EditValueChanged += new System.EventHandler(this.cmbKasaMerkezDuzeltMagaza2_EditValueChanged);
+            // 
+            // gridView14
+            // 
+            this.gridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView14.Name = "gridView14";
+            this.gridView14.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView14.OptionsView.ShowGroupPanel = false;
+            // 
+            // labelControl39
+            // 
+            this.labelControl39.Location = new System.Drawing.Point(39, 8);
+            this.labelControl39.Name = "labelControl39";
+            this.labelControl39.Size = new System.Drawing.Size(75, 13);
+            this.labelControl39.TabIndex = 19;
+            this.labelControl39.Text = "Mağaza Seçimi";
+            // 
+            // cmbKasaMerkezDuzeltKasiyer
+            // 
+            this.cmbKasaMerkezDuzeltKasiyer.Enabled = false;
+            this.cmbKasaMerkezDuzeltKasiyer.Location = new System.Drawing.Point(155, 29);
+            this.cmbKasaMerkezDuzeltKasiyer.Name = "cmbKasaMerkezDuzeltKasiyer";
+            this.cmbKasaMerkezDuzeltKasiyer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dteKasaMerkezDuzeltEnd.Size = new System.Drawing.Size(140, 20);
-            this.dteKasaMerkezDuzeltEnd.TabIndex = 7;
+            this.cmbKasaMerkezDuzeltKasiyer.Properties.NullText = "Seçiniz...!";
+            this.cmbKasaMerkezDuzeltKasiyer.Properties.PopupView = this.gridView13;
+            this.cmbKasaMerkezDuzeltKasiyer.Size = new System.Drawing.Size(140, 20);
+            this.cmbKasaMerkezDuzeltKasiyer.TabIndex = 10;
             // 
-            // btnKasaMerkezDuzeltYeni
+            // gridView13
             // 
-            this.btnKasaMerkezDuzeltYeni.Location = new System.Drawing.Point(628, 25);
-            this.btnKasaMerkezDuzeltYeni.Name = "btnKasaMerkezDuzeltYeni";
-            this.btnKasaMerkezDuzeltYeni.Size = new System.Drawing.Size(75, 23);
-            this.btnKasaMerkezDuzeltYeni.TabIndex = 5;
-            this.btnKasaMerkezDuzeltYeni.Text = "Yeni";
-            this.btnKasaMerkezDuzeltYeni.Click += new System.EventHandler(this.btnKasaMerkezDuzeltYeni_Click);
+            this.gridView13.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn61,
+            this.gridColumn63,
+            this.gridColumn64,
+            this.gridColumn65,
+            this.gridColumn66});
+            this.gridView13.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView13.Name = "gridView13";
+            this.gridView13.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView13.OptionsView.ShowGroupPanel = false;
             // 
-            // btnKasaMerkezDuzeltListe
+            // gridColumn61
             // 
-            this.btnKasaMerkezDuzeltListe.Location = new System.Drawing.Point(470, 26);
-            this.btnKasaMerkezDuzeltListe.Name = "btnKasaMerkezDuzeltListe";
-            this.btnKasaMerkezDuzeltListe.Size = new System.Drawing.Size(140, 20);
-            this.btnKasaMerkezDuzeltListe.TabIndex = 4;
-            this.btnKasaMerkezDuzeltListe.Text = "Kasa Listesi";
-            this.btnKasaMerkezDuzeltListe.Click += new System.EventHandler(this.btnKasaMerkezDuzeltListe_Click);
+            this.gridColumn61.Caption = "gridColumn61";
+            this.gridColumn61.FieldName = "CHSOCODE";
+            this.gridColumn61.Name = "gridColumn61";
             // 
-            // labelControl20
+            // gridColumn63
             // 
-            this.labelControl20.Location = new System.Drawing.Point(9, 6);
-            this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(75, 13);
-            this.labelControl20.TabIndex = 3;
-            this.labelControl20.Text = "Mağaza Seçimi";
+            this.gridColumn63.Caption = "gridColumn63";
+            this.gridColumn63.FieldName = "DSAFEID";
+            this.gridColumn63.Name = "gridColumn63";
             // 
-            // dteKasaMerkezDuzeltStart
+            // gridColumn64
             // 
-            this.dteKasaMerkezDuzeltStart.EditValue = null;
-            this.dteKasaMerkezDuzeltStart.Location = new System.Drawing.Point(164, 26);
-            this.dteKasaMerkezDuzeltStart.Name = "dteKasaMerkezDuzeltStart";
-            this.dteKasaMerkezDuzeltStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.gridColumn64.Caption = "gridColumn64";
+            this.gridColumn64.FieldName = "DSAFEVAL";
+            this.gridColumn64.Name = "gridColumn64";
+            // 
+            // gridColumn65
+            // 
+            this.gridColumn65.Caption = "Kasiyer";
+            this.gridColumn65.FieldName = "DSAFENAME";
+            this.gridColumn65.Name = "gridColumn65";
+            // 
+            // gridColumn66
+            // 
+            this.gridColumn66.Caption = "gridColumn66";
+            this.gridColumn66.FieldName = "KasiyerAdı";
+            this.gridColumn66.Name = "gridColumn66";
+            this.gridColumn66.Visible = true;
+            this.gridColumn66.VisibleIndex = 0;
+            // 
+            // labelControl35
+            // 
+            this.labelControl35.Location = new System.Drawing.Point(347, 6);
+            this.labelControl35.Name = "labelControl35";
+            this.labelControl35.Size = new System.Drawing.Size(54, 13);
+            this.labelControl35.TabIndex = 16;
+            this.labelControl35.Text = "Kasa Tarihi";
+            // 
+            // dteKasaMerkezDuzeltStart2
+            // 
+            this.dteKasaMerkezDuzeltStart2.EditValue = null;
+            this.dteKasaMerkezDuzeltStart2.Enabled = false;
+            this.dteKasaMerkezDuzeltStart2.Location = new System.Drawing.Point(304, 29);
+            this.dteKasaMerkezDuzeltStart2.Name = "dteKasaMerkezDuzeltStart2";
+            this.dteKasaMerkezDuzeltStart2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dteKasaMerkezDuzeltStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dteKasaMerkezDuzeltStart2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dteKasaMerkezDuzeltStart.Size = new System.Drawing.Size(140, 20);
-            this.dteKasaMerkezDuzeltStart.TabIndex = 1;
+            this.dteKasaMerkezDuzeltStart2.Size = new System.Drawing.Size(140, 20);
+            this.dteKasaMerkezDuzeltStart2.TabIndex = 11;
+            // 
+            // labelControl38
+            // 
+            this.labelControl38.Location = new System.Drawing.Point(208, 9);
+            this.labelControl38.Name = "labelControl38";
+            this.labelControl38.Size = new System.Drawing.Size(35, 13);
+            this.labelControl38.TabIndex = 12;
+            this.labelControl38.Text = "Kasiyer";
+            // 
+            // btnKasaMerkezDuzeltKasiyerListele
+            // 
+            this.btnKasaMerkezDuzeltKasiyerListele.Location = new System.Drawing.Point(453, 28);
+            this.btnKasaMerkezDuzeltKasiyerListele.Name = "btnKasaMerkezDuzeltKasiyerListele";
+            this.btnKasaMerkezDuzeltKasiyerListele.Size = new System.Drawing.Size(107, 23);
+            this.btnKasaMerkezDuzeltKasiyerListele.TabIndex = 13;
+            this.btnKasaMerkezDuzeltKasiyerListele.Text = "Listele";
+            this.btnKasaMerkezDuzeltKasiyerListele.Click += new System.EventHandler(this.btnKasaMerkezDuzeltKasiyerListele_Click);
+            // 
+            // btnKasaMerkezDuzeltYeni2
+            // 
+            this.btnKasaMerkezDuzeltYeni2.Location = new System.Drawing.Point(569, 28);
+            this.btnKasaMerkezDuzeltYeni2.Name = "btnKasaMerkezDuzeltYeni2";
+            this.btnKasaMerkezDuzeltYeni2.Size = new System.Drawing.Size(75, 23);
+            this.btnKasaMerkezDuzeltYeni2.TabIndex = 14;
+            this.btnKasaMerkezDuzeltYeni2.Text = "Yeni";
+            this.btnKasaMerkezDuzeltYeni2.Click += new System.EventHandler(this.btnKasaMerkezDuzeltYeni2_Click);
+            // 
+            // panelControl25
+            // 
+            this.panelControl25.Controls.Add(this.cmbKasaMerkezDuzeltMagaza);
+            this.panelControl25.Controls.Add(this.labelControl21);
+            this.panelControl25.Controls.Add(this.dteKasaMerkezDuzeltStart);
+            this.panelControl25.Controls.Add(this.labelControl22);
+            this.panelControl25.Controls.Add(this.labelControl20);
+            this.panelControl25.Controls.Add(this.dteKasaMerkezDuzeltEnd);
+            this.panelControl25.Controls.Add(this.btnKasaMerkezDuzeltListe);
+            this.panelControl25.Controls.Add(this.btnKasaMerkezDuzeltYeni);
+            this.panelControl25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelControl25.Location = new System.Drawing.Point(2, 2);
+            this.panelControl25.Name = "panelControl25";
+            this.panelControl25.Size = new System.Drawing.Size(830, 56);
+            this.panelControl25.TabIndex = 10;
             // 
             // cmbKasaMerkezDuzeltMagaza
             // 
-            this.cmbKasaMerkezDuzeltMagaza.Location = new System.Drawing.Point(8, 26);
+            this.cmbKasaMerkezDuzeltMagaza.Location = new System.Drawing.Point(5, 28);
             this.cmbKasaMerkezDuzeltMagaza.Name = "cmbKasaMerkezDuzeltMagaza";
             this.cmbKasaMerkezDuzeltMagaza.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3429,6 +3914,72 @@ namespace VolantMusteriDuzel
             this.gridView7.Name = "gridView7";
             this.gridView7.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView7.OptionsView.ShowGroupPanel = false;
+            // 
+            // labelControl21
+            // 
+            this.labelControl21.Location = new System.Drawing.Point(163, 6);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(106, 13);
+            this.labelControl21.TabIndex = 8;
+            this.labelControl21.Text = "Kasa Başlangıç Tarihi";
+            // 
+            // dteKasaMerkezDuzeltStart
+            // 
+            this.dteKasaMerkezDuzeltStart.EditValue = null;
+            this.dteKasaMerkezDuzeltStart.Location = new System.Drawing.Point(161, 28);
+            this.dteKasaMerkezDuzeltStart.Name = "dteKasaMerkezDuzeltStart";
+            this.dteKasaMerkezDuzeltStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dteKasaMerkezDuzeltStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dteKasaMerkezDuzeltStart.Size = new System.Drawing.Size(140, 20);
+            this.dteKasaMerkezDuzeltStart.TabIndex = 1;
+            // 
+            // labelControl22
+            // 
+            this.labelControl22.Location = new System.Drawing.Point(319, 8);
+            this.labelControl22.Name = "labelControl22";
+            this.labelControl22.Size = new System.Drawing.Size(79, 13);
+            this.labelControl22.TabIndex = 9;
+            this.labelControl22.Text = "Kasa Bitiş Tarihi";
+            // 
+            // labelControl20
+            // 
+            this.labelControl20.Location = new System.Drawing.Point(6, 8);
+            this.labelControl20.Name = "labelControl20";
+            this.labelControl20.Size = new System.Drawing.Size(75, 13);
+            this.labelControl20.TabIndex = 3;
+            this.labelControl20.Text = "Mağaza Seçimi";
+            // 
+            // dteKasaMerkezDuzeltEnd
+            // 
+            this.dteKasaMerkezDuzeltEnd.EditValue = null;
+            this.dteKasaMerkezDuzeltEnd.Location = new System.Drawing.Point(319, 29);
+            this.dteKasaMerkezDuzeltEnd.Name = "dteKasaMerkezDuzeltEnd";
+            this.dteKasaMerkezDuzeltEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dteKasaMerkezDuzeltEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dteKasaMerkezDuzeltEnd.Size = new System.Drawing.Size(140, 20);
+            this.dteKasaMerkezDuzeltEnd.TabIndex = 7;
+            // 
+            // btnKasaMerkezDuzeltListe
+            // 
+            this.btnKasaMerkezDuzeltListe.Location = new System.Drawing.Point(467, 28);
+            this.btnKasaMerkezDuzeltListe.Name = "btnKasaMerkezDuzeltListe";
+            this.btnKasaMerkezDuzeltListe.Size = new System.Drawing.Size(140, 20);
+            this.btnKasaMerkezDuzeltListe.TabIndex = 4;
+            this.btnKasaMerkezDuzeltListe.Text = "Kasa Listesi";
+            this.btnKasaMerkezDuzeltListe.Click += new System.EventHandler(this.btnKasaMerkezDuzeltListe_Click);
+            // 
+            // btnKasaMerkezDuzeltYeni
+            // 
+            this.btnKasaMerkezDuzeltYeni.Location = new System.Drawing.Point(625, 27);
+            this.btnKasaMerkezDuzeltYeni.Name = "btnKasaMerkezDuzeltYeni";
+            this.btnKasaMerkezDuzeltYeni.Size = new System.Drawing.Size(75, 23);
+            this.btnKasaMerkezDuzeltYeni.TabIndex = 5;
+            this.btnKasaMerkezDuzeltYeni.Text = "Yeni";
+            this.btnKasaMerkezDuzeltYeni.Click += new System.EventHandler(this.btnKasaMerkezDuzeltYeni_Click);
             // 
             // xtraTabPage5
             // 
@@ -3519,12 +4070,12 @@ namespace VolantMusteriDuzel
             this.btnBankFarkSil.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Blue;
             this.btnBankFarkSil.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnBankFarkSil.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement9.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement9.ImageOptions.ImageUri.Uri = "Clear";
-            tileItemElement9.Text = "Seçili İşlemleri Sil";
-            tileItemElement9.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.btnBankFarkSil.Elements.Add(tileItemElement9);
+            tileItemElement35.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement35.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement35.ImageOptions.ImageUri.Uri = "Clear";
+            tileItemElement35.Text = "Seçili İşlemleri Sil";
+            tileItemElement35.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.btnBankFarkSil.Elements.Add(tileItemElement35);
             this.btnBankFarkSil.Id = 3;
             this.btnBankFarkSil.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.btnBankFarkSil.Name = "btnBankFarkSil";
@@ -4280,11 +4831,11 @@ namespace VolantMusteriDuzel
             // btnIYSkaydet
             // 
             this.btnIYSkaydet.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement10.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement10.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage1")));
-            tileItemElement10.Text = "IYS Onayı Ekle";
-            this.btnIYSkaydet.Elements.Add(tileItemElement10);
+            tileItemElement36.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement36.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement36.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage1")));
+            tileItemElement36.Text = "IYS Onayı Ekle";
+            this.btnIYSkaydet.Elements.Add(tileItemElement36);
             this.btnIYSkaydet.Id = 1;
             this.btnIYSkaydet.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.btnIYSkaydet.Name = "btnIYSkaydet";
@@ -4420,12 +4971,12 @@ namespace VolantMusteriDuzel
             this.employeesTileBarItem.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(196)))));
             this.employeesTileBarItem.AppearanceItem.Normal.Options.UseBackColor = true;
             this.employeesTileBarItem.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement11.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement11.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement11.ImageOptions.ImageUri.Uri = "EditDataSource;Size32x32;GrayScaled";
-            tileItemElement11.Text = "İade Hatası Düzelt";
-            tileItemElement11.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
-            this.employeesTileBarItem.Elements.Add(tileItemElement11);
+            tileItemElement37.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement37.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement37.ImageOptions.ImageUri.Uri = "EditDataSource;Size32x32;GrayScaled";
+            tileItemElement37.Text = "İade Hatası Düzelt";
+            tileItemElement37.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
+            this.employeesTileBarItem.Elements.Add(tileItemElement37);
             this.employeesTileBarItem.Name = "employeesTileBarItem";
             this.employeesTileBarItem.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileBar_SelectedItemChanged);
             // 
@@ -4435,12 +4986,12 @@ namespace VolantMusteriDuzel
             this.customersTileBarItem.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.customersTileBarItem.AppearanceItem.Normal.Options.UseBackColor = true;
             this.customersTileBarItem.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement12.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement12.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement12.ImageOptions.ImageUri.Uri = "Summary;Size32x32;GrayScaled";
-            tileItemElement12.Text = "Ödeme Hatası Düzelt";
-            tileItemElement12.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
-            this.customersTileBarItem.Elements.Add(tileItemElement12);
+            tileItemElement38.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement38.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement38.ImageOptions.ImageUri.Uri = "Summary;Size32x32;GrayScaled";
+            tileItemElement38.Text = "Ödeme Hatası Düzelt";
+            tileItemElement38.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
+            this.customersTileBarItem.Elements.Add(tileItemElement38);
             this.customersTileBarItem.Id = 2;
             this.customersTileBarItem.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.customersTileBarItem.Name = "customersTileBarItem";
@@ -4452,12 +5003,12 @@ namespace VolantMusteriDuzel
             this.tileBarItem3.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem3.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem3.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement13.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement13.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement13.ImageOptions.ImageUri.Uri = "dashboards/filterquery";
-            tileItemElement13.Text = "İşlem Gören Müşteri Listesi";
-            tileItemElement13.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
-            this.tileBarItem3.Elements.Add(tileItemElement13);
+            tileItemElement39.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement39.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement39.ImageOptions.ImageUri.Uri = "dashboards/filterquery";
+            tileItemElement39.Text = "İşlem Gören Müşteri Listesi";
+            tileItemElement39.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
+            this.tileBarItem3.Elements.Add(tileItemElement39);
             this.tileBarItem3.Id = 4;
             this.tileBarItem3.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem3.Name = "tileBarItem3";
@@ -4469,12 +5020,12 @@ namespace VolantMusteriDuzel
             this.tileBarItem4.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem4.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem4.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement14.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement14.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement14.ImageOptions.ImageUri.Uri = "icon%20builder/business_cash";
-            tileItemElement14.Text = "Peşinat Primi";
-            tileItemElement14.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.tileBarItem4.Elements.Add(tileItemElement14);
+            tileItemElement40.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement40.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement40.ImageOptions.ImageUri.Uri = "icon%20builder/business_cash";
+            tileItemElement40.Text = "Peşinat Primi";
+            tileItemElement40.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem4.Elements.Add(tileItemElement40);
             this.tileBarItem4.Id = 5;
             this.tileBarItem4.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem4.Name = "tileBarItem4";
@@ -4486,12 +5037,12 @@ namespace VolantMusteriDuzel
             this.tileBarItem5.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem5.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem5.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement15.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement15.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement15.ImageOptions.ImageUri.Uri = "spreadsheet/financial";
-            tileItemElement15.Text = "Günlük Kasa";
-            tileItemElement15.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.tileBarItem5.Elements.Add(tileItemElement15);
+            tileItemElement41.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement41.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement41.ImageOptions.ImageUri.Uri = "spreadsheet/financial";
+            tileItemElement41.Text = "Günlük Kasa";
+            tileItemElement41.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem5.Elements.Add(tileItemElement41);
             this.tileBarItem5.Id = 6;
             this.tileBarItem5.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem5.Name = "tileBarItem5";
@@ -4503,11 +5054,11 @@ namespace VolantMusteriDuzel
             this.tileBarItem6.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem6.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem6.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement16.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement16.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement16.ImageOptions.ImageUri.Uri = "outlook%20inspired/payment";
-            tileItemElement16.Text = "Kredi Raporu";
-            this.tileBarItem6.Elements.Add(tileItemElement16);
+            tileItemElement42.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement42.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement42.ImageOptions.ImageUri.Uri = "outlook%20inspired/payment";
+            tileItemElement42.Text = "Kredi Raporu";
+            this.tileBarItem6.Elements.Add(tileItemElement42);
             this.tileBarItem6.Id = 8;
             this.tileBarItem6.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem6.Name = "tileBarItem6";
@@ -4519,11 +5070,11 @@ namespace VolantMusteriDuzel
             this.tileBarItem7.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem7.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem7.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement17.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement17.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement17.ImageOptions.ImageUri.Uri = "ClearFormatting";
-            tileItemElement17.Text = "Tek Ürün Teslimat Kaldırma";
-            this.tileBarItem7.Elements.Add(tileItemElement17);
+            tileItemElement43.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement43.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement43.ImageOptions.ImageUri.Uri = "ClearFormatting";
+            tileItemElement43.Text = "Tek Ürün Teslimat Kaldırma";
+            this.tileBarItem7.Elements.Add(tileItemElement43);
             this.tileBarItem7.Id = 9;
             this.tileBarItem7.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem7.Name = "tileBarItem7";
@@ -4535,11 +5086,11 @@ namespace VolantMusteriDuzel
             this.tileBarItem8.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem8.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem8.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement18.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement18.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement18.ImageOptions.ImageUri.Uri = "Currency";
-            tileItemElement18.Text = "Kasa Hareketi İşlemleri";
-            this.tileBarItem8.Elements.Add(tileItemElement18);
+            tileItemElement44.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement44.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement44.ImageOptions.ImageUri.Uri = "Currency";
+            tileItemElement44.Text = "Kasa Hareketi İşlemleri";
+            this.tileBarItem8.Elements.Add(tileItemElement44);
             this.tileBarItem8.Id = 10;
             this.tileBarItem8.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem8.Name = "tileBarItem8";
@@ -4551,11 +5102,11 @@ namespace VolantMusteriDuzel
             this.tileBarItem10.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem10.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem10.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement19.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement19.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
-            tileItemElement19.ImageOptions.ImageUri.Uri = "Recurrence";
-            tileItemElement19.Text = "Müşteri Ödeme Değiştir";
-            this.tileBarItem10.Elements.Add(tileItemElement19);
+            tileItemElement45.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement45.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement45.ImageOptions.ImageUri.Uri = "Recurrence";
+            tileItemElement45.Text = "Müşteri Ödeme Değiştir";
+            this.tileBarItem10.Elements.Add(tileItemElement45);
             this.tileBarItem10.Id = 11;
             this.tileBarItem10.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem10.Name = "tileBarItem10";
@@ -4567,14 +5118,14 @@ namespace VolantMusteriDuzel
             this.tileBarItem11.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.Black;
             this.tileBarItem11.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem11.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement20.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
-            tileItemElement20.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileItemElement20.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement20.ImageOptions.ImageToTextIndent = 1;
-            tileItemElement20.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage2")));
-            tileItemElement20.Text = "IYS Müşteri Aktar";
-            tileItemElement20.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.tileBarItem11.Elements.Add(tileItemElement20);
+            tileItemElement46.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
+            tileItemElement46.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileItemElement46.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement46.ImageOptions.ImageToTextIndent = 1;
+            tileItemElement46.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage2")));
+            tileItemElement46.Text = "IYS Müşteri Aktar";
+            tileItemElement46.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem11.Elements.Add(tileItemElement46);
             this.tileBarItem11.Id = 12;
             this.tileBarItem11.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem11.Name = "tileBarItem11";
@@ -4813,19 +5364,45 @@ namespace VolantMusteriDuzel
             ((System.ComponentModel.ISupportInitialize)(this.cmbKasaSilMagaza.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.xtraTabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridKasiyerKasaHareket)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewKasiyerKasaHareket)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            this.navBarControl1.ResumeLayout(false);
+            this.navBarGroupControlContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
+            this.tablePanel1.ResumeLayout(false);
+            this.tablePanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewSabhNote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSabhNote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSabhdate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteNewSabhdate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteNewSabhdate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSabhamount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewSabhAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKasaMerkezDuzelt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewKasaMerkezDuzelt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl16)).EndInit();
             this.panelControl16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl15)).EndInit();
             this.panelControl15.ResumeLayout(false);
-            this.panelControl15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl26)).EndInit();
+            this.panelControl26.ResumeLayout(false);
+            this.panelControl26.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbKasaMerkezDuzeltMagaza2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbKasaMerkezDuzeltKasiyer.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart2.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl25)).EndInit();
+            this.panelControl25.ResumeLayout(false);
+            this.panelControl25.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbKasaMerkezDuzeltMagaza.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltStart.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteKasaMerkezDuzeltEnd.Properties)).EndInit();
             this.xtraTabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridBankFark)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ViewBankFark)).EndInit();
@@ -5264,5 +5841,47 @@ namespace VolantMusteriDuzel
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup10;
         private DevExpress.XtraBars.Navigation.TileBarItem btnOdemeDetayı;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn59;
+        private PanelControl panelControl26;
+        private SearchLookUpEdit cmbKasaMerkezDuzeltKasiyer;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView13;
+        private LabelControl labelControl35;
+        private DateEdit dteKasaMerkezDuzeltStart2;
+        private LabelControl labelControl38;
+        private SimpleButton btnKasaMerkezDuzeltKasiyerListele;
+        private SimpleButton btnKasaMerkezDuzeltYeni2;
+        private PanelControl panelControl25;
+        private SearchLookUpEdit cmbKasaMerkezDuzeltMagaza2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView14;
+        private LabelControl labelControl39;
+        private DevExpress.XtraNavBar.NavBarControl navBarControl1;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
+        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer3;
+        private DevExpress.XtraBars.Navigation.TileBar tileBar13;
+        private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup7;
+        private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem13;
+        private DevExpress.XtraGrid.GridControl gridKasiyerKasaHareket;
+        private DevExpress.XtraGrid.Views.Grid.GridView ViewKasiyerKasaHareket;
+        private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn61;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn63;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn64;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn65;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn66;
+        private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem15;
+        private DevExpress.Utils.Layout.TablePanel tablePanel1;
+        private MemoEdit txtNewSabhNote;
+        private MemoEdit txtSabhNote;
+        private LabelControl labelControl37;
+        private TextEdit txtSabhdate;
+        private DateEdit dteNewSabhdate;
+        private LabelControl labelControl40;
+        private TextEdit txtSabhamount;
+        private TextEdit txtNewSabhAmount;
+        private LabelControl labelControl41;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn67;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn68;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn69;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn70;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn71;
     }
 }

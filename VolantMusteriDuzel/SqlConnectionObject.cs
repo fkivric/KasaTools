@@ -9,7 +9,29 @@ using System.Threading.Tasks;
 namespace VolantMusteriDuzel
 {
     class SqlConnectionObject
-    {
+    {   
+        public string QueryEntegref(string q, SqlConnection conn)
+        {
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(q, conn);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                if (dataTable != null)
+                {
+                    return dataTable.Rows[0][0].ToString();
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public string BulkInsertRetorn(DataTable dt, string KaydedilecekTAbloAdı, SqlConnection sqlConnection)
         {
             using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlConnection))

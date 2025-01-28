@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.SqlClient;
 
 namespace VolantMusteriDuzel.Class
 {
     public class ApiClient
     {
+        SqlConnectionObject conn = new SqlConnectionObject();
+        SqlConnection sql = new SqlConnection(Properties.Settings.Default.connectionstring);
         private static readonly HttpClient client = new HttpClient();
         private static string URL = "api/Iys/SendRecipient";
         public class IYSResponse {
@@ -63,7 +66,7 @@ namespace VolantMusteriDuzel.Class
                 }
             }
         }
-        public async void SendRequest(string Onay,string Permission,string GSM,DateTime date)
+        public async Task<string> SendRequest(string CURID,string Onay,string Permission,string GSM,DateTime date)
         {
             // API URL'si
             string apiUrl = "https://restapi.ttmesaj.com/api/Iys/SendRecipient";
@@ -105,18 +108,22 @@ namespace VolantMusteriDuzel.Class
                 {
                     // Başarılı ise yanıtı al ve işle
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine("Başarılı: " + responseBody);
+                    IYSResponse smsSonuc = JsonConvert.DeserializeObject<IYSResponse>(responseBody);                    
+                    //Console.WriteLine("Başarılı: " + responseBody);
+                    return responseBody;
                 }
                 else
                 {
                     // Hata durumunda
-                    Console.WriteLine("Hata: " + response.StatusCode);
+                    //Console.WriteLine("Hata: " + response.StatusCode);
+                    return response.StatusCode.ToString();
                 }
             }
             catch (Exception ex)
             {
                 // İstek sırasında oluşan hatayı yakala
-                Console.WriteLine("Hata: " + ex.Message);
+                return ex.Message;
+                //Console.WriteLine("Hata: " + ex.Message);
             }
         }
         public async void Report(string Permission,string PackageId)
